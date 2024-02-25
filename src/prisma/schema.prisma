@@ -1,0 +1,1185 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "./generated/prisma-client"
+  previewFeatures = ["filterJson", "fullTextIndex", "fullTextSearch", "relationJoins"]
+  binaryTargets   = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model GO_ADMIN {
+  id            Int       @id @default(autoincrement())
+  uuid          String    @unique(map: "GO_ADMIN_UUID") @db.VarChar(255)
+  username      String?   @unique(map: "GO_ADMIN_USERNAME") @db.VarChar(255)
+  email         String    @unique(map: "G_ADMIN_EMAIL") @db.VarChar(255)
+  password_hash String    @db.VarChar(255)
+  firstname     String?   @db.VarChar(255)
+  lastname      String?   @db.VarChar(255)
+  phone         String?   @db.VarChar(255)
+  picture       String?   @db.VarChar(255)
+  user_level    Int?
+  status        Int?
+  updated_by    String?   @db.VarChar(255)
+  updated_date  DateTime? @db.DateTime(0)
+}
+
+model GO_AI_CHAT {
+  id           Int               @id @default(autoincrement())
+  uuid         String            @db.VarChar(255)
+  user_uuid    String?           @db.VarChar(50)
+  message      Json?
+  status       GO_AI_CHAT_status
+  created_date DateTime?         @db.DateTime(0)
+  GO_USER      GO_USER?          @relation(fields: [user_uuid], references: [uuid], onDelete: NoAction, onUpdate: NoAction, map: "GO_AI_CHAT_USER_UUID")
+
+  @@index([user_uuid], map: "GO_AI_CHAT_USER_UUID")
+}
+
+model GO_AI_TRIP {
+  id           Int       @id @default(autoincrement())
+  uuid         String    @db.VarChar(50)
+  user_uuid    String?   @db.VarChar(50)
+  place        String    @db.VarChar(100)
+  datetogo     DateTime? @db.DateTime(0)
+  datefinish   DateTime? @db.DateTime(0)
+  days         Int?
+  gowith       String    @db.VarChar(100)
+  interesting  String    @db.VarChar(100)
+  budget       String?   @db.VarChar(255)
+  trip         Json
+  created_by   String?   @default("") @db.VarChar(60)
+  created_date DateTime? @db.DateTime(0)
+  GO_USER      GO_USER?  @relation(fields: [user_uuid], references: [uuid], onDelete: NoAction, onUpdate: NoAction, map: "GO_AI_TRIP_USER_UUID")
+
+  @@index([user_uuid], map: "GO_AI_TRIP_USER_UUID")
+}
+
+model GO_CHAT {
+  id              Int               @id @default(autoincrement())
+  uuid            String?           @unique(map: "uuid") @db.VarChar(50)
+  name            String?           @db.VarChar(30)
+  type            GO_CHAT_type
+  member          Json?
+  trip_uuid       String?           @db.VarChar(50)
+  created_by      String?           @db.VarChar(60)
+  created_date    DateTime?         @db.DateTime(0)
+  updated_by      String?           @db.VarChar(60)
+  updated_date    DateTime?         @db.DateTime(0)
+  GO_CHAT_MESSAGE GO_CHAT_MESSAGE[]
+}
+
+model GO_CHAT_MESSAGE {
+  id           Int                   @id @default(autoincrement())
+  uuid         String?               @unique(map: "GO_CHAT_MESSAGE_UUID") @db.VarChar(50)
+  chat_uuid    String                @db.VarChar(50)
+  from_uuid    String?               @db.VarChar(50)
+  message      String?               @db.VarChar(1000)
+  read         Int?
+  type         GO_CHAT_MESSAGE_type?
+  message_info Json?
+  created_date DateTime?             @db.DateTime(0)
+  sent_by      String?               @db.VarChar(255)
+  GO_CHAT      GO_CHAT               @relation(fields: [chat_uuid], references: [uuid], onDelete: NoAction, onUpdate: NoAction, map: "GO_CHAT_MESSAGE_CHAT_UUID")
+  GO_USER      GO_USER?              @relation(fields: [from_uuid], references: [uuid], onDelete: NoAction, onUpdate: NoAction, map: "GO_CHAT_MESSAGE_USER_UUID")
+
+  @@index([chat_uuid], map: "GO_CHAT_MESSAGE_CHAT_UUID")
+  @@index([from_uuid], map: "GO_CHAT_MESSAGE_USER_UUID")
+}
+
+model GO_COIN_TRANSACTION {
+  id                      Int                       @id @default(autoincrement())
+  uuid                    String                    @db.VarChar(100)
+  user_id                 Int
+  coins                   Int?
+  amount                  Int?
+  type                    GO_COIN_TRANSACTION_type?
+  is_active               Boolean?                  @db.Bit(1)
+  expiry_date             DateTime?                 @db.DateTime(0)
+  created_date            DateTime?                 @db.DateTime(0)
+  created_by              String?                   @db.VarChar(100)
+  updated_date            DateTime                  @db.DateTime(0)
+  update_by               String                    @db.VarChar(100)
+  ref_info                Json?
+  GO_USER                 GO_USER                   @relation(fields: [user_id], references: [id], onUpdate: Restrict, map: "FK_COINTAR_USERID")
+  GO_REDEEM_ORDER_DETAILS GO_REDEEM_ORDER_DETAILS[]
+
+  @@index([user_id], map: "FK_COINTAR_USERID")
+  @@index([uuid], map: "uuid")
+}
+
+model GO_CONDITION_TYPE {
+  id                   Int                    @id @default(autoincrement())
+  name                 String?                @db.VarChar(100)
+  GO_MISSION_CONDITION GO_MISSION_CONDITION[]
+}
+
+model GO_CONTENT {
+  id                   Int                    @id @default(autoincrement())
+  uuid                 String?                @unique(map: "CONTENT_UUID_IDX") @db.VarChar(50)
+  group_id             Int
+  code                 String?                @db.VarChar(255)
+  tags                 String?                @db.VarChar(255)
+  sort                 Int?
+  status               Boolean                @default(true)
+  expired_date         DateTime?              @db.DateTime(0)
+  created_by           String?                @db.VarChar(60)
+  created_date         DateTime?              @db.DateTime(0)
+  updated_by           String?                @db.VarChar(60)
+  updated_date         DateTime?              @db.DateTime(0)
+  GO_CONTENT_GROUP     GO_CONTENT_GROUP       @relation(fields: [group_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "go_content_ibfk_1")
+  GO_CONTENT_TRANSLATE GO_CONTENT_TRANSLATE[]
+
+  @@index([group_id], map: "FK_YII_CONTENT")
+}
+
+model GO_CONTENT_GROUP {
+  id           Int          @id @default(autoincrement())
+  code         String       @db.VarChar(255)
+  status       Boolean      @default(true)
+  updated_by   String?      @db.VarChar(60)
+  updated_date DateTime?    @db.DateTime(0)
+  GO_CONTENT   GO_CONTENT[]
+}
+
+model GO_CONTENT_TRANSLATE {
+  id               Int        @id @default(autoincrement())
+  content_id       Int
+  lang             String     @db.VarChar(5)
+  title            String?    @db.VarChar(255)
+  description      String?    @db.VarChar(255)
+  detail           String?    @db.LongText
+  image            String?    @db.VarChar(255)
+  meta             String?    @db.VarChar(255)
+  meta_title       String?    @db.VarChar(255)
+  meta_description String?    @db.VarChar(255)
+  published        Boolean    @default(true)
+  GO_CONTENT       GO_CONTENT @relation(fields: [content_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "go_content_translate_ibfk_1")
+
+  @@index([content_id], map: "FK_GO_CONTENT_TRANSLATE")
+}
+
+model GO_FILES {
+  id            Int       @id @default(autoincrement())
+  uuid          String?   @db.VarChar(50)
+  image_name    String?   @db.VarChar(255)
+  original_name String?   @db.VarChar(255)
+  user_uuid     String?   @db.VarChar(50)
+  trip_uuid     String?   @db.VarChar(255)
+  caption       String?   @db.VarChar(255)
+  file_type     String?   @db.VarChar(50)
+  mime_type     String?   @db.VarChar(50)
+  status        Int?
+  size          Float?
+  url           String?   @db.VarChar(255)
+  info          Json?
+  privacy       Int?
+  host_by       String?   @db.VarChar(55)
+  created_by    String?   @db.VarChar(60)
+  created_date  DateTime? @db.DateTime(0)
+  updated_by    String?   @db.VarChar(60)
+  updated_date  DateTime? @db.DateTime(0)
+}
+
+model GO_FRIEND_HISTORY {
+  id            Int     @id @default(autoincrement())
+  uuid_user     String? @db.VarChar(60)
+  description   String? @db.VarChar(255)
+  before_status Int?
+  after_status  Int?
+  uuid_follow   String? @db.VarChar(60)
+  record_id     Int?
+
+  @@index([record_id], map: "go_follow_id")
+  @@index([uuid_user], map: "go_follow_uuid")
+  @@index([uuid_follow], map: "go_follow_uuid_follow")
+}
+
+model GO_HOTEL_LIKE {
+  id           Int       @id @default(autoincrement())
+  hotel_id     String?   @db.VarChar(255)
+  user_uuid    String?   @db.VarChar(100)
+  hotel_info   Json?
+  like         Boolean?
+  created_by   String?   @db.VarChar(60)
+  created_date DateTime? @db.DateTime(0)
+  updated_by   String?   @db.VarChar(60)
+  updated_date DateTime? @db.DateTime(0)
+  GO_USER      GO_USER?  @relation(fields: [user_uuid], references: [uuid], onDelete: Restrict, onUpdate: Restrict, map: "FK_HOTELLIKE_USER")
+
+  @@index([user_uuid], map: "FK_HOTELLIKE_USER")
+}
+
+model GO_INSPIRATION {
+  id                      Int                      @id @default(autoincrement())
+  uuid                    String?                  @db.VarChar(50)
+  category_id             Int?
+  user_id                 Int
+  location_id             Int
+  location_info           Json?
+  latitude                Float?
+  longitude               Float?
+  layout                  Int?
+  title                   String                   @db.VarChar(255)
+  description             String?                  @db.VarChar(255)
+  detail                  String?                  @db.LongText
+  has_weather             Int?
+  information             String?                  @db.LongText
+  faq                     String?                  @db.LongText
+  image                   String?                  @db.VarChar(255)
+  albums                  Json?
+  status                  Int?
+  created_by              String?                  @db.VarChar(60)
+  created_date            DateTime?                @db.DateTime(0)
+  updated_by              String?                  @db.VarChar(60)
+  updated_date            DateTime?                @db.DateTime(0)
+  files                   Json?
+  categories              Json?
+  links                   Json?
+  country                 String?                  @db.VarChar(255)
+  region                  String?                  @db.VarChar(255)
+  GO_INSPIRATION_CATEGORY GO_INSPIRATION_CATEGORY? @relation(fields: [category_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "fk_GO_INSPIRATION_GO_INSPIRATION_CATEGORY_1")
+  GO_INSPIRATION_LOCATION GO_INSPIRATION_LOCATION  @relation(fields: [location_id], references: [id], onUpdate: Restrict, map: "fk_GO_INSPIRATION_GO_MS_LOCATION_1")
+  GO_USER                 GO_USER                  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_GO_INSPIRATION_GO_USER_1")
+  GO_INSPIRATION_LIKE     GO_INSPIRATION_LIKE[]
+
+  @@index([category_id], map: "fk_GO_INSPIRATION_GO_INSPIRATION_CATEGORY_1")
+  @@index([location_id], map: "fk_GO_INSPIRATION_GO_MS_LOCATION_1")
+  @@index([user_id], map: "fk_GO_INSPIRATION_GO_USER_1")
+}
+
+model GO_INSPIRATION_CATEGORY {
+  id                   Int                   @id @default(autoincrement())
+  uuid                 String?               @db.VarChar(36)
+  group_id             Int?
+  name                 String?               @db.VarChar(255)
+  info                 Json?
+  status               Int?
+  created_by           String?               @db.VarChar(60)
+  created_date         DateTime?             @db.DateTime(0)
+  updated_by           String?               @db.VarChar(60)
+  updated_date         DateTime?             @db.DateTime(0)
+  GO_INSPIRATION_GROUP GO_INSPIRATION_GROUP? @relation(fields: [group_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "fk_GO_INSPIRATION_GO_INSPIRATION_GROUP_1")
+  GO_INSPIRATION       GO_INSPIRATION[]
+
+  @@index([group_id], map: "fk_GO_INSPIRATION_GO_INSPIRATION_GROUP_1")
+}
+
+model GO_INSPIRATION_GROUP {
+  id                      Int                       @id @default(autoincrement())
+  uuid                    String?                   @db.VarChar(36)
+  name                    String?                   @db.VarChar(255)
+  status                  Int?
+  created_by              String?                   @db.VarChar(60)
+  created_date            DateTime?                 @db.DateTime(0)
+  updated_by              String?                   @db.VarChar(60)
+  updated_date            DateTime?                 @db.DateTime(0)
+  GO_INSPIRATION_CATEGORY GO_INSPIRATION_CATEGORY[]
+}
+
+model GO_INSPIRATION_LIKE {
+  id             Int             @id @default(autoincrement())
+  inspiration_id Int?
+  user_id        Int?
+  like           Boolean?
+  created_by     String?         @db.VarChar(60)
+  created_date   DateTime?       @db.DateTime(0)
+  updated_by     String?         @db.VarChar(60)
+  updated_date   DateTime?       @db.DateTime(0)
+  GO_INSPIRATION GO_INSPIRATION? @relation(fields: [inspiration_id], references: [id], map: "GO_INSPIRATION_LIKE_ibfk_1")
+  GO_USER        GO_USER?        @relation(fields: [user_id], references: [id], map: "GO_INSPIRATION_LIKE_ibfk_2")
+
+  @@index([inspiration_id], map: "GO_INSPIRATION_LIKE_ibfk_1")
+  @@index([user_id], map: "GO_INSPIRATION_LIKE_ibfk_2")
+}
+
+model GO_INSPIRATION_LOCATION {
+  id                            Int                            @id @default(autoincrement())
+  uuid                          String?                        @db.VarChar(50)
+  group_id                      Int?
+  country_id                    Int
+  name                          String                         @db.VarChar(255)
+  location_info                 Json?
+  image                         String?                        @db.VarChar(255)
+  detail                        String?                        @db.LongText
+  has_weather                   Int?
+  travel_months                 Json?
+  information                   Json?
+  faq                           Json?
+  status                        Int?
+  created_by                    String?                        @db.VarChar(60)
+  created_date                  DateTime?                      @db.DateTime(0)
+  updated_by                    String?                        @db.VarChar(60)
+  updated_date                  DateTime?                      @db.DateTime(0)
+  GO_MS_COUNTRY                 GO_MS_COUNTRY                  @relation(fields: [country_id], references: [id], onUpdate: Restrict, map: "fk_GO_MS_LOCATION_GO_MS_COUNTRY_1")
+  GO_INSPIRATION_LOCATION_GROUP GO_INSPIRATION_LOCATION_GROUP? @relation(fields: [group_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "fk_GO_MS_LOCATION_GO_MS_LOCATION_GROUP_1")
+  GO_INSPIRATION                GO_INSPIRATION[]
+  GO_INSPIRATION_LOCATION_LIKE  GO_INSPIRATION_LOCATION_LIKE[]
+
+  @@index([country_id], map: "fk_GO_MS_LOCATION_GO_MS_COUNTRY_1")
+  @@index([group_id], map: "fk_GO_MS_LOCATION_GO_MS_LOCATION_GROUP_1")
+}
+
+model GO_INSPIRATION_LOCATION_GROUP {
+  id                      Int                       @id @default(autoincrement())
+  name                    String                    @db.VarChar(255)
+  status                  Int?
+  created_by              String?                   @db.VarChar(60)
+  created_date            DateTime?                 @db.DateTime(0)
+  updated_by              String?                   @db.VarChar(60)
+  updated_date            DateTime?                 @db.DateTime(0)
+  GO_INSPIRATION_LOCATION GO_INSPIRATION_LOCATION[]
+}
+
+model GO_INSPIRATION_LOCATION_LIKE {
+  id                      Int                      @id @default(autoincrement())
+  location_id             Int?
+  user_id                 Int?
+  like                    Boolean?
+  created_by              String?                  @db.VarChar(60)
+  created_date            DateTime?                @db.DateTime(0)
+  updated_by              String?                  @db.VarChar(60)
+  updated_date            DateTime?                @db.DateTime(0)
+  GO_INSPIRATION_LOCATION GO_INSPIRATION_LOCATION? @relation(fields: [location_id], references: [id], map: "GO_INSPIRATION_LOCATION_LIKE_ibfk_1")
+  GO_USER                 GO_USER?                 @relation(fields: [user_id], references: [id], map: "GO_INSPIRATION_LOCATION_LIKE_ibfk_2")
+
+  @@index([location_id], map: "GO_INSPIRATION_LOCATION_LIKE_ibfk_1")
+  @@index([user_id], map: "GO_INSPIRATION_LOCATION_LIKE_ibfk_2")
+}
+
+model GO_LINE_WEBHOOK {
+  id           Int       @id @default(autoincrement())
+  content      Json?
+  user_id      String?   @db.VarChar(50)
+  type         Int?
+  message      String?   @db.Text
+  postback     Json?
+  detail       Json?
+  created_date DateTime? @db.DateTime(0)
+}
+
+model GO_LOYALTY_STATUS {
+  id          Int       @id
+  name        String?   @db.VarChar(100)
+  description String?   @db.VarChar(255)
+  img         String?   @db.VarChar(255)
+  GO_USER     GO_USER[]
+}
+
+model GO_MEMBERSHIP_HISTORY {
+  id           Int       @id @default(autoincrement())
+  uuid         String    @db.VarChar(50)
+  uuid_user    String    @db.VarChar(50)
+  from_status  Boolean   @db.Bit(1)
+  to_status    Boolean   @db.Bit(1)
+  from_date    DateTime  @db.DateTime(0)
+  to_date      DateTime  @db.DateTime(0)
+  created_by   String?   @db.VarChar(100)
+  created_date DateTime? @db.DateTime(0)
+  GO_USER      GO_USER   @relation(fields: [uuid_user], references: [uuid], onUpdate: Restrict, map: "fk_memship_user")
+
+  @@index([uuid_user], map: "fk_memship_user")
+}
+
+model GO_MISSION {
+  id                   Int                    @id @default(autoincrement())
+  uuid                 String?                @db.VarChar(100)
+  name                 String?                @db.VarChar(255)
+  start_date           DateTime?              @db.DateTime(0)
+  end_date             DateTime?              @db.DateTime(0)
+  is_active            Boolean?               @db.Bit(1)
+  reward_coin          Int?
+  description          String                 @db.VarChar(255)
+  type_id              Int?
+  created_by           String?                @db.VarChar(100)
+  created_date         DateTime?              @db.DateTime(0)
+  updated_by           String                 @db.VarChar(100)
+  updated_date         DateTime               @db.DateTime(0)
+  GO_MISSION_CONDITION GO_MISSION_CONDITION[]
+}
+
+model GO_MISSION_CONDITION {
+  id                Int                @id @default(autoincrement())
+  uuid              String?            @db.VarChar(100)
+  mission_id        Int?
+  condition_id      Int?
+  amount            Int?
+  created_by        String?            @db.VarChar(100)
+  created_date      DateTime?          @db.DateTime(0)
+  updated_by        String             @db.VarChar(100)
+  updated_date      DateTime           @db.DateTime(0)
+  GO_CONDITION_TYPE GO_CONDITION_TYPE? @relation(fields: [condition_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "FK_MISCON_CONTYPE")
+  GO_MISSION        GO_MISSION?        @relation(fields: [mission_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "FK_MISCON_MISID")
+  GO_USER_MISSION   GO_USER_MISSION[]
+
+  @@index([condition_id], map: "FK_MISCON_CONTYPE")
+  @@index([mission_id], map: "FK_MISCON_MISID")
+}
+
+model GO_MS_COUNTRY {
+  id                      Int                       @id @default(autoincrement())
+  uuid                    String?                   @db.VarChar(60)
+  region_id               Int
+  name                    String                    @db.VarChar(255)
+  description             String?                   @db.VarChar(255)
+  flag                    String?                   @db.VarChar(255)
+  image                   String?                   @db.VarChar(255)
+  top_destination         Json?
+  highlights              Json?
+  firsttimes              Json?
+  trendings               Json?
+  created_by              String?                   @db.VarChar(60)
+  created_date            DateTime?                 @db.DateTime(0)
+  updated_by              String?                   @db.VarChar(60)
+  updated_date            DateTime?                 @db.DateTime(0)
+  GO_MS_REGION            GO_MS_REGION              @relation(fields: [region_id], references: [id], onUpdate: Restrict, map: "fk_GO_MS_COUNTRY_GO_MS_REGION_1")
+  GO_INSPIRATION_LOCATION GO_INSPIRATION_LOCATION[]
+  GO_MS_PROVINCE          GO_MS_PROVINCE[]
+  GO_TRENDING             GO_TRENDING[]
+
+  @@index([region_id], map: "fk_GO_MS_COUNTRY_GO_MS_REGION_1")
+}
+
+model GO_MS_PROVINCE {
+  id            Int           @id @default(autoincrement())
+  country_id    Int
+  name          String        @db.VarChar(255)
+  created_by    String?       @db.VarChar(60)
+  created_date  DateTime?     @db.DateTime(0)
+  updated_by    String?       @db.VarChar(60)
+  updated_date  DateTime?     @db.DateTime(0)
+  GO_MS_COUNTRY GO_MS_COUNTRY @relation(fields: [country_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_GO_MS_PROVINCE_GO_MS_COUNTRY_1")
+
+  @@index([country_id], map: "fk_GO_MS_PROVINCE_GO_MS_COUNTRY_1")
+}
+
+model GO_MS_REGION {
+  id            Int             @id @default(autoincrement())
+  name          String?         @db.VarChar(255)
+  description   String?         @db.VarChar(255)
+  status        Int?
+  image         String?         @db.VarChar(255)
+  highlights    Json?
+  created_by    String?         @db.VarChar(60)
+  created_date  DateTime?       @db.DateTime(0)
+  updated_by    String?         @db.VarChar(60)
+  updated_date  DateTime?       @db.DateTime(0)
+  GO_MS_COUNTRY GO_MS_COUNTRY[]
+}
+
+model GO_TRANSLATE {
+  id          Int     @id @default(autoincrement())
+  parent_code String  @db.VarChar(255)
+  lang        String  @db.VarChar(5)
+  name        String? @db.VarChar(255)
+  description String? @db.VarChar(255)
+}
+
+model GO_TRENDING {
+  id                Int               @id @default(autoincrement())
+  uuid              String?           @db.VarChar(50)
+  group_id          Int
+  country_id        Int
+  title             String            @db.VarChar(255)
+  description       String?           @db.VarChar(255)
+  layout            Int?
+  detail            String?           @db.LongText
+  image             String?           @db.VarChar(255)
+  display_type      Int?              @default(1)
+  status            Int?
+  created_by        String?           @db.VarChar(60)
+  created_date      DateTime?         @db.DateTime(0)
+  updated_by        String?           @db.VarChar(60)
+  updated_date      DateTime?         @db.DateTime(0)
+  GO_MS_COUNTRY     GO_MS_COUNTRY     @relation(fields: [country_id], references: [id], onUpdate: Restrict, map: "GO_TRENDING_MS_COUNTRY_FK")
+  GO_TRENDING_GROUP GO_TRENDING_GROUP @relation(fields: [group_id], references: [id], onUpdate: Restrict, map: "GO_TRENDING_TRENDING_GROUP_FK")
+
+  @@index([country_id], map: "GO_TRENDING_MS_COUNTRY_FK")
+  @@index([group_id], map: "GO_TRENDING_TRENDING_GROUP_FK")
+}
+
+model GO_TRENDING_GROUP {
+  id           Int           @id @default(autoincrement())
+  uuid         String?       @db.VarChar(36)
+  name         String        @db.VarChar(255)
+  status       Int
+  created_by   String?       @db.VarChar(60)
+  created_date DateTime?     @db.DateTime(0)
+  updated_by   String?       @db.VarChar(60)
+  updated_date DateTime?     @db.DateTime(0)
+  GO_TRENDING  GO_TRENDING[]
+}
+
+model GO_TRIP {
+  id                Int                 @id @default(autoincrement())
+  uuid              String?             @unique(map: "GO_TRIP_UUID_UNIQUE") @db.VarChar(50)
+  user_id           Int?
+  name              String?             @db.VarChar(255)
+  description       String?             @db.LongText
+  address           Json?
+  date_from         DateTime?           @db.DateTime(0)
+  date_to           DateTime?           @db.DateTime(0)
+  image             String?             @db.VarChar(255)
+  cover_info        Json?
+  trip_type         Int?
+  share_type        Int?
+  tags              Json?
+  shares            Json?
+  expenses          Json?
+  status            Int?
+  latitude          Float?
+  longitude         Float?
+  reference_trip_id Int?
+  reference_ai_id   Int?
+  group_chat_uuid   String?             @db.VarChar(50)
+  verify            Int?
+  created_by        String?             @db.VarChar(60)
+  created_date      DateTime?           @db.DateTime(0)
+  updated_by        String?             @db.VarChar(60)
+  updated_date      DateTime?           @db.DateTime(0)
+  deleted_by        String?             @db.VarChar(60)
+  deleted_date      DateTime?           @db.Date
+  view              Int?
+  GO_USER           GO_USER?            @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_GO_TRIP_GO_USER_1")
+  GO_TRIP_DAY       GO_TRIP_DAY[]
+  GO_TRIP_GALLERY   GO_TRIP_GALLERY[]
+  GO_TRIP_LIKE      GO_TRIP_LIKE[]
+  GO_TRIP_SAVE      GO_TRIP_SAVE[]
+  GO_TRIP_SHARE     GO_TRIP_SHARE[]
+  GO_TRIP_TRANSLATE GO_TRIP_TRANSLATE[]
+  GO_TRIP_VIEW      GO_TRIP_VIEW[]
+
+  @@index([user_id], map: "fk_GO_TRIP_GO_USER_1")
+}
+
+model GO_TRIP_ALBUM {
+  id              Int             @id @default(autoincrement())
+  uuid            String          @db.VarChar(60)
+  gallery_id      Int
+  sort            Int?
+  name            String?         @db.VarChar(255)
+  url             String?         @db.VarChar(255)
+  info            Json?
+  is_cover        Int?
+  file_type       String?         @db.VarChar(20)
+  thumbnail       String?         @db.VarChar(255)
+  GO_TRIP_GALLERY GO_TRIP_GALLERY @relation(fields: [gallery_id], references: [id], onDelete: Cascade, map: "GO_TRIP_ALBUM_GO_TRIP_GALLERY_FK")
+
+  @@index([gallery_id], map: "fk_GO_TRIP_ALBUM_GO_TRIP_GALLERY_1")
+}
+
+model GO_TRIP_DAY {
+  id             Int              @id @default(autoincrement())
+  uuid           String?          @db.VarChar(60)
+  trip_id        Int
+  day_no         Int?
+  day_name       String?          @db.VarChar(255)
+  day_date       DateTime?        @db.Date
+  description    String?          @db.Text
+  created_date   DateTime?        @db.DateTime(0)
+  updated_date   DateTime?        @db.DateTime(0)
+  GO_TRIP        GO_TRIP          @relation(fields: [trip_id], references: [id], onDelete: Cascade, map: "GO_TRIP_DAY_GO_TRIP_FK")
+  GO_TRIP_TRAVEL GO_TRIP_TRAVEL[]
+
+  @@index([trip_id], map: "fk_GO_TRIP_DAY_GO_TRIP_1")
+}
+
+model GO_TRIP_GALLERY {
+  id            Int             @id @default(autoincrement())
+  trip_id       Int
+  uuid          String?         @db.VarChar(60)
+  name          String?         @db.VarChar(255)
+  description   String?         @db.Text
+  place         Json?
+  albums_info   Json?
+  created_by    String?         @db.VarChar(60)
+  created_date  DateTime?       @db.DateTime(0)
+  updated_by    String?         @db.VarChar(60)
+  updated_date  DateTime?       @db.DateTime(0)
+  GO_TRIP       GO_TRIP         @relation(fields: [trip_id], references: [id], onDelete: Cascade, map: "GO_TRIP_GALLERY_GO_TRIP_FK")
+  GO_TRIP_ALBUM GO_TRIP_ALBUM[]
+
+  @@index([trip_id], map: "fk_GO_TRIP_GALLERY_GO_TRIP_1")
+}
+
+model GO_TRIP_LIKE {
+  id           Int       @id @default(autoincrement())
+  trip_id      Int?
+  user_id      Int?
+  like         Boolean?
+  created_by   String?   @db.VarChar(60)
+  created_date DateTime? @db.DateTime(0)
+  updated_by   String?   @db.VarChar(60)
+  updated_date DateTime? @db.DateTime(0)
+  GO_TRIP      GO_TRIP?  @relation(fields: [trip_id], references: [id], onDelete: Cascade, map: "GO_TRIP_LIKE_FK")
+  GO_USER      GO_USER?  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "GO_TRIP_LIKE_USER_FK")
+
+  @@index([trip_id], map: "GO_TRIP_LIKE_FK")
+  @@index([user_id], map: "GO_TRIP_LIKE_USER_FK")
+}
+
+model GO_TRIP_SAVE {
+  id           Int       @id @default(autoincrement())
+  trip_id      Int?
+  user_id      Int?
+  like         Boolean?
+  created_by   String?   @db.VarChar(60)
+  created_date DateTime? @db.DateTime(0)
+  updated_by   String?   @db.VarChar(60)
+  updated_date DateTime? @db.DateTime(0)
+  GO_TRIP      GO_TRIP?  @relation(fields: [trip_id], references: [id], map: "GO_TRIP_SAVE_ibfk_1")
+  GO_USER      GO_USER?  @relation(fields: [user_id], references: [id], map: "GO_TRIP_SAVE_ibfk_2")
+
+  @@index([trip_id], map: "trip_id")
+  @@index([user_id], map: "user_id")
+}
+
+model GO_TRIP_SHARE {
+  id           Int       @id @default(autoincrement())
+  trip_id      Int?
+  user_id      Int?
+  share_type   String?   @db.VarChar(255)
+  created_by   String?   @db.VarChar(60)
+  created_date DateTime? @db.DateTime(0)
+  updated_by   String?   @db.VarChar(60)
+  updated_date DateTime? @db.DateTime(0)
+  GO_TRIP      GO_TRIP?  @relation(fields: [trip_id], references: [id], map: "GO_TRIP_SHARE_ibfk_1")
+  GO_USER      GO_USER?  @relation(fields: [user_id], references: [id], map: "GO_TRIP_SHARE_ibfk_2")
+
+  @@index([trip_id], map: "trip_id")
+  @@index([user_id], map: "user_id")
+}
+
+model GO_TRIP_TRAVEL {
+  id                    Int                     @id @default(autoincrement())
+  uuid                  String?                 @db.VarChar(60)
+  day_id                Int
+  travel_no             Int?
+  travel_name           String?                 @db.VarChar(255)
+  type                  String?                 @db.VarChar(255)
+  traveling             Json?
+  title                 String?                 @db.VarChar(255)
+  location_source       String?                 @db.VarChar(20)
+  location              Json?
+  transport             Json?
+  images                Json?
+  booking_id            Int?
+  booking_info          String?                 @db.LongText
+  created_date          DateTime?               @db.DateTime(0)
+  updated_date          DateTime?               @db.DateTime(0)
+  GO_TRIP_DAY           GO_TRIP_DAY             @relation(fields: [day_id], references: [id], onDelete: Cascade, map: "fk_GO_TRIP_TRAVEL_GO_TRIP_DAY_1")
+  GO_TRIP_TRAVEL_OPTION GO_TRIP_TRAVEL_OPTION[]
+
+  @@index([day_id], map: "fk_GO_TRIP_TRAVEL_GO_TRIP_DAY_1")
+}
+
+model GO_TRIP_TRAVEL_OPTION {
+  id             Int             @id @default(autoincrement())
+  uuid           String?         @db.VarChar(60)
+  travel_id      Int?
+  type           String?         @db.VarChar(50)
+  data           Json?
+  created_date   DateTime?       @db.DateTime(0)
+  updated_date   DateTime?       @db.DateTime(0)
+  GO_TRIP_TRAVEL GO_TRIP_TRAVEL? @relation(fields: [travel_id], references: [id], onDelete: Cascade, map: "GO_TRIP_DAY_OPTION_FK")
+
+  @@index([travel_id], map: "GO_TRIP_DAY_OPTION_FK")
+}
+
+model GO_USER {
+  id                                                      Int                            @id @default(autoincrement())
+  uuid                                                    String?                        @unique(map: "uuid") @db.VarChar(50)
+  username                                                String                         @db.VarChar(30)
+  password_hash                                           String                         @db.VarChar(255)
+  password_reset_token                                    String?                        @db.VarChar(255)
+  verification_token                                      String?                        @db.VarChar(255)
+  email                                                   String                         @unique(map: "GO_USER_EMAIL_UNIQUE") @db.VarChar(255)
+  auth_key                                                String                         @db.VarChar(32)
+  access_token                                            String?                        @db.Text
+  access_expire_date                                      DateTime?                      @db.DateTime(0)
+  user_level                                              Int                            @default(0)
+  user_info                                               Json?
+  line_id                                                 String?                        @db.VarChar(255)
+  line_info                                               String?                        @db.LongText
+  authentication_token                                    String?                        @unique(map: "GO_USER_AUTHENTICATION_TOKEN_UNIQUE") @db.VarChar(255)
+  authentication_info                                     Json?
+  status                                                  Int                            @default(10) @db.SmallInt
+  picture                                                 String?                        @db.VarChar(255)
+  image_cover                                             String?                        @db.VarChar(255)
+  reference_code                                          String?                        @db.VarChar(12)
+  created_by                                              String?                        @db.VarChar(60)
+  created_date                                            DateTime?                      @db.DateTime(0)
+  updated_by                                              String?                        @db.VarChar(60)
+  updated_date                                            DateTime?                      @db.DateTime(0)
+  firstname                                               String?                        @db.VarChar(100)
+  lastname                                                String?                        @db.VarChar(100)
+  phone                                                   String?                        @db.VarChar(20)
+  birthday                                                DateTime?                      @db.Date
+  about_me                                                Json?
+  social_media                                            Json?
+  addresses                                               Json?
+  payment_methods                                         Json?
+  membership_status                                       Boolean?                       @default(dbgenerated("b'0'")) @db.Bit(1)
+  membership_expiry                                       DateTime?                      @db.DateTime(0)
+  loyalty_id                                              Int?
+  loyalty_expiry                                          DateTime?                      @db.DateTime(0)
+  digit_code                                              String?                        @db.VarChar(6)
+  region                                                  String?                        @db.VarChar(10)
+  GO_LOYALTY_STATUS                                       GO_LOYALTY_STATUS?             @relation(fields: [loyalty_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "FK_loyalty_user_id")
+  GO_AI_CHAT                                              GO_AI_CHAT[]
+  GO_AI_TRIP                                              GO_AI_TRIP[]
+  GO_CHAT_MESSAGE                                         GO_CHAT_MESSAGE[]
+  GO_COIN_TRANSACTION                                     GO_COIN_TRANSACTION[]
+  GO_HOTEL_LIKE                                           GO_HOTEL_LIKE[]
+  GO_INSPIRATION                                          GO_INSPIRATION[]
+  GO_INSPIRATION_LIKE                                     GO_INSPIRATION_LIKE[]
+  GO_INSPIRATION_LOCATION_LIKE                            GO_INSPIRATION_LOCATION_LIKE[]
+  GO_MEMBERSHIP_HISTORY                                   GO_MEMBERSHIP_HISTORY[]
+  GO_REDEEM_HISTORY                                       GO_REDEEM_HISTORY[]
+  GO_REDEEM_ORDER_DETAILS                                 GO_REDEEM_ORDER_DETAILS[]
+  GO_STORAGE                                              GO_STORAGE[]
+  GO_TRIP                                                 GO_TRIP[]
+  GO_TRIP_LIKE                                            GO_TRIP_LIKE[]
+  GO_TRIP_SAVE                                            GO_TRIP_SAVE[]
+  GO_TRIP_SHARE                                           GO_TRIP_SHARE[]
+  GO_TRIP_VIEW                                            GO_TRIP_VIEW[]
+  GO_USER_BOOKING                                         GO_USER_BOOKING[]
+  GO_USER_FRIEND_GO_USERToGO_USER_FRIEND_user_follow_uuid GO_USER_FRIEND[]               @relation("GO_USERToGO_USER_FRIEND_user_follow_uuid")
+  GO_USER_FRIEND_GO_USERToGO_USER_FRIEND_user_uuid        GO_USER_FRIEND[]               @relation("GO_USERToGO_USER_FRIEND_user_uuid")
+  GO_USER_MISSION                                         GO_USER_MISSION[]
+  GO_USER_PLAN_TRANSACTION                                GO_USER_PLAN_TRANSACTION[]
+  GO_USER_PROFILE                                         GO_USER_PROFILE?
+
+  @@index([loyalty_id], map: "FK_loyalty_user_id")
+}
+
+model GO_USER_BOOKING {
+  id           Int       @id @default(autoincrement())
+  user_id      Int?
+  booking_type String?   @db.VarChar(10)
+  booking_id   String?   @db.VarChar(255)
+  status       Int?
+  created_by   String?   @db.VarChar(60)
+  created_date DateTime? @db.DateTime(0)
+  updated_by   String?   @db.VarChar(60)
+  updated_date DateTime? @db.DateTime(0)
+  GO_USER      GO_USER?  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "GO_USER_BOOKING_USER_FK")
+
+  @@index([user_id], map: "GO_USER_BOOKING_USER_FK")
+}
+
+model GO_USER_FRIEND {
+  id                                               Int       @id @default(autoincrement())
+  user_uuid                                        String?   @db.VarChar(50)
+  user_follow_uuid                                 String?   @db.VarChar(50)
+  status                                           Int?
+  block_status                                     Int
+  created_by                                       String?   @db.VarChar(60)
+  created_date                                     DateTime? @db.DateTime(0)
+  updated_by                                       String?   @db.VarChar(60)
+  updated_date                                     DateTime? @db.DateTime(0)
+  GO_USER_GO_USERToGO_USER_FRIEND_user_follow_uuid GO_USER?  @relation("GO_USERToGO_USER_FRIEND_user_follow_uuid", fields: [user_follow_uuid], references: [uuid], onDelete: Restrict, onUpdate: Restrict, map: "FK_rep_fri")
+  GO_USER_GO_USERToGO_USER_FRIEND_user_uuid        GO_USER?  @relation("GO_USERToGO_USER_FRIEND_user_uuid", fields: [user_uuid], references: [uuid], onDelete: Restrict, onUpdate: Restrict, map: "FK_User_Friend")
+
+  @@index([user_uuid], map: "FK_User_Friend")
+  @@index([user_follow_uuid], map: "FK_rep_fri")
+  @@index([block_status], map: "FK_user_rel_useropp")
+}
+
+model GO_USER_FRIEND_STATUS {
+  status_follow_id   Int     @id
+  status_follow_name String? @db.VarChar(100)
+}
+
+model GO_USER_MISSION {
+  id                   Int                   @id
+  uuid                 String?               @db.VarChar(100)
+  user_id              Int?
+  mission_con_id       Int?
+  amount               Int?
+  status               Boolean?              @db.Bit(1)
+  created_date         DateTime?             @db.DateTime(0)
+  created_by           String?               @db.VarChar(100)
+  updated_date         DateTime              @db.DateTime(0)
+  updated_by           String                @db.VarChar(100)
+  GO_MISSION_CONDITION GO_MISSION_CONDITION? @relation(fields: [mission_con_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "FK_USERMISS_MISS_ID")
+  GO_USER              GO_USER?              @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: NoAction, map: "FK_USERMISS_USERID")
+
+  @@index([mission_con_id], map: "FK_USERMISS_MISS_ID")
+  @@index([user_id], map: "FK_USERMISS_USERID")
+}
+
+model GO_USER_PROFILE {
+  user_id   Int     @id @unique(map: "user_id")
+  title     String? @db.VarChar(15)
+  firstname String? @db.VarChar(100)
+  lastname  String? @db.VarChar(100)
+  nickname  String? @db.VarChar(50)
+  address1  String? @db.VarChar(255)
+  address2  String? @db.VarChar(255)
+  address3  String? @db.VarChar(255)
+  district  String? @db.VarChar(150)
+  amphur    String? @db.VarChar(150)
+  province  String? @db.VarChar(150)
+  zipcode   String? @db.VarChar(10)
+  phone     String? @db.VarChar(20)
+  mobile    String? @db.VarChar(20)
+  email     String? @db.VarChar(100)
+  avatar    String? @db.VarChar(255)
+  GO_USER   GO_USER @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "go_user_profile_ibfk_1")
+}
+
+model GO_VARIABLE {
+  key          String    @id @db.VarChar(100)
+  display      String?   @db.VarChar(255)
+  value        String?   @db.Text
+  remark       String?   @db.Text
+  updated_by   String?   @db.VarChar(60)
+  updated_date DateTime? @db.DateTime(0)
+}
+
+model GO_WIDGET {
+  id            Int       @id @default(autoincrement())
+  uuid          String?   @db.VarChar(60)
+  name          String?   @db.VarChar(255)
+  category_name String?   @db.VarChar(50)
+  type_name     String?   @db.VarChar(50)
+  size          Int?
+  detail        String?   @db.Text
+  reference     String?   @db.VarChar(255)
+  status        Int?      @default(1)
+  created_by    String?   @db.VarChar(60)
+  created_date  DateTime? @db.DateTime(0)
+  updated_by    String?   @db.VarChar(60)
+  updated_date  DateTime? @db.DateTime(0)
+}
+
+model LOGS {
+  id           Int       @id @default(autoincrement())
+  type         String?   @db.VarChar(50)
+  data         Json?
+  created_by   String?   @db.VarChar(60)
+  created_date DateTime? @db.DateTime(0)
+  updated_by   String?   @db.VarChar(60)
+  updated_date DateTime? @db.DateTime(0)
+}
+
+model LOG_HANDLER {
+  id                      Int       @id @default(autoincrement())
+  uuid                    String?   @db.VarChar(50)
+  x_client_transaction_id String?   @db.VarChar(50)
+  service_name            String    @db.VarChar(50)
+  detail                  Json
+  info_detail             Json?
+  created_by              String?   @db.VarChar(60)
+  created_date            DateTime? @db.DateTime(0)
+}
+
+model TEMP_TOKEN {
+  id            Int               @id @default(autoincrement())
+  token__string String?           @map("token _string") @db.VarChar(255)
+  max_register  Int?
+  register_log  String?           @db.Text
+  status        TEMP_TOKEN_status
+}
+
+model GO_ADMIN_TRANSACTION {
+  id                      Int       @id @default(autoincrement())
+  uuid                    String?   @db.VarChar(255)
+  x_client_transaction_id Int?
+  service_name            String?   @db.VarChar(255)
+  detail                  String?   @db.VarChar(255)
+  infomation              String?   @db.VarChar(255)
+  create_by               String?   @db.VarChar(255)
+  created_date            DateTime? @db.DateTime(0)
+}
+
+model GO_BANNER {
+  id           Int       @id @default(autoincrement())
+  service      String?   @db.VarChar(255)
+  name         String?   @db.VarChar(255)
+  provider     String?   @db.VarChar(255)
+  type         String?   @db.VarChar(255)
+  orientation  String?   @db.VarChar(255)
+  label        Int?
+  code_script  String?   @db.VarChar(255)
+  content      Json?
+  description  String?   @db.VarChar(255)
+  category     String?   @db.VarChar(255)
+  country      String?   @db.VarChar(255)
+  status       Int?      @default(0)
+  created_date DateTime? @db.DateTime(0)
+  created_by   String?   @db.VarChar(255)
+  updated_date DateTime? @db.DateTime(0)
+  updated_by   String?   @db.VarChar(255)
+}
+
+model GO_COMMON_STATUS {
+  id          Int     @id @default(autoincrement())
+  status      Int
+  description String? @db.VarChar(255)
+}
+
+model GO_INSPIRATION_LOCATION_TRANSLATE {
+  id                      Int       @id @default(autoincrement())
+  inspiration_location_id String    @db.VarChar(255)
+  language                String    @db.VarChar(255)
+  translate               Json?
+  created_date            DateTime? @db.DateTime(0)
+  updated_date            DateTime? @db.DateTime(0)
+
+  @@index([inspiration_location_id], map: "go_inspiration_location_idfk_1")
+}
+
+model GO_INSPIRATION_TRANSLATE {
+  id               Int       @id
+  inspiration_uuid String    @db.VarChar(255)
+  language         String    @db.VarChar(255)
+  translate        Json?
+  created_date     DateTime? @db.DateTime(0)
+  updated_date     DateTime? @db.DateTime(0)
+}
+
+model GO_MS_COUNTRY_TRANSLATE {
+  id              Int       @id @default(autoincrement())
+  ms_country_uuid String    @db.VarChar(255)
+  language        String    @db.VarChar(255)
+  translate       Json?
+  created_date    DateTime? @db.DateTime(0)
+  updated_date    DateTime? @db.DateTime(0)
+}
+
+model GO_PRICE_PLAN_BENEFITS {
+  id                       Int                        @id @default(autoincrement())
+  name                     String                     @db.VarChar(255)
+  inspiration              Boolean                    @db.Bit(1)
+  trip_place_only          Boolean                    @db.Bit(1)
+  trip_plan                Boolean                    @db.Bit(1)
+  booking_vouchers         Boolean                    @db.Bit(1)
+  post_share_trip          Boolean                    @db.Bit(1)
+  memories                 Boolean                    @db.Bit(1)
+  storage                  Int
+  status                   Int
+  GO_USER_PLAN_TRANSACTION GO_USER_PLAN_TRANSACTION[]
+}
+
+model GO_PROMOTION {
+  id    Int     @id @default(autoincrement())
+  uuid  String? @db.VarChar(50)
+  image String? @db.VarChar(255)
+  link  String? @db.VarChar(255)
+  type  String? @db.VarChar(255)
+}
+
+model GO_REDEEM_CART {
+  id                   Int                    @id @default(autoincrement())
+  user_uuid            String?                @db.VarChar(50)
+  total                Decimal?               @db.Decimal(10, 2)
+  created_date         DateTime?              @db.DateTime(0)
+  created_by           String?                @db.VarChar(255)
+  updated_date         DateTime?              @db.DateTime(0)
+  updated_by           String?                @db.VarChar(255)
+  GO_REDEEM_CART_ITEMS GO_REDEEM_CART_ITEMS[]
+
+  @@index([user_uuid], map: "fk_GO_USER_ID_1")
+}
+
+model GO_REDEEM_CART_ITEMS {
+  id                Int                @id @unique(map: "CART_ITEMS_ID_UNIQUE") @default(autoincrement())
+  cart_id           Int?
+  redeem_uuid       String?            @unique(map: "fk_GO_REDEEM_UUID") @db.VarChar(255)
+  quantity          Int?
+  created_date      DateTime?          @db.DateTime(0)
+  updated_date      DateTime?          @db.DateTime(0)
+  GO_REDEEM_CART    GO_REDEEM_CART?    @relation(fields: [cart_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "fk_GO_REDEEM_CART_ID_1")
+  GO_REDEEM_DETAILS GO_REDEEM_DETAILS? @relation(fields: [redeem_uuid], references: [uuid], onDelete: Restrict, onUpdate: Restrict, map: "fk_GO_REDEEM_UUID")
+
+  @@index([cart_id], map: "fk_GO_REDEEM_CART_ID_1")
+}
+
+model GO_REDEEM_CATEGORY {
+  id           Int       @id @default(autoincrement())
+  name         String    @db.VarChar(255)
+  created_date DateTime? @db.DateTime(0)
+  created_by   String?   @db.VarChar(255)
+  updated_date DateTime? @db.DateTime(0)
+  updated_by   String?   @db.VarChar(255)
+}
+
+model GO_REDEEM_DETAILS {
+  id                    Int                     @id @default(autoincrement())
+  uuid                  String                  @unique(map: "GO_REDEEM_UUID_UNIQUE") @db.VarChar(100)
+  name                  String                  @db.VarChar(255)
+  detail                String?                 @db.VarChar(255)
+  category_id           Int?
+  type                  Int?
+  image                 String?                 @db.VarChar(255)
+  privilege             String?                 @db.VarChar(255)
+  price                 Decimal                 @db.Decimal(10, 2)
+  amount                Int
+  discount_id           Int?
+  expired_date          DateTime                @db.DateTime(0)
+  created_date          DateTime?               @db.DateTime(0)
+  created_by            String?                 @db.VarChar(255)
+  updated_date          DateTime?               @db.DateTime(0)
+  updated_by            String?                 @db.VarChar(255)
+  GO_REDEEM_DISCOUNT    GO_REDEEM_DISCOUNT?     @relation(fields: [discount_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "fk_GO_REDEEM_DISCOUNT_ID_1")
+  GO_REDEEM_CART_ITEMS  GO_REDEEM_CART_ITEMS?
+  GO_REDEEM_ORDER_ITEMS GO_REDEEM_ORDER_ITEMS[]
+
+  @@index([category_id], map: "fk_GO_REDEEM_CATEGORY_ID")
+  @@index([discount_id], map: "fk_GO_REDEEM_DISCOUNT_ID_1")
+}
+
+model GO_REDEEM_DISCOUNT {
+  id                Int                 @id @default(autoincrement())
+  name              String?             @db.VarChar(255)
+  description       String?             @db.VarChar(255)
+  type              Int?
+  discount          Int?
+  created_date      DateTime?           @db.DateTime(0)
+  created_by        String?             @db.VarChar(255)
+  updated_date      DateTime?           @db.DateTime(0)
+  updated_by        String?             @db.VarChar(255)
+  GO_REDEEM_DETAILS GO_REDEEM_DETAILS[]
+}
+
+model GO_REDEEM_HISTORY {
+  id                      Int                     @id @default(autoincrement())
+  user_id                 Int
+  order_id                Int
+  status                  Int
+  created_date            DateTime?               @db.DateTime(0)
+  created_by              String?                 @db.VarChar(255)
+  updated_date            DateTime?               @db.DateTime(0)
+  updated_by              String?                 @db.VarChar(255)
+  GO_REDEEM_ORDER_DETAILS GO_REDEEM_ORDER_DETAILS @relation(fields: [order_id], references: [id], onUpdate: Restrict, map: "fk_GO_REDEEM_ID_3")
+  GO_USER                 GO_USER                 @relation(fields: [user_id], references: [id], onUpdate: Restrict, map: "fk_GO_USER_ID_3")
+
+  @@index([order_id], map: "fk_GO_REDEEM_ID_3")
+  @@index([user_id], map: "fk_GO_USER_ID_3")
+}
+
+model GO_REDEEM_ORDER_DETAILS {
+  id                    Int                     @id
+  user_id               Int?
+  total                 Decimal?                @db.Decimal(10, 2)
+  coin_transection_id   Int?
+  created_date          DateTime?               @db.DateTime(0)
+  updated_date          DateTime?               @db.DateTime(0)
+  GO_COIN_TRANSACTION   GO_COIN_TRANSACTION?    @relation(fields: [coin_transection_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "fk_GO_COIN_TRANSECTION_ID_2")
+  GO_USER               GO_USER?                @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "fk_GO_USER_ID_2")
+  GO_REDEEM_HISTORY     GO_REDEEM_HISTORY[]
+  GO_REDEEM_ORDER_ITEMS GO_REDEEM_ORDER_ITEMS[]
+
+  @@index([coin_transection_id], map: "fk_GO_COIN_TRANSECTION_ID_2")
+  @@index([user_id], map: "fk_GO_USER_ID_2")
+}
+
+model GO_REDEEM_ORDER_ITEMS {
+  id                      Int                      @id
+  order_id                Int?
+  redeem_id               Int?
+  quantity                Int?
+  created_date            DateTime?                @db.DateTime(0)
+  updated_date            DateTime?                @db.DateTime(0)
+  GO_REDEEM_ORDER_DETAILS GO_REDEEM_ORDER_DETAILS? @relation(fields: [order_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "fk_GO_REDEEM_ORDER_DETAIL_ID_2")
+  GO_REDEEM_DETAILS       GO_REDEEM_DETAILS?       @relation(fields: [redeem_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "fk_GO_REDEEM_ID_2")
+
+  @@index([redeem_id], map: "fk_GO_REDEEM_ID_2")
+  @@index([order_id], map: "fk_GO_REDEEM_ORDER_DETAIL_ID_2")
+}
+
+model GO_STORAGE {
+  id           Int       @id @default(autoincrement())
+  uuid         String    @db.VarChar(60)
+  user_uuid    String?   @db.VarChar(50)
+  size         Int?
+  type         String?   @db.VarChar(100)
+  expiry_date  DateTime? @db.DateTime(0)
+  created_date DateTime  @db.DateTime(0)
+  created_by   String    @db.VarChar(55)
+  updated_date DateTime? @db.DateTime(0)
+  updated_by   String?   @db.VarChar(255)
+  GO_USER      GO_USER?  @relation(fields: [user_uuid], references: [uuid], onDelete: Restrict, onUpdate: Restrict, map: "FK_user_uuid_storage")
+
+  @@index([user_uuid], map: "FK_user_uuid_storage")
+}
+
+model GO_TRIP_TRANSLATE {
+  id           Int       @id
+  gotrip_id    Int
+  translate_en Json?
+  translate_cn Json?
+  created_date DateTime? @db.DateTime(0)
+  updated_date DateTime? @db.DateTime(0)
+  GO_TRIP      GO_TRIP   @relation(fields: [gotrip_id], references: [id], onUpdate: Restrict, map: "go_trip_idfk_1")
+
+  @@index([gotrip_id], map: "go_trip_idfk_1")
+}
+
+model GO_TRIP_VIEW {
+  id           Int       @id @default(autoincrement())
+  trip_id      Int?
+  user_id      Int?
+  ip_address   String?   @db.VarChar(50)
+  created_by   String?   @db.VarChar(60)
+  created_date DateTime? @db.DateTime(0)
+  updated_by   String?   @db.VarChar(60)
+  updated_date DateTime? @db.DateTime(0)
+  GO_TRIP      GO_TRIP?  @relation(fields: [trip_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "GO_TRIP_VIEW_FK")
+  GO_USER      GO_USER?  @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "GO_TRIP_VIEW_USER_FK")
+
+  @@index([trip_id], map: "GO_TRIP_VIEW_FK")
+  @@index([user_id], map: "GO_TRIP_VIEW_USER_FK")
+}
+
+model GO_USER_PLAN_TRANSACTION {
+  id                     Int                    @id @default(autoincrement())
+  uuid                   String                 @db.VarChar(50)
+  user_uuid              String                 @db.VarChar(50)
+  plan_id                Int
+  expire_date            DateTime?              @db.DateTime(0)
+  created_by             String?                @db.VarChar(60)
+  created_date           DateTime?              @db.DateTime(0)
+  updated_by             String?                @db.VarChar(60)
+  updated_date           DateTime?              @db.DateTime(0)
+  status                 Int?
+  GO_PRICE_PLAN_BENEFITS GO_PRICE_PLAN_BENEFITS @relation(fields: [plan_id], references: [id], onUpdate: Restrict, map: "FK_GO_USER_PLAN_TRANSACTION_GO_PRICE_PLAN_BENEFITS")
+  GO_USER                GO_USER                @relation(fields: [user_uuid], references: [uuid], onUpdate: Restrict, map: "FK_GO_USER_PLAN_TRANSACTION_GO_USER")
+
+  @@index([plan_id], map: "FK_GO_USER_PLAN_TRANSACTION_GO_PRICE_PLAN_BENEFITS")
+  @@index([user_uuid], map: "FK_GO_USER_PLAN_TRANSACTION_GO_USER")
+}
+
+enum GO_AI_CHAT_status {
+  Active
+  Inactive
+}
+
+enum GO_CHAT_type {
+  friend
+  group
+  butler
+  aichat
+  support
+}
+
+enum GO_CHAT_MESSAGE_type {
+  picture
+  video
+  message
+}
+
+enum GO_COIN_TRANSACTION_type {
+  IN
+  OUT
+}
+
+enum TEMP_TOKEN_status {
+  active
+  inactive
+  delete
+}
