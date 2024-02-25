@@ -880,10 +880,12 @@ export namespace Prisma {
 
   export type USERAvgAggregateOutputType = {
     id: number | null
+    status: number | null
   }
 
   export type USERSumAggregateOutputType = {
     id: number | null
+    status: number | null
   }
 
   export type USERMinAggregateOutputType = {
@@ -895,6 +897,7 @@ export namespace Prisma {
     last_name: string | null
     phone: string | null
     email: string | null
+    status: number | null
     created_date: Date | null
     updated_date: Date | null
   }
@@ -908,6 +911,7 @@ export namespace Prisma {
     last_name: string | null
     phone: string | null
     email: string | null
+    status: number | null
     created_date: Date | null
     updated_date: Date | null
   }
@@ -921,6 +925,7 @@ export namespace Prisma {
     last_name: number
     phone: number
     email: number
+    status: number
     created_date: number
     updated_date: number
     _all: number
@@ -929,10 +934,12 @@ export namespace Prisma {
 
   export type USERAvgAggregateInputType = {
     id?: true
+    status?: true
   }
 
   export type USERSumAggregateInputType = {
     id?: true
+    status?: true
   }
 
   export type USERMinAggregateInputType = {
@@ -944,6 +951,7 @@ export namespace Prisma {
     last_name?: true
     phone?: true
     email?: true
+    status?: true
     created_date?: true
     updated_date?: true
   }
@@ -957,6 +965,7 @@ export namespace Prisma {
     last_name?: true
     phone?: true
     email?: true
+    status?: true
     created_date?: true
     updated_date?: true
   }
@@ -970,6 +979,7 @@ export namespace Prisma {
     last_name?: true
     phone?: true
     email?: true
+    status?: true
     created_date?: true
     updated_date?: true
     _all?: true
@@ -1070,6 +1080,7 @@ export namespace Prisma {
     last_name: string | null
     phone: string | null
     email: string
+    status: number
     created_date: Date | null
     updated_date: Date | null
     _count: USERCountAggregateOutputType | null
@@ -1102,6 +1113,7 @@ export namespace Prisma {
     last_name?: boolean
     phone?: boolean
     email?: boolean
+    status?: boolean
     created_date?: boolean
     updated_date?: boolean
   }, ExtArgs["result"]["uSER"]>
@@ -1115,6 +1127,7 @@ export namespace Prisma {
     last_name?: boolean
     phone?: boolean
     email?: boolean
+    status?: boolean
     created_date?: boolean
     updated_date?: boolean
   }
@@ -1132,6 +1145,7 @@ export namespace Prisma {
       last_name: string | null
       phone: string | null
       email: string
+      status: number
       created_date: Date | null
       updated_date: Date | null
     }, ExtArgs["result"]["uSER"]>
@@ -1536,6 +1550,7 @@ export namespace Prisma {
     readonly last_name: FieldRef<"USER", 'String'>
     readonly phone: FieldRef<"USER", 'String'>
     readonly email: FieldRef<"USER", 'String'>
+    readonly status: FieldRef<"USER", 'Int'>
     readonly created_date: FieldRef<"USER", 'DateTime'>
     readonly updated_date: FieldRef<"USER", 'DateTime'>
   }
@@ -1857,6 +1872,7 @@ export namespace Prisma {
     last_name: 'last_name',
     phone: 'phone',
     email: 'email',
+    status: 'status',
     created_date: 'created_date',
     updated_date: 'updated_date'
   };
@@ -1949,6 +1965,7 @@ export namespace Prisma {
     last_name?: StringNullableFilter<"USER"> | string | null
     phone?: StringNullableFilter<"USER"> | string | null
     email?: StringFilter<"USER"> | string
+    status?: IntFilter<"USER"> | number
     created_date?: DateTimeNullableFilter<"USER"> | Date | string | null
     updated_date?: DateTimeNullableFilter<"USER"> | Date | string | null
   }
@@ -1962,6 +1979,7 @@ export namespace Prisma {
     last_name?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrder
+    status?: SortOrder
     created_date?: SortOrderInput | SortOrder
     updated_date?: SortOrderInput | SortOrder
     _relevance?: USEROrderByRelevanceInput
@@ -1979,6 +1997,7 @@ export namespace Prisma {
     first_name?: StringNullableFilter<"USER"> | string | null
     last_name?: StringNullableFilter<"USER"> | string | null
     phone?: StringNullableFilter<"USER"> | string | null
+    status?: IntFilter<"USER"> | number
     created_date?: DateTimeNullableFilter<"USER"> | Date | string | null
     updated_date?: DateTimeNullableFilter<"USER"> | Date | string | null
   }, "id" | "id" | "uuid" | "email">
@@ -1992,6 +2011,7 @@ export namespace Prisma {
     last_name?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrder
+    status?: SortOrder
     created_date?: SortOrderInput | SortOrder
     updated_date?: SortOrderInput | SortOrder
     _count?: USERCountOrderByAggregateInput
@@ -2013,6 +2033,7 @@ export namespace Prisma {
     last_name?: StringNullableWithAggregatesFilter<"USER"> | string | null
     phone?: StringNullableWithAggregatesFilter<"USER"> | string | null
     email?: StringWithAggregatesFilter<"USER"> | string
+    status?: IntWithAggregatesFilter<"USER"> | number
     created_date?: DateTimeNullableWithAggregatesFilter<"USER"> | Date | string | null
     updated_date?: DateTimeNullableWithAggregatesFilter<"USER"> | Date | string | null
   }
@@ -2025,6 +2046,7 @@ export namespace Prisma {
     last_name?: string | null
     phone?: string | null
     email: string
+    status?: number
     created_date?: Date | string | null
     updated_date?: Date | string | null
   }
@@ -2038,6 +2060,7 @@ export namespace Prisma {
     last_name?: string | null
     phone?: string | null
     email: string
+    status?: number
     created_date?: Date | string | null
     updated_date?: Date | string | null
   }
@@ -2050,6 +2073,7 @@ export namespace Prisma {
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -2063,6 +2087,7 @@ export namespace Prisma {
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -2076,6 +2101,7 @@ export namespace Prisma {
     last_name?: string | null
     phone?: string | null
     email: string
+    status?: number
     created_date?: Date | string | null
     updated_date?: Date | string | null
   }
@@ -2088,6 +2114,7 @@ export namespace Prisma {
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -2101,6 +2128,7 @@ export namespace Prisma {
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -2177,12 +2205,14 @@ export namespace Prisma {
     last_name?: SortOrder
     phone?: SortOrder
     email?: SortOrder
+    status?: SortOrder
     created_date?: SortOrder
     updated_date?: SortOrder
   }
 
   export type USERAvgOrderByAggregateInput = {
     id?: SortOrder
+    status?: SortOrder
   }
 
   export type USERMaxOrderByAggregateInput = {
@@ -2194,6 +2224,7 @@ export namespace Prisma {
     last_name?: SortOrder
     phone?: SortOrder
     email?: SortOrder
+    status?: SortOrder
     created_date?: SortOrder
     updated_date?: SortOrder
   }
@@ -2207,12 +2238,14 @@ export namespace Prisma {
     last_name?: SortOrder
     phone?: SortOrder
     email?: SortOrder
+    status?: SortOrder
     created_date?: SortOrder
     updated_date?: SortOrder
   }
 
   export type USERSumOrderByAggregateInput = {
     id?: SortOrder
+    status?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2289,16 +2322,16 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {

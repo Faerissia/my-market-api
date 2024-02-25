@@ -40,15 +40,16 @@ export const register = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   try {
     const body = req.body;
+    const login = await userService.login(body);
 
     res.json({
       success: true,
       data: {
-        results: "result",
+        results: login,
       },
     });
-  } catch (err) {
+  } catch (err: any) {
     console.log("Error:", err);
-    res.status(500).send(String(err));
+    res.status(err.status).json({ message: err.message });
   }
 };
