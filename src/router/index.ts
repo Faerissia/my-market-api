@@ -1,10 +1,10 @@
 import express from "express";
 import { check } from "../controllers/check";
-import omiseRouter from "./omise";
+import userRouter from "./user";
 
 const router = express.Router();
 
 router.get("/check", check);
-router.use("/omise", omiseRouter);
+router.use("/user", userRouter);
 
 export = router;

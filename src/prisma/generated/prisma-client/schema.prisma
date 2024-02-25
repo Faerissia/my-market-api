@@ -1,0 +1,24 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "./generated/prisma-client"
+  previewFeatures = ["filterJson", "fullTextIndex", "fullTextSearch", "relationJoins"]
+  binaryTargets   = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model USER {
+  id           Int       @id @unique(map: "user_id_unique") @default(autoincrement())
+  uuid         String    @unique(map: "user_uuid_unique") @db.VarChar(50)
+  username     String?   @db.VarChar(255)
+  password     String    @db.VarChar(255)
+  first_name   String?   @db.VarChar(255)
+  last_name    String?   @db.VarChar(255)
+  phone        String?   @db.VarChar(10)
+  email        String    @unique(map: "user_email_unique") @db.VarChar(255)
+  created_date DateTime? @db.DateTime(0)
+  updated_date DateTime? @db.DateTime(0)
+}
