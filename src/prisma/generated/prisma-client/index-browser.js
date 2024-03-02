@@ -114,6 +114,8 @@ exports.Prisma.USERScalarFieldEnum = {
   password: 'password',
   first_name: 'first_name',
   last_name: 'last_name',
+  picture: 'picture',
+  firebase_uid: 'firebase_uid',
   phone: 'phone',
   email: 'email',
   status: 'status',
@@ -142,6 +144,8 @@ exports.Prisma.USEROrderByRelevanceFieldEnum = {
   password: 'password',
   first_name: 'first_name',
   last_name: 'last_name',
+  picture: 'picture',
+  firebase_uid: 'firebase_uid',
   phone: 'phone',
   email: 'email'
 };

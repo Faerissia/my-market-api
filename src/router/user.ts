@@ -7,5 +7,7 @@ const router = express.Router();
 router.get("/check", userController.check);
 router.post("/register", userController.register);
 router.post("/login", userController.login);
+router.post("/google-auth", validateToken, userController.auth);
+router.get("/get-profile", validateToken, userController.getProfile);
 
 export = router;

@@ -895,6 +895,8 @@ export namespace Prisma {
     password: string | null
     first_name: string | null
     last_name: string | null
+    picture: string | null
+    firebase_uid: string | null
     phone: string | null
     email: string | null
     status: number | null
@@ -909,6 +911,8 @@ export namespace Prisma {
     password: string | null
     first_name: string | null
     last_name: string | null
+    picture: string | null
+    firebase_uid: string | null
     phone: string | null
     email: string | null
     status: number | null
@@ -923,6 +927,8 @@ export namespace Prisma {
     password: number
     first_name: number
     last_name: number
+    picture: number
+    firebase_uid: number
     phone: number
     email: number
     status: number
@@ -949,6 +955,8 @@ export namespace Prisma {
     password?: true
     first_name?: true
     last_name?: true
+    picture?: true
+    firebase_uid?: true
     phone?: true
     email?: true
     status?: true
@@ -963,6 +971,8 @@ export namespace Prisma {
     password?: true
     first_name?: true
     last_name?: true
+    picture?: true
+    firebase_uid?: true
     phone?: true
     email?: true
     status?: true
@@ -977,6 +987,8 @@ export namespace Prisma {
     password?: true
     first_name?: true
     last_name?: true
+    picture?: true
+    firebase_uid?: true
     phone?: true
     email?: true
     status?: true
@@ -1078,6 +1090,8 @@ export namespace Prisma {
     password: string
     first_name: string | null
     last_name: string | null
+    picture: string | null
+    firebase_uid: string | null
     phone: string | null
     email: string
     status: number
@@ -1111,6 +1125,8 @@ export namespace Prisma {
     password?: boolean
     first_name?: boolean
     last_name?: boolean
+    picture?: boolean
+    firebase_uid?: boolean
     phone?: boolean
     email?: boolean
     status?: boolean
@@ -1125,6 +1141,8 @@ export namespace Prisma {
     password?: boolean
     first_name?: boolean
     last_name?: boolean
+    picture?: boolean
+    firebase_uid?: boolean
     phone?: boolean
     email?: boolean
     status?: boolean
@@ -1143,6 +1161,8 @@ export namespace Prisma {
       password: string
       first_name: string | null
       last_name: string | null
+      picture: string | null
+      firebase_uid: string | null
       phone: string | null
       email: string
       status: number
@@ -1548,6 +1568,8 @@ export namespace Prisma {
     readonly password: FieldRef<"USER", 'String'>
     readonly first_name: FieldRef<"USER", 'String'>
     readonly last_name: FieldRef<"USER", 'String'>
+    readonly picture: FieldRef<"USER", 'String'>
+    readonly firebase_uid: FieldRef<"USER", 'String'>
     readonly phone: FieldRef<"USER", 'String'>
     readonly email: FieldRef<"USER", 'String'>
     readonly status: FieldRef<"USER", 'Int'>
@@ -1870,6 +1892,8 @@ export namespace Prisma {
     password: 'password',
     first_name: 'first_name',
     last_name: 'last_name',
+    picture: 'picture',
+    firebase_uid: 'firebase_uid',
     phone: 'phone',
     email: 'email',
     status: 'status',
@@ -1910,6 +1934,8 @@ export namespace Prisma {
     password: 'password',
     first_name: 'first_name',
     last_name: 'last_name',
+    picture: 'picture',
+    firebase_uid: 'firebase_uid',
     phone: 'phone',
     email: 'email'
   };
@@ -1963,6 +1989,8 @@ export namespace Prisma {
     password?: StringFilter<"USER"> | string
     first_name?: StringNullableFilter<"USER"> | string | null
     last_name?: StringNullableFilter<"USER"> | string | null
+    picture?: StringNullableFilter<"USER"> | string | null
+    firebase_uid?: StringNullableFilter<"USER"> | string | null
     phone?: StringNullableFilter<"USER"> | string | null
     email?: StringFilter<"USER"> | string
     status?: IntFilter<"USER"> | number
@@ -1977,6 +2005,8 @@ export namespace Prisma {
     password?: SortOrder
     first_name?: SortOrderInput | SortOrder
     last_name?: SortOrderInput | SortOrder
+    picture?: SortOrderInput | SortOrder
+    firebase_uid?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrder
     status?: SortOrder
@@ -1996,6 +2026,8 @@ export namespace Prisma {
     password?: StringFilter<"USER"> | string
     first_name?: StringNullableFilter<"USER"> | string | null
     last_name?: StringNullableFilter<"USER"> | string | null
+    picture?: StringNullableFilter<"USER"> | string | null
+    firebase_uid?: StringNullableFilter<"USER"> | string | null
     phone?: StringNullableFilter<"USER"> | string | null
     status?: IntFilter<"USER"> | number
     created_date?: DateTimeNullableFilter<"USER"> | Date | string | null
@@ -2009,6 +2041,8 @@ export namespace Prisma {
     password?: SortOrder
     first_name?: SortOrderInput | SortOrder
     last_name?: SortOrderInput | SortOrder
+    picture?: SortOrderInput | SortOrder
+    firebase_uid?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrder
     status?: SortOrder
@@ -2031,6 +2065,8 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"USER"> | string
     first_name?: StringNullableWithAggregatesFilter<"USER"> | string | null
     last_name?: StringNullableWithAggregatesFilter<"USER"> | string | null
+    picture?: StringNullableWithAggregatesFilter<"USER"> | string | null
+    firebase_uid?: StringNullableWithAggregatesFilter<"USER"> | string | null
     phone?: StringNullableWithAggregatesFilter<"USER"> | string | null
     email?: StringWithAggregatesFilter<"USER"> | string
     status?: IntWithAggregatesFilter<"USER"> | number
@@ -2044,6 +2080,8 @@ export namespace Prisma {
     password: string
     first_name?: string | null
     last_name?: string | null
+    picture?: string | null
+    firebase_uid?: string | null
     phone?: string | null
     email: string
     status?: number
@@ -2058,6 +2096,8 @@ export namespace Prisma {
     password: string
     first_name?: string | null
     last_name?: string | null
+    picture?: string | null
+    firebase_uid?: string | null
     phone?: string | null
     email: string
     status?: number
@@ -2071,6 +2111,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     status?: IntFieldUpdateOperationsInput | number
@@ -2085,6 +2127,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     status?: IntFieldUpdateOperationsInput | number
@@ -2099,6 +2143,8 @@ export namespace Prisma {
     password: string
     first_name?: string | null
     last_name?: string | null
+    picture?: string | null
+    firebase_uid?: string | null
     phone?: string | null
     email: string
     status?: number
@@ -2112,6 +2158,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     status?: IntFieldUpdateOperationsInput | number
@@ -2126,6 +2174,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     status?: IntFieldUpdateOperationsInput | number
@@ -2203,6 +2253,8 @@ export namespace Prisma {
     password?: SortOrder
     first_name?: SortOrder
     last_name?: SortOrder
+    picture?: SortOrder
+    firebase_uid?: SortOrder
     phone?: SortOrder
     email?: SortOrder
     status?: SortOrder
@@ -2222,6 +2274,8 @@ export namespace Prisma {
     password?: SortOrder
     first_name?: SortOrder
     last_name?: SortOrder
+    picture?: SortOrder
+    firebase_uid?: SortOrder
     phone?: SortOrder
     email?: SortOrder
     status?: SortOrder
@@ -2236,6 +2290,8 @@ export namespace Prisma {
     password?: SortOrder
     first_name?: SortOrder
     last_name?: SortOrder
+    picture?: SortOrder
+    firebase_uid?: SortOrder
     phone?: SortOrder
     email?: SortOrder
     status?: SortOrder

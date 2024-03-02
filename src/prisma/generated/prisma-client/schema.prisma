@@ -17,6 +17,8 @@ model USER {
   password     String    @db.VarChar(255)
   first_name   String?   @db.VarChar(255)
   last_name    String?   @db.VarChar(255)
+  picture      String?   @db.VarChar(255)
+  firebase_uid String?   @db.VarChar(50)
   phone        String?   @db.VarChar(10)
   email        String    @unique(map: "user_email_unique") @db.VarChar(255)
   status       Int       @default(1) @db.TinyInt

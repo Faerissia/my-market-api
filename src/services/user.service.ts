@@ -4,6 +4,7 @@ import { prismaClient } from "../config/prisma";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcrypt";
 import jsonwebtoken from "jsonwebtoken";
+import { firebase_admin } from "../config/firebase";
 
 const methods = {
   async register(body: any) {
@@ -56,7 +57,6 @@ const methods = {
           return reject({ status: 401, message: "Incorrect" });
 
         if (check_status && checkPassword === true) {
-          console.log("test");
           const token = methods.userDataToToken(check_status);
           return resolve(token);
         }
@@ -72,6 +72,7 @@ const methods = {
         const data = {
           uuid: body.uuid,
           username: body.username,
+          picture: body.picture,
           first_name: body.first_name,
           last_name: body.last_name,
           email: body.email,
@@ -85,6 +86,68 @@ const methods = {
         );
 
         return resolve(token);
+      } catch (err) {
+        console.log(err);
+        return reject(err);
+      }
+    });
+  },
+  async googleAuth(user: any) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const google_auth: any = await firebase_admin.getUser(user.user_id);
+        let data: any;
+        if (google_auth) {
+          const check_register: any = await prismaClient.uSER.findFirst({
+            where: {
+              email: user.email,
+            },
+          });
+          if (!check_register) {
+            const saltRounds = 10;
+            const hashPws = await bcrypt.hash(user.user_id, saltRounds);
+            const create_user = await prismaClient.uSER.create({
+              data: {
+                uuid: uuidv4(),
+                email: user.email,
+                username: user.name,
+                password: hashPws,
+                picture: user.picture,
+                firebase_uid: user.user_id,
+                status: 1,
+                created_date: new Date(),
+                updated_date: new Date(),
+              },
+            });
+            data = await methods.userDataToToken(create_user);
+          } else {
+            data = await methods.userDataToToken(check_register);
+          }
+        }
+        resolve(data);
+      } catch (err) {
+        console.log(err);
+        return reject(err);
+      }
+    });
+  },
+  async getProfile(user: any) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const find = await prismaClient.uSER.findFirst({
+          where: {
+            email: user.email,
+          },
+          select: {
+            username: true,
+            first_name: true,
+            last_name: true,
+            picture: true,
+            phone: true,
+            email: true,
+          },
+        });
+        resolve(find);
       } catch (err) {
         console.log(err);
         return reject(err);

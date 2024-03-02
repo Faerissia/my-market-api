@@ -53,3 +53,37 @@ export const login = async (req: Request, res: Response) => {
     res.status(err.status).json({ message: err.message });
   }
 };
+
+export const auth = async (req: Request, res: Response) => {
+  try {
+    const user = (req as any).user;
+    const auth = await userService.googleAuth(user);
+
+    res.json({
+      success: true,
+      data: {
+        results: auth,
+      },
+    });
+  } catch (err: any) {
+    console.log("Error:", err);
+    res.status(err.status).json({ message: err.message });
+  }
+};
+
+export const getProfile = async (req: Request, res: Response) => {
+  try {
+    const user = (req as any).user;
+    const auth = await userService.getProfile(user);
+
+    res.json({
+      success: true,
+      data: {
+        results: auth,
+      },
+    });
+  } catch (err: any) {
+    console.log("Error:", err);
+    res.status(err.status).json({ message: err.message });
+  }
+};
