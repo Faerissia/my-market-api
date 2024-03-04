@@ -154,6 +154,41 @@ const methods = {
       }
     });
   },
+  async editProfile(user: any) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const check_duplicate = await prismaClient.uSER.findFirst({
+          where: {
+            username: user.username,
+          },
+        });
+
+        if (check_duplicate && check_duplicate.email !== user.email)
+          return reject({
+            status: 401,
+            message: "This username is already used",
+          });
+
+        const body = {
+          username: user.username,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          phone: user.phone,
+        };
+
+        const find = await prismaClient.uSER.update({
+          data: body,
+          where: {
+            email: user.email,
+          },
+        });
+        resolve(find);
+      } catch (err) {
+        console.log(err);
+        return reject(err);
+      }
+    });
+  },
 };
 
 export default { ...methods };

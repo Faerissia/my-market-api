@@ -9,5 +9,6 @@ router.post("/register", userController.register);
 router.post("/login", userController.login);
 router.post("/google-auth", validateToken, userController.auth);
 router.get("/get-profile", validateToken, userController.getProfile);
+router.post("/edit-profile", validateToken, userController.editProfile);
 
 export = router;

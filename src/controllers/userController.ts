@@ -87,3 +87,21 @@ export const getProfile = async (req: Request, res: Response) => {
     res.status(err.status).json({ message: err.message });
   }
 };
+
+export const editProfile = async (req: Request, res: Response) => {
+  try {
+    const user = (req as any).user;
+    const body = req.body;
+    const auth = await userService.editProfile(body);
+
+    res.json({
+      success: true,
+      data: {
+        results: auth,
+      },
+    });
+  } catch (err: any) {
+    console.log("Error:", err);
+    res.status(err.status).json({ message: err.message });
+  }
+};
