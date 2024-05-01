@@ -11,17 +11,56 @@ datasource db {
 }
 
 model USER {
-  id           Int       @id @unique(map: "user_id_unique") @default(autoincrement())
-  uuid         String    @unique(map: "user_uuid_unique") @db.VarChar(50)
-  username     String?   @db.VarChar(255)
-  password     String    @db.VarChar(255)
-  first_name   String?   @db.VarChar(255)
-  last_name    String?   @db.VarChar(255)
-  picture      String?   @db.VarChar(255)
-  firebase_uid String?   @db.VarChar(50)
-  phone        String?   @db.VarChar(10)
-  email        String    @unique(map: "user_email_unique") @db.VarChar(255)
-  status       Int       @default(1) @db.TinyInt
+  id               Int                @id @unique(map: "user_id_unique") @default(autoincrement())
+  uuid             String             @unique(map: "user_uuid_unique") @db.VarChar(50)
+  username         String?            @db.VarChar(255)
+  password         String             @db.VarChar(255)
+  first_name       String?            @db.VarChar(255)
+  last_name        String?            @db.VarChar(255)
+  picture          String?            @db.VarChar(255)
+  firebase_uid     String?            @db.VarChar(50)
+  phone            String?            @db.VarChar(10)
+  email            String             @unique(map: "user_email_unique") @db.VarChar(255)
+  status           Int                @default(1) @db.TinyInt
+  created_date     DateTime?          @db.DateTime(0)
+  updated_date     DateTime?          @db.DateTime(0)
+  PRODUCT          PRODUCT[]
+  PRODUCT_FAVORITE PRODUCT_FAVORITE[]
+}
+
+model PRODUCT {
+  id           Int       @id @unique(map: "UNQ_ID_PRODUCT") @default(autoincrement())
+  uuid         String    @unique(map: "UNQ_UUID_PRODUCT") @db.VarChar(50)
+  product_name String    @db.VarChar(255)
+  description  String?   @db.LongText
+  amount       Int       @default(0)
+  user_uuid    String    @db.VarChar(50)
+  created_by   Int?
   created_date DateTime? @db.DateTime(0)
+  updated_by   Int?
   updated_date DateTime? @db.DateTime(0)
+  USER         USER      @relation(fields: [user_uuid], references: [uuid], onDelete: Cascade, map: "FK_USER_UUID")
+
+  @@index([user_uuid], map: "FK_USER_UUID")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model PRODUCT_FAVORITE {
+  id           Int       @id @unique(map: "UNQ_ID_PRODUCT_FAVORITE") @default(autoincrement())
+  favorite     Int       @default(0)
+  user_id      Int
+  created_by   Int
+  created_date DateTime? @db.DateTime(0)
+  USER         USER      @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "FK_USER_ID_USER")
+
+  @@index([user_id], map: "FK_USER_ID_USER")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model PRODUCT_LIKE {
+  id           Int       @id @default(autoincrement())
+  like         Int       @default(1)
+  user_id      Int
+  created_by   Int?
+  created_date DateTime? @db.DateTime(0)
 }

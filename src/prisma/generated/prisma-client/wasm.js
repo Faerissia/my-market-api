@@ -128,6 +128,35 @@ exports.Prisma.RelationLoadStrategy = {
   join: 'join'
 };
 
+exports.Prisma.PRODUCTScalarFieldEnum = {
+  id: 'id',
+  uuid: 'uuid',
+  product_name: 'product_name',
+  description: 'description',
+  amount: 'amount',
+  user_uuid: 'user_uuid',
+  created_by: 'created_by',
+  created_date: 'created_date',
+  updated_by: 'updated_by',
+  updated_date: 'updated_date'
+};
+
+exports.Prisma.PRODUCT_FAVORITEScalarFieldEnum = {
+  id: 'id',
+  favorite: 'favorite',
+  user_id: 'user_id',
+  created_by: 'created_by',
+  created_date: 'created_date'
+};
+
+exports.Prisma.PRODUCT_LIKEScalarFieldEnum = {
+  id: 'id',
+  like: 'like',
+  user_id: 'user_id',
+  created_by: 'created_by',
+  created_date: 'created_date'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -150,9 +179,19 @@ exports.Prisma.USEROrderByRelevanceFieldEnum = {
   email: 'email'
 };
 
+exports.Prisma.PRODUCTOrderByRelevanceFieldEnum = {
+  uuid: 'uuid',
+  product_name: 'product_name',
+  description: 'description',
+  user_uuid: 'user_uuid'
+};
+
 
 exports.Prisma.ModelName = {
-  USER: 'USER'
+  USER: 'USER',
+  PRODUCT: 'PRODUCT',
+  PRODUCT_FAVORITE: 'PRODUCT_FAVORITE',
+  PRODUCT_LIKE: 'PRODUCT_LIKE'
 };
 
 /**

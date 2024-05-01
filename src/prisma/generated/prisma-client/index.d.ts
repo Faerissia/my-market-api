@@ -18,6 +18,21 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type USER = $Result.DefaultSelection<Prisma.$USERPayload>
+/**
+ * Model PRODUCT
+ * 
+ */
+export type PRODUCT = $Result.DefaultSelection<Prisma.$PRODUCTPayload>
+/**
+ * Model PRODUCT_FAVORITE
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type PRODUCT_FAVORITE = $Result.DefaultSelection<Prisma.$PRODUCT_FAVORITEPayload>
+/**
+ * Model PRODUCT_LIKE
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type PRODUCT_LIKE = $Result.DefaultSelection<Prisma.$PRODUCT_LIKEPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -150,6 +165,36 @@ export class PrismaClient<
     * ```
     */
   get uSER(): Prisma.USERDelegate<ExtArgs>;
+
+  /**
+   * `prisma.pRODUCT`: Exposes CRUD operations for the **PRODUCT** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PRODUCTS
+    * const pRODUCTS = await prisma.pRODUCT.findMany()
+    * ```
+    */
+  get pRODUCT(): Prisma.PRODUCTDelegate<ExtArgs>;
+
+  /**
+   * `prisma.pRODUCT_FAVORITE`: Exposes CRUD operations for the **PRODUCT_FAVORITE** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PRODUCT_FAVORITES
+    * const pRODUCT_FAVORITES = await prisma.pRODUCT_FAVORITE.findMany()
+    * ```
+    */
+  get pRODUCT_FAVORITE(): Prisma.PRODUCT_FAVORITEDelegate<ExtArgs>;
+
+  /**
+   * `prisma.pRODUCT_LIKE`: Exposes CRUD operations for the **PRODUCT_LIKE** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PRODUCT_LIKES
+    * const pRODUCT_LIKES = await prisma.pRODUCT_LIKE.findMany()
+    * ```
+    */
+  get pRODUCT_LIKE(): Prisma.PRODUCT_LIKEDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -620,7 +665,10 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    USER: 'USER'
+    USER: 'USER',
+    PRODUCT: 'PRODUCT',
+    PRODUCT_FAVORITE: 'PRODUCT_FAVORITE',
+    PRODUCT_LIKE: 'PRODUCT_LIKE'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -637,7 +685,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'uSER'
+      modelProps: 'uSER' | 'pRODUCT' | 'pRODUCT_FAVORITE' | 'pRODUCT_LIKE'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -704,6 +752,204 @@ export namespace Prisma {
           count: {
             args: Prisma.USERCountArgs<ExtArgs>,
             result: $Utils.Optional<USERCountAggregateOutputType> | number
+          }
+        }
+      }
+      PRODUCT: {
+        payload: Prisma.$PRODUCTPayload<ExtArgs>
+        fields: Prisma.PRODUCTFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PRODUCTFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCTPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PRODUCTFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCTPayload>
+          }
+          findFirst: {
+            args: Prisma.PRODUCTFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCTPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PRODUCTFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCTPayload>
+          }
+          findMany: {
+            args: Prisma.PRODUCTFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCTPayload>[]
+          }
+          create: {
+            args: Prisma.PRODUCTCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCTPayload>
+          }
+          createMany: {
+            args: Prisma.PRODUCTCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.PRODUCTDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCTPayload>
+          }
+          update: {
+            args: Prisma.PRODUCTUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCTPayload>
+          }
+          deleteMany: {
+            args: Prisma.PRODUCTDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PRODUCTUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.PRODUCTUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCTPayload>
+          }
+          aggregate: {
+            args: Prisma.PRODUCTAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePRODUCT>
+          }
+          groupBy: {
+            args: Prisma.PRODUCTGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PRODUCTGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PRODUCTCountArgs<ExtArgs>,
+            result: $Utils.Optional<PRODUCTCountAggregateOutputType> | number
+          }
+        }
+      }
+      PRODUCT_FAVORITE: {
+        payload: Prisma.$PRODUCT_FAVORITEPayload<ExtArgs>
+        fields: Prisma.PRODUCT_FAVORITEFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PRODUCT_FAVORITEFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_FAVORITEPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PRODUCT_FAVORITEFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_FAVORITEPayload>
+          }
+          findFirst: {
+            args: Prisma.PRODUCT_FAVORITEFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_FAVORITEPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PRODUCT_FAVORITEFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_FAVORITEPayload>
+          }
+          findMany: {
+            args: Prisma.PRODUCT_FAVORITEFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_FAVORITEPayload>[]
+          }
+          create: {
+            args: Prisma.PRODUCT_FAVORITECreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_FAVORITEPayload>
+          }
+          createMany: {
+            args: Prisma.PRODUCT_FAVORITECreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.PRODUCT_FAVORITEDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_FAVORITEPayload>
+          }
+          update: {
+            args: Prisma.PRODUCT_FAVORITEUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_FAVORITEPayload>
+          }
+          deleteMany: {
+            args: Prisma.PRODUCT_FAVORITEDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PRODUCT_FAVORITEUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.PRODUCT_FAVORITEUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_FAVORITEPayload>
+          }
+          aggregate: {
+            args: Prisma.PRODUCT_FAVORITEAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePRODUCT_FAVORITE>
+          }
+          groupBy: {
+            args: Prisma.PRODUCT_FAVORITEGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PRODUCT_FAVORITEGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PRODUCT_FAVORITECountArgs<ExtArgs>,
+            result: $Utils.Optional<PRODUCT_FAVORITECountAggregateOutputType> | number
+          }
+        }
+      }
+      PRODUCT_LIKE: {
+        payload: Prisma.$PRODUCT_LIKEPayload<ExtArgs>
+        fields: Prisma.PRODUCT_LIKEFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PRODUCT_LIKEFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_LIKEPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PRODUCT_LIKEFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_LIKEPayload>
+          }
+          findFirst: {
+            args: Prisma.PRODUCT_LIKEFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_LIKEPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PRODUCT_LIKEFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_LIKEPayload>
+          }
+          findMany: {
+            args: Prisma.PRODUCT_LIKEFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_LIKEPayload>[]
+          }
+          create: {
+            args: Prisma.PRODUCT_LIKECreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_LIKEPayload>
+          }
+          createMany: {
+            args: Prisma.PRODUCT_LIKECreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.PRODUCT_LIKEDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_LIKEPayload>
+          }
+          update: {
+            args: Prisma.PRODUCT_LIKEUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_LIKEPayload>
+          }
+          deleteMany: {
+            args: Prisma.PRODUCT_LIKEDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PRODUCT_LIKEUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.PRODUCT_LIKEUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PRODUCT_LIKEPayload>
+          }
+          aggregate: {
+            args: Prisma.PRODUCT_LIKEAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePRODUCT_LIKE>
+          }
+          groupBy: {
+            args: Prisma.PRODUCT_LIKEGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PRODUCT_LIKEGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PRODUCT_LIKECountArgs<ExtArgs>,
+            result: $Utils.Optional<PRODUCT_LIKECountAggregateOutputType> | number
           }
         }
       }
@@ -859,6 +1105,49 @@ export namespace Prisma {
   /**
    * Count Types
    */
+
+
+  /**
+   * Count Type USERCountOutputType
+   */
+
+  export type USERCountOutputType = {
+    PRODUCT: number
+    PRODUCT_FAVORITE: number
+  }
+
+  export type USERCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    PRODUCT?: boolean | USERCountOutputTypeCountPRODUCTArgs
+    PRODUCT_FAVORITE?: boolean | USERCountOutputTypeCountPRODUCT_FAVORITEArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * USERCountOutputType without action
+   */
+  export type USERCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the USERCountOutputType
+     */
+    select?: USERCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * USERCountOutputType without action
+   */
+  export type USERCountOutputTypeCountPRODUCTArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PRODUCTWhereInput
+  }
+
+
+  /**
+   * USERCountOutputType without action
+   */
+  export type USERCountOutputTypeCountPRODUCT_FAVORITEArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PRODUCT_FAVORITEWhereInput
+  }
 
 
 
@@ -1132,6 +1421,9 @@ export namespace Prisma {
     status?: boolean
     created_date?: boolean
     updated_date?: boolean
+    PRODUCT?: boolean | USER$PRODUCTArgs<ExtArgs>
+    PRODUCT_FAVORITE?: boolean | USER$PRODUCT_FAVORITEArgs<ExtArgs>
+    _count?: boolean | USERCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["uSER"]>
 
   export type USERSelectScalar = {
@@ -1150,10 +1442,19 @@ export namespace Prisma {
     updated_date?: boolean
   }
 
+  export type USERInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    PRODUCT?: boolean | USER$PRODUCTArgs<ExtArgs>
+    PRODUCT_FAVORITE?: boolean | USER$PRODUCT_FAVORITEArgs<ExtArgs>
+    _count?: boolean | USERCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
 
   export type $USERPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "USER"
-    objects: {}
+    objects: {
+      PRODUCT: Prisma.$PRODUCTPayload<ExtArgs>[]
+      PRODUCT_FAVORITE: Prisma.$PRODUCT_FAVORITEPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       uuid: string
@@ -1533,6 +1834,9 @@ export namespace Prisma {
   export interface Prisma__USERClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    PRODUCT<T extends USER$PRODUCTArgs<ExtArgs> = {}>(args?: Subset<T, USER$PRODUCTArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PRODUCTPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    PRODUCT_FAVORITE<T extends USER$PRODUCT_FAVORITEArgs<ExtArgs> = {}>(args?: Subset<T, USER$PRODUCT_FAVORITEArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PRODUCT_FAVORITEPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1589,6 +1893,10 @@ export namespace Prisma {
      */
     select?: USERSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: USERInclude<ExtArgs> | null
+    /**
      * Filter, which USER to fetch.
      */
     where: USERWhereUniqueInput
@@ -1605,6 +1913,10 @@ export namespace Prisma {
      */
     select?: USERSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: USERInclude<ExtArgs> | null
+    /**
      * Filter, which USER to fetch.
      */
     where: USERWhereUniqueInput
@@ -1620,6 +1932,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the USER
      */
     select?: USERSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: USERInclude<ExtArgs> | null
     /**
      * Filter, which USER to fetch.
      */
@@ -1667,6 +1983,10 @@ export namespace Prisma {
      */
     select?: USERSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: USERInclude<ExtArgs> | null
+    /**
      * Filter, which USER to fetch.
      */
     where?: USERWhereInput
@@ -1713,6 +2033,10 @@ export namespace Prisma {
      */
     select?: USERSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: USERInclude<ExtArgs> | null
+    /**
      * Filter, which USERS to fetch.
      */
     where?: USERWhereInput
@@ -1754,6 +2078,10 @@ export namespace Prisma {
      */
     select?: USERSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: USERInclude<ExtArgs> | null
+    /**
      * The data needed to create a USER.
      */
     data: XOR<USERCreateInput, USERUncheckedCreateInput>
@@ -1781,6 +2109,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the USER
      */
     select?: USERSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: USERInclude<ExtArgs> | null
     /**
      * The data needed to update a USER.
      */
@@ -1817,6 +2149,10 @@ export namespace Prisma {
      */
     select?: USERSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: USERInclude<ExtArgs> | null
+    /**
      * The filter to search for the USER to update in case it exists.
      */
     where: USERWhereUniqueInput
@@ -1841,6 +2177,10 @@ export namespace Prisma {
      */
     select?: USERSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: USERInclude<ExtArgs> | null
+    /**
      * Filter which USER to delete.
      */
     where: USERWhereUniqueInput
@@ -1860,6 +2200,48 @@ export namespace Prisma {
 
 
   /**
+   * USER.PRODUCT
+   */
+  export type USER$PRODUCTArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT
+     */
+    select?: PRODUCTSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCTInclude<ExtArgs> | null
+    where?: PRODUCTWhereInput
+    orderBy?: PRODUCTOrderByWithRelationAndSearchRelevanceInput | PRODUCTOrderByWithRelationAndSearchRelevanceInput[]
+    cursor?: PRODUCTWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PRODUCTScalarFieldEnum | PRODUCTScalarFieldEnum[]
+  }
+
+
+  /**
+   * USER.PRODUCT_FAVORITE
+   */
+  export type USER$PRODUCT_FAVORITEArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_FAVORITE
+     */
+    select?: PRODUCT_FAVORITESelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCT_FAVORITEInclude<ExtArgs> | null
+    where?: PRODUCT_FAVORITEWhereInput
+    orderBy?: PRODUCT_FAVORITEOrderByWithRelationAndSearchRelevanceInput | PRODUCT_FAVORITEOrderByWithRelationAndSearchRelevanceInput[]
+    cursor?: PRODUCT_FAVORITEWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PRODUCT_FAVORITEScalarFieldEnum | PRODUCT_FAVORITEScalarFieldEnum[]
+  }
+
+
+  /**
    * USER without action
    */
   export type USERDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1867,6 +2249,2936 @@ export namespace Prisma {
      * Select specific fields to fetch from the USER
      */
     select?: USERSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: USERInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model PRODUCT
+   */
+
+  export type AggregatePRODUCT = {
+    _count: PRODUCTCountAggregateOutputType | null
+    _avg: PRODUCTAvgAggregateOutputType | null
+    _sum: PRODUCTSumAggregateOutputType | null
+    _min: PRODUCTMinAggregateOutputType | null
+    _max: PRODUCTMaxAggregateOutputType | null
+  }
+
+  export type PRODUCTAvgAggregateOutputType = {
+    id: number | null
+    amount: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type PRODUCTSumAggregateOutputType = {
+    id: number | null
+    amount: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type PRODUCTMinAggregateOutputType = {
+    id: number | null
+    uuid: string | null
+    product_name: string | null
+    description: string | null
+    amount: number | null
+    user_uuid: string | null
+    created_by: number | null
+    created_date: Date | null
+    updated_by: number | null
+    updated_date: Date | null
+  }
+
+  export type PRODUCTMaxAggregateOutputType = {
+    id: number | null
+    uuid: string | null
+    product_name: string | null
+    description: string | null
+    amount: number | null
+    user_uuid: string | null
+    created_by: number | null
+    created_date: Date | null
+    updated_by: number | null
+    updated_date: Date | null
+  }
+
+  export type PRODUCTCountAggregateOutputType = {
+    id: number
+    uuid: number
+    product_name: number
+    description: number
+    amount: number
+    user_uuid: number
+    created_by: number
+    created_date: number
+    updated_by: number
+    updated_date: number
+    _all: number
+  }
+
+
+  export type PRODUCTAvgAggregateInputType = {
+    id?: true
+    amount?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type PRODUCTSumAggregateInputType = {
+    id?: true
+    amount?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type PRODUCTMinAggregateInputType = {
+    id?: true
+    uuid?: true
+    product_name?: true
+    description?: true
+    amount?: true
+    user_uuid?: true
+    created_by?: true
+    created_date?: true
+    updated_by?: true
+    updated_date?: true
+  }
+
+  export type PRODUCTMaxAggregateInputType = {
+    id?: true
+    uuid?: true
+    product_name?: true
+    description?: true
+    amount?: true
+    user_uuid?: true
+    created_by?: true
+    created_date?: true
+    updated_by?: true
+    updated_date?: true
+  }
+
+  export type PRODUCTCountAggregateInputType = {
+    id?: true
+    uuid?: true
+    product_name?: true
+    description?: true
+    amount?: true
+    user_uuid?: true
+    created_by?: true
+    created_date?: true
+    updated_by?: true
+    updated_date?: true
+    _all?: true
+  }
+
+  export type PRODUCTAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PRODUCT to aggregate.
+     */
+    where?: PRODUCTWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PRODUCTS to fetch.
+     */
+    orderBy?: PRODUCTOrderByWithRelationAndSearchRelevanceInput | PRODUCTOrderByWithRelationAndSearchRelevanceInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PRODUCTWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PRODUCTS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PRODUCTS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PRODUCTS
+    **/
+    _count?: true | PRODUCTCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PRODUCTAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PRODUCTSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PRODUCTMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PRODUCTMaxAggregateInputType
+  }
+
+  export type GetPRODUCTAggregateType<T extends PRODUCTAggregateArgs> = {
+        [P in keyof T & keyof AggregatePRODUCT]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePRODUCT[P]>
+      : GetScalarType<T[P], AggregatePRODUCT[P]>
+  }
+
+
+
+
+  export type PRODUCTGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PRODUCTWhereInput
+    orderBy?: PRODUCTOrderByWithAggregationInput | PRODUCTOrderByWithAggregationInput[]
+    by: PRODUCTScalarFieldEnum[] | PRODUCTScalarFieldEnum
+    having?: PRODUCTScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PRODUCTCountAggregateInputType | true
+    _avg?: PRODUCTAvgAggregateInputType
+    _sum?: PRODUCTSumAggregateInputType
+    _min?: PRODUCTMinAggregateInputType
+    _max?: PRODUCTMaxAggregateInputType
+  }
+
+  export type PRODUCTGroupByOutputType = {
+    id: number
+    uuid: string
+    product_name: string
+    description: string | null
+    amount: number
+    user_uuid: string
+    created_by: number | null
+    created_date: Date | null
+    updated_by: number | null
+    updated_date: Date | null
+    _count: PRODUCTCountAggregateOutputType | null
+    _avg: PRODUCTAvgAggregateOutputType | null
+    _sum: PRODUCTSumAggregateOutputType | null
+    _min: PRODUCTMinAggregateOutputType | null
+    _max: PRODUCTMaxAggregateOutputType | null
+  }
+
+  type GetPRODUCTGroupByPayload<T extends PRODUCTGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PRODUCTGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PRODUCTGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PRODUCTGroupByOutputType[P]>
+            : GetScalarType<T[P], PRODUCTGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PRODUCTSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    uuid?: boolean
+    product_name?: boolean
+    description?: boolean
+    amount?: boolean
+    user_uuid?: boolean
+    created_by?: boolean
+    created_date?: boolean
+    updated_by?: boolean
+    updated_date?: boolean
+    USER?: boolean | USERDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pRODUCT"]>
+
+  export type PRODUCTSelectScalar = {
+    id?: boolean
+    uuid?: boolean
+    product_name?: boolean
+    description?: boolean
+    amount?: boolean
+    user_uuid?: boolean
+    created_by?: boolean
+    created_date?: boolean
+    updated_by?: boolean
+    updated_date?: boolean
+  }
+
+  export type PRODUCTInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    USER?: boolean | USERDefaultArgs<ExtArgs>
+  }
+
+
+  export type $PRODUCTPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PRODUCT"
+    objects: {
+      USER: Prisma.$USERPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      uuid: string
+      product_name: string
+      description: string | null
+      amount: number
+      user_uuid: string
+      created_by: number | null
+      created_date: Date | null
+      updated_by: number | null
+      updated_date: Date | null
+    }, ExtArgs["result"]["pRODUCT"]>
+    composites: {}
+  }
+
+
+  type PRODUCTGetPayload<S extends boolean | null | undefined | PRODUCTDefaultArgs> = $Result.GetResult<Prisma.$PRODUCTPayload, S>
+
+  type PRODUCTCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PRODUCTFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
+      select?: PRODUCTCountAggregateInputType | true
+    }
+
+  export interface PRODUCTDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PRODUCT'], meta: { name: 'PRODUCT' } }
+    /**
+     * Find zero or one PRODUCT that matches the filter.
+     * @param {PRODUCTFindUniqueArgs} args - Arguments to find a PRODUCT
+     * @example
+     * // Get one PRODUCT
+     * const pRODUCT = await prisma.pRODUCT.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PRODUCTFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCTFindUniqueArgs<ExtArgs>>
+    ): Prisma__PRODUCTClient<$Result.GetResult<Prisma.$PRODUCTPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one PRODUCT that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PRODUCTFindUniqueOrThrowArgs} args - Arguments to find a PRODUCT
+     * @example
+     * // Get one PRODUCT
+     * const pRODUCT = await prisma.pRODUCT.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PRODUCTFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCTFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PRODUCTClient<$Result.GetResult<Prisma.$PRODUCTPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first PRODUCT that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCTFindFirstArgs} args - Arguments to find a PRODUCT
+     * @example
+     * // Get one PRODUCT
+     * const pRODUCT = await prisma.pRODUCT.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PRODUCTFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCTFindFirstArgs<ExtArgs>>
+    ): Prisma__PRODUCTClient<$Result.GetResult<Prisma.$PRODUCTPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first PRODUCT that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCTFindFirstOrThrowArgs} args - Arguments to find a PRODUCT
+     * @example
+     * // Get one PRODUCT
+     * const pRODUCT = await prisma.pRODUCT.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PRODUCTFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCTFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PRODUCTClient<$Result.GetResult<Prisma.$PRODUCTPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more PRODUCTS that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCTFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PRODUCTS
+     * const pRODUCTS = await prisma.pRODUCT.findMany()
+     * 
+     * // Get first 10 PRODUCTS
+     * const pRODUCTS = await prisma.pRODUCT.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const pRODUCTWithIdOnly = await prisma.pRODUCT.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PRODUCTFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCTFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PRODUCTPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a PRODUCT.
+     * @param {PRODUCTCreateArgs} args - Arguments to create a PRODUCT.
+     * @example
+     * // Create one PRODUCT
+     * const PRODUCT = await prisma.pRODUCT.create({
+     *   data: {
+     *     // ... data to create a PRODUCT
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PRODUCTCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCTCreateArgs<ExtArgs>>
+    ): Prisma__PRODUCTClient<$Result.GetResult<Prisma.$PRODUCTPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many PRODUCTS.
+     *     @param {PRODUCTCreateManyArgs} args - Arguments to create many PRODUCTS.
+     *     @example
+     *     // Create many PRODUCTS
+     *     const pRODUCT = await prisma.pRODUCT.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends PRODUCTCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCTCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PRODUCT.
+     * @param {PRODUCTDeleteArgs} args - Arguments to delete one PRODUCT.
+     * @example
+     * // Delete one PRODUCT
+     * const PRODUCT = await prisma.pRODUCT.delete({
+     *   where: {
+     *     // ... filter to delete one PRODUCT
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PRODUCTDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCTDeleteArgs<ExtArgs>>
+    ): Prisma__PRODUCTClient<$Result.GetResult<Prisma.$PRODUCTPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one PRODUCT.
+     * @param {PRODUCTUpdateArgs} args - Arguments to update one PRODUCT.
+     * @example
+     * // Update one PRODUCT
+     * const pRODUCT = await prisma.pRODUCT.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PRODUCTUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCTUpdateArgs<ExtArgs>>
+    ): Prisma__PRODUCTClient<$Result.GetResult<Prisma.$PRODUCTPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more PRODUCTS.
+     * @param {PRODUCTDeleteManyArgs} args - Arguments to filter PRODUCTS to delete.
+     * @example
+     * // Delete a few PRODUCTS
+     * const { count } = await prisma.pRODUCT.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PRODUCTDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCTDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PRODUCTS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCTUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PRODUCTS
+     * const pRODUCT = await prisma.pRODUCT.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PRODUCTUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCTUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PRODUCT.
+     * @param {PRODUCTUpsertArgs} args - Arguments to update or create a PRODUCT.
+     * @example
+     * // Update or create a PRODUCT
+     * const pRODUCT = await prisma.pRODUCT.upsert({
+     *   create: {
+     *     // ... data to create a PRODUCT
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PRODUCT we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PRODUCTUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCTUpsertArgs<ExtArgs>>
+    ): Prisma__PRODUCTClient<$Result.GetResult<Prisma.$PRODUCTPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of PRODUCTS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCTCountArgs} args - Arguments to filter PRODUCTS to count.
+     * @example
+     * // Count the number of PRODUCTS
+     * const count = await prisma.pRODUCT.count({
+     *   where: {
+     *     // ... the filter for the PRODUCTS we want to count
+     *   }
+     * })
+    **/
+    count<T extends PRODUCTCountArgs>(
+      args?: Subset<T, PRODUCTCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PRODUCTCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PRODUCT.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCTAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PRODUCTAggregateArgs>(args: Subset<T, PRODUCTAggregateArgs>): Prisma.PrismaPromise<GetPRODUCTAggregateType<T>>
+
+    /**
+     * Group by PRODUCT.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCTGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PRODUCTGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PRODUCTGroupByArgs['orderBy'] }
+        : { orderBy?: PRODUCTGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PRODUCTGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPRODUCTGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PRODUCT model
+   */
+  readonly fields: PRODUCTFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PRODUCT.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PRODUCTClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    USER<T extends USERDefaultArgs<ExtArgs> = {}>(args?: Subset<T, USERDefaultArgs<ExtArgs>>): Prisma__USERClient<$Result.GetResult<Prisma.$USERPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the PRODUCT model
+   */ 
+  interface PRODUCTFieldRefs {
+    readonly id: FieldRef<"PRODUCT", 'Int'>
+    readonly uuid: FieldRef<"PRODUCT", 'String'>
+    readonly product_name: FieldRef<"PRODUCT", 'String'>
+    readonly description: FieldRef<"PRODUCT", 'String'>
+    readonly amount: FieldRef<"PRODUCT", 'Int'>
+    readonly user_uuid: FieldRef<"PRODUCT", 'String'>
+    readonly created_by: FieldRef<"PRODUCT", 'Int'>
+    readonly created_date: FieldRef<"PRODUCT", 'DateTime'>
+    readonly updated_by: FieldRef<"PRODUCT", 'Int'>
+    readonly updated_date: FieldRef<"PRODUCT", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * PRODUCT findUnique
+   */
+  export type PRODUCTFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT
+     */
+    select?: PRODUCTSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCTInclude<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT to fetch.
+     */
+    where: PRODUCTWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT findUniqueOrThrow
+   */
+  export type PRODUCTFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT
+     */
+    select?: PRODUCTSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCTInclude<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT to fetch.
+     */
+    where: PRODUCTWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT findFirst
+   */
+  export type PRODUCTFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT
+     */
+    select?: PRODUCTSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCTInclude<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT to fetch.
+     */
+    where?: PRODUCTWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PRODUCTS to fetch.
+     */
+    orderBy?: PRODUCTOrderByWithRelationAndSearchRelevanceInput | PRODUCTOrderByWithRelationAndSearchRelevanceInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PRODUCTS.
+     */
+    cursor?: PRODUCTWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PRODUCTS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PRODUCTS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PRODUCTS.
+     */
+    distinct?: PRODUCTScalarFieldEnum | PRODUCTScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT findFirstOrThrow
+   */
+  export type PRODUCTFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT
+     */
+    select?: PRODUCTSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCTInclude<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT to fetch.
+     */
+    where?: PRODUCTWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PRODUCTS to fetch.
+     */
+    orderBy?: PRODUCTOrderByWithRelationAndSearchRelevanceInput | PRODUCTOrderByWithRelationAndSearchRelevanceInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PRODUCTS.
+     */
+    cursor?: PRODUCTWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PRODUCTS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PRODUCTS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PRODUCTS.
+     */
+    distinct?: PRODUCTScalarFieldEnum | PRODUCTScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT findMany
+   */
+  export type PRODUCTFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT
+     */
+    select?: PRODUCTSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCTInclude<ExtArgs> | null
+    /**
+     * Filter, which PRODUCTS to fetch.
+     */
+    where?: PRODUCTWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PRODUCTS to fetch.
+     */
+    orderBy?: PRODUCTOrderByWithRelationAndSearchRelevanceInput | PRODUCTOrderByWithRelationAndSearchRelevanceInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PRODUCTS.
+     */
+    cursor?: PRODUCTWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PRODUCTS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PRODUCTS.
+     */
+    skip?: number
+    distinct?: PRODUCTScalarFieldEnum | PRODUCTScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT create
+   */
+  export type PRODUCTCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT
+     */
+    select?: PRODUCTSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCTInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PRODUCT.
+     */
+    data: XOR<PRODUCTCreateInput, PRODUCTUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT createMany
+   */
+  export type PRODUCTCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PRODUCTS.
+     */
+    data: PRODUCTCreateManyInput | PRODUCTCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * PRODUCT update
+   */
+  export type PRODUCTUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT
+     */
+    select?: PRODUCTSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCTInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PRODUCT.
+     */
+    data: XOR<PRODUCTUpdateInput, PRODUCTUncheckedUpdateInput>
+    /**
+     * Choose, which PRODUCT to update.
+     */
+    where: PRODUCTWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT updateMany
+   */
+  export type PRODUCTUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PRODUCTS.
+     */
+    data: XOR<PRODUCTUpdateManyMutationInput, PRODUCTUncheckedUpdateManyInput>
+    /**
+     * Filter which PRODUCTS to update
+     */
+    where?: PRODUCTWhereInput
+  }
+
+
+  /**
+   * PRODUCT upsert
+   */
+  export type PRODUCTUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT
+     */
+    select?: PRODUCTSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCTInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PRODUCT to update in case it exists.
+     */
+    where: PRODUCTWhereUniqueInput
+    /**
+     * In case the PRODUCT found by the `where` argument doesn't exist, create a new PRODUCT with this data.
+     */
+    create: XOR<PRODUCTCreateInput, PRODUCTUncheckedCreateInput>
+    /**
+     * In case the PRODUCT was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PRODUCTUpdateInput, PRODUCTUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT delete
+   */
+  export type PRODUCTDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT
+     */
+    select?: PRODUCTSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCTInclude<ExtArgs> | null
+    /**
+     * Filter which PRODUCT to delete.
+     */
+    where: PRODUCTWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT deleteMany
+   */
+  export type PRODUCTDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PRODUCTS to delete
+     */
+    where?: PRODUCTWhereInput
+  }
+
+
+  /**
+   * PRODUCT without action
+   */
+  export type PRODUCTDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT
+     */
+    select?: PRODUCTSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCTInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model PRODUCT_FAVORITE
+   */
+
+  export type AggregatePRODUCT_FAVORITE = {
+    _count: PRODUCT_FAVORITECountAggregateOutputType | null
+    _avg: PRODUCT_FAVORITEAvgAggregateOutputType | null
+    _sum: PRODUCT_FAVORITESumAggregateOutputType | null
+    _min: PRODUCT_FAVORITEMinAggregateOutputType | null
+    _max: PRODUCT_FAVORITEMaxAggregateOutputType | null
+  }
+
+  export type PRODUCT_FAVORITEAvgAggregateOutputType = {
+    id: number | null
+    favorite: number | null
+    user_id: number | null
+    created_by: number | null
+  }
+
+  export type PRODUCT_FAVORITESumAggregateOutputType = {
+    id: number | null
+    favorite: number | null
+    user_id: number | null
+    created_by: number | null
+  }
+
+  export type PRODUCT_FAVORITEMinAggregateOutputType = {
+    id: number | null
+    favorite: number | null
+    user_id: number | null
+    created_by: number | null
+    created_date: Date | null
+  }
+
+  export type PRODUCT_FAVORITEMaxAggregateOutputType = {
+    id: number | null
+    favorite: number | null
+    user_id: number | null
+    created_by: number | null
+    created_date: Date | null
+  }
+
+  export type PRODUCT_FAVORITECountAggregateOutputType = {
+    id: number
+    favorite: number
+    user_id: number
+    created_by: number
+    created_date: number
+    _all: number
+  }
+
+
+  export type PRODUCT_FAVORITEAvgAggregateInputType = {
+    id?: true
+    favorite?: true
+    user_id?: true
+    created_by?: true
+  }
+
+  export type PRODUCT_FAVORITESumAggregateInputType = {
+    id?: true
+    favorite?: true
+    user_id?: true
+    created_by?: true
+  }
+
+  export type PRODUCT_FAVORITEMinAggregateInputType = {
+    id?: true
+    favorite?: true
+    user_id?: true
+    created_by?: true
+    created_date?: true
+  }
+
+  export type PRODUCT_FAVORITEMaxAggregateInputType = {
+    id?: true
+    favorite?: true
+    user_id?: true
+    created_by?: true
+    created_date?: true
+  }
+
+  export type PRODUCT_FAVORITECountAggregateInputType = {
+    id?: true
+    favorite?: true
+    user_id?: true
+    created_by?: true
+    created_date?: true
+    _all?: true
+  }
+
+  export type PRODUCT_FAVORITEAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PRODUCT_FAVORITE to aggregate.
+     */
+    where?: PRODUCT_FAVORITEWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PRODUCT_FAVORITES to fetch.
+     */
+    orderBy?: PRODUCT_FAVORITEOrderByWithRelationAndSearchRelevanceInput | PRODUCT_FAVORITEOrderByWithRelationAndSearchRelevanceInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PRODUCT_FAVORITEWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PRODUCT_FAVORITES from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PRODUCT_FAVORITES.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PRODUCT_FAVORITES
+    **/
+    _count?: true | PRODUCT_FAVORITECountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PRODUCT_FAVORITEAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PRODUCT_FAVORITESumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PRODUCT_FAVORITEMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PRODUCT_FAVORITEMaxAggregateInputType
+  }
+
+  export type GetPRODUCT_FAVORITEAggregateType<T extends PRODUCT_FAVORITEAggregateArgs> = {
+        [P in keyof T & keyof AggregatePRODUCT_FAVORITE]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePRODUCT_FAVORITE[P]>
+      : GetScalarType<T[P], AggregatePRODUCT_FAVORITE[P]>
+  }
+
+
+
+
+  export type PRODUCT_FAVORITEGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PRODUCT_FAVORITEWhereInput
+    orderBy?: PRODUCT_FAVORITEOrderByWithAggregationInput | PRODUCT_FAVORITEOrderByWithAggregationInput[]
+    by: PRODUCT_FAVORITEScalarFieldEnum[] | PRODUCT_FAVORITEScalarFieldEnum
+    having?: PRODUCT_FAVORITEScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PRODUCT_FAVORITECountAggregateInputType | true
+    _avg?: PRODUCT_FAVORITEAvgAggregateInputType
+    _sum?: PRODUCT_FAVORITESumAggregateInputType
+    _min?: PRODUCT_FAVORITEMinAggregateInputType
+    _max?: PRODUCT_FAVORITEMaxAggregateInputType
+  }
+
+  export type PRODUCT_FAVORITEGroupByOutputType = {
+    id: number
+    favorite: number
+    user_id: number
+    created_by: number
+    created_date: Date | null
+    _count: PRODUCT_FAVORITECountAggregateOutputType | null
+    _avg: PRODUCT_FAVORITEAvgAggregateOutputType | null
+    _sum: PRODUCT_FAVORITESumAggregateOutputType | null
+    _min: PRODUCT_FAVORITEMinAggregateOutputType | null
+    _max: PRODUCT_FAVORITEMaxAggregateOutputType | null
+  }
+
+  type GetPRODUCT_FAVORITEGroupByPayload<T extends PRODUCT_FAVORITEGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PRODUCT_FAVORITEGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PRODUCT_FAVORITEGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PRODUCT_FAVORITEGroupByOutputType[P]>
+            : GetScalarType<T[P], PRODUCT_FAVORITEGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PRODUCT_FAVORITESelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    favorite?: boolean
+    user_id?: boolean
+    created_by?: boolean
+    created_date?: boolean
+    USER?: boolean | USERDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pRODUCT_FAVORITE"]>
+
+  export type PRODUCT_FAVORITESelectScalar = {
+    id?: boolean
+    favorite?: boolean
+    user_id?: boolean
+    created_by?: boolean
+    created_date?: boolean
+  }
+
+  export type PRODUCT_FAVORITEInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    USER?: boolean | USERDefaultArgs<ExtArgs>
+  }
+
+
+  export type $PRODUCT_FAVORITEPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PRODUCT_FAVORITE"
+    objects: {
+      USER: Prisma.$USERPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      favorite: number
+      user_id: number
+      created_by: number
+      created_date: Date | null
+    }, ExtArgs["result"]["pRODUCT_FAVORITE"]>
+    composites: {}
+  }
+
+
+  type PRODUCT_FAVORITEGetPayload<S extends boolean | null | undefined | PRODUCT_FAVORITEDefaultArgs> = $Result.GetResult<Prisma.$PRODUCT_FAVORITEPayload, S>
+
+  type PRODUCT_FAVORITECountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PRODUCT_FAVORITEFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
+      select?: PRODUCT_FAVORITECountAggregateInputType | true
+    }
+
+  export interface PRODUCT_FAVORITEDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PRODUCT_FAVORITE'], meta: { name: 'PRODUCT_FAVORITE' } }
+    /**
+     * Find zero or one PRODUCT_FAVORITE that matches the filter.
+     * @param {PRODUCT_FAVORITEFindUniqueArgs} args - Arguments to find a PRODUCT_FAVORITE
+     * @example
+     * // Get one PRODUCT_FAVORITE
+     * const pRODUCT_FAVORITE = await prisma.pRODUCT_FAVORITE.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PRODUCT_FAVORITEFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCT_FAVORITEFindUniqueArgs<ExtArgs>>
+    ): Prisma__PRODUCT_FAVORITEClient<$Result.GetResult<Prisma.$PRODUCT_FAVORITEPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one PRODUCT_FAVORITE that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PRODUCT_FAVORITEFindUniqueOrThrowArgs} args - Arguments to find a PRODUCT_FAVORITE
+     * @example
+     * // Get one PRODUCT_FAVORITE
+     * const pRODUCT_FAVORITE = await prisma.pRODUCT_FAVORITE.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PRODUCT_FAVORITEFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCT_FAVORITEFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PRODUCT_FAVORITEClient<$Result.GetResult<Prisma.$PRODUCT_FAVORITEPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first PRODUCT_FAVORITE that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_FAVORITEFindFirstArgs} args - Arguments to find a PRODUCT_FAVORITE
+     * @example
+     * // Get one PRODUCT_FAVORITE
+     * const pRODUCT_FAVORITE = await prisma.pRODUCT_FAVORITE.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PRODUCT_FAVORITEFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCT_FAVORITEFindFirstArgs<ExtArgs>>
+    ): Prisma__PRODUCT_FAVORITEClient<$Result.GetResult<Prisma.$PRODUCT_FAVORITEPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first PRODUCT_FAVORITE that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_FAVORITEFindFirstOrThrowArgs} args - Arguments to find a PRODUCT_FAVORITE
+     * @example
+     * // Get one PRODUCT_FAVORITE
+     * const pRODUCT_FAVORITE = await prisma.pRODUCT_FAVORITE.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PRODUCT_FAVORITEFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCT_FAVORITEFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PRODUCT_FAVORITEClient<$Result.GetResult<Prisma.$PRODUCT_FAVORITEPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more PRODUCT_FAVORITES that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_FAVORITEFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PRODUCT_FAVORITES
+     * const pRODUCT_FAVORITES = await prisma.pRODUCT_FAVORITE.findMany()
+     * 
+     * // Get first 10 PRODUCT_FAVORITES
+     * const pRODUCT_FAVORITES = await prisma.pRODUCT_FAVORITE.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const pRODUCT_FAVORITEWithIdOnly = await prisma.pRODUCT_FAVORITE.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PRODUCT_FAVORITEFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCT_FAVORITEFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PRODUCT_FAVORITEPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a PRODUCT_FAVORITE.
+     * @param {PRODUCT_FAVORITECreateArgs} args - Arguments to create a PRODUCT_FAVORITE.
+     * @example
+     * // Create one PRODUCT_FAVORITE
+     * const PRODUCT_FAVORITE = await prisma.pRODUCT_FAVORITE.create({
+     *   data: {
+     *     // ... data to create a PRODUCT_FAVORITE
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PRODUCT_FAVORITECreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCT_FAVORITECreateArgs<ExtArgs>>
+    ): Prisma__PRODUCT_FAVORITEClient<$Result.GetResult<Prisma.$PRODUCT_FAVORITEPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many PRODUCT_FAVORITES.
+     *     @param {PRODUCT_FAVORITECreateManyArgs} args - Arguments to create many PRODUCT_FAVORITES.
+     *     @example
+     *     // Create many PRODUCT_FAVORITES
+     *     const pRODUCT_FAVORITE = await prisma.pRODUCT_FAVORITE.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends PRODUCT_FAVORITECreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCT_FAVORITECreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PRODUCT_FAVORITE.
+     * @param {PRODUCT_FAVORITEDeleteArgs} args - Arguments to delete one PRODUCT_FAVORITE.
+     * @example
+     * // Delete one PRODUCT_FAVORITE
+     * const PRODUCT_FAVORITE = await prisma.pRODUCT_FAVORITE.delete({
+     *   where: {
+     *     // ... filter to delete one PRODUCT_FAVORITE
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PRODUCT_FAVORITEDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCT_FAVORITEDeleteArgs<ExtArgs>>
+    ): Prisma__PRODUCT_FAVORITEClient<$Result.GetResult<Prisma.$PRODUCT_FAVORITEPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one PRODUCT_FAVORITE.
+     * @param {PRODUCT_FAVORITEUpdateArgs} args - Arguments to update one PRODUCT_FAVORITE.
+     * @example
+     * // Update one PRODUCT_FAVORITE
+     * const pRODUCT_FAVORITE = await prisma.pRODUCT_FAVORITE.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PRODUCT_FAVORITEUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCT_FAVORITEUpdateArgs<ExtArgs>>
+    ): Prisma__PRODUCT_FAVORITEClient<$Result.GetResult<Prisma.$PRODUCT_FAVORITEPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more PRODUCT_FAVORITES.
+     * @param {PRODUCT_FAVORITEDeleteManyArgs} args - Arguments to filter PRODUCT_FAVORITES to delete.
+     * @example
+     * // Delete a few PRODUCT_FAVORITES
+     * const { count } = await prisma.pRODUCT_FAVORITE.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PRODUCT_FAVORITEDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCT_FAVORITEDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PRODUCT_FAVORITES.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_FAVORITEUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PRODUCT_FAVORITES
+     * const pRODUCT_FAVORITE = await prisma.pRODUCT_FAVORITE.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PRODUCT_FAVORITEUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCT_FAVORITEUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PRODUCT_FAVORITE.
+     * @param {PRODUCT_FAVORITEUpsertArgs} args - Arguments to update or create a PRODUCT_FAVORITE.
+     * @example
+     * // Update or create a PRODUCT_FAVORITE
+     * const pRODUCT_FAVORITE = await prisma.pRODUCT_FAVORITE.upsert({
+     *   create: {
+     *     // ... data to create a PRODUCT_FAVORITE
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PRODUCT_FAVORITE we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PRODUCT_FAVORITEUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCT_FAVORITEUpsertArgs<ExtArgs>>
+    ): Prisma__PRODUCT_FAVORITEClient<$Result.GetResult<Prisma.$PRODUCT_FAVORITEPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of PRODUCT_FAVORITES.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_FAVORITECountArgs} args - Arguments to filter PRODUCT_FAVORITES to count.
+     * @example
+     * // Count the number of PRODUCT_FAVORITES
+     * const count = await prisma.pRODUCT_FAVORITE.count({
+     *   where: {
+     *     // ... the filter for the PRODUCT_FAVORITES we want to count
+     *   }
+     * })
+    **/
+    count<T extends PRODUCT_FAVORITECountArgs>(
+      args?: Subset<T, PRODUCT_FAVORITECountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PRODUCT_FAVORITECountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PRODUCT_FAVORITE.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_FAVORITEAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PRODUCT_FAVORITEAggregateArgs>(args: Subset<T, PRODUCT_FAVORITEAggregateArgs>): Prisma.PrismaPromise<GetPRODUCT_FAVORITEAggregateType<T>>
+
+    /**
+     * Group by PRODUCT_FAVORITE.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_FAVORITEGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PRODUCT_FAVORITEGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PRODUCT_FAVORITEGroupByArgs['orderBy'] }
+        : { orderBy?: PRODUCT_FAVORITEGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PRODUCT_FAVORITEGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPRODUCT_FAVORITEGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PRODUCT_FAVORITE model
+   */
+  readonly fields: PRODUCT_FAVORITEFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PRODUCT_FAVORITE.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PRODUCT_FAVORITEClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    USER<T extends USERDefaultArgs<ExtArgs> = {}>(args?: Subset<T, USERDefaultArgs<ExtArgs>>): Prisma__USERClient<$Result.GetResult<Prisma.$USERPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the PRODUCT_FAVORITE model
+   */ 
+  interface PRODUCT_FAVORITEFieldRefs {
+    readonly id: FieldRef<"PRODUCT_FAVORITE", 'Int'>
+    readonly favorite: FieldRef<"PRODUCT_FAVORITE", 'Int'>
+    readonly user_id: FieldRef<"PRODUCT_FAVORITE", 'Int'>
+    readonly created_by: FieldRef<"PRODUCT_FAVORITE", 'Int'>
+    readonly created_date: FieldRef<"PRODUCT_FAVORITE", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * PRODUCT_FAVORITE findUnique
+   */
+  export type PRODUCT_FAVORITEFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_FAVORITE
+     */
+    select?: PRODUCT_FAVORITESelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCT_FAVORITEInclude<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT_FAVORITE to fetch.
+     */
+    where: PRODUCT_FAVORITEWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_FAVORITE findUniqueOrThrow
+   */
+  export type PRODUCT_FAVORITEFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_FAVORITE
+     */
+    select?: PRODUCT_FAVORITESelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCT_FAVORITEInclude<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT_FAVORITE to fetch.
+     */
+    where: PRODUCT_FAVORITEWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_FAVORITE findFirst
+   */
+  export type PRODUCT_FAVORITEFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_FAVORITE
+     */
+    select?: PRODUCT_FAVORITESelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCT_FAVORITEInclude<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT_FAVORITE to fetch.
+     */
+    where?: PRODUCT_FAVORITEWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PRODUCT_FAVORITES to fetch.
+     */
+    orderBy?: PRODUCT_FAVORITEOrderByWithRelationAndSearchRelevanceInput | PRODUCT_FAVORITEOrderByWithRelationAndSearchRelevanceInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PRODUCT_FAVORITES.
+     */
+    cursor?: PRODUCT_FAVORITEWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PRODUCT_FAVORITES from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PRODUCT_FAVORITES.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PRODUCT_FAVORITES.
+     */
+    distinct?: PRODUCT_FAVORITEScalarFieldEnum | PRODUCT_FAVORITEScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_FAVORITE findFirstOrThrow
+   */
+  export type PRODUCT_FAVORITEFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_FAVORITE
+     */
+    select?: PRODUCT_FAVORITESelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCT_FAVORITEInclude<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT_FAVORITE to fetch.
+     */
+    where?: PRODUCT_FAVORITEWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PRODUCT_FAVORITES to fetch.
+     */
+    orderBy?: PRODUCT_FAVORITEOrderByWithRelationAndSearchRelevanceInput | PRODUCT_FAVORITEOrderByWithRelationAndSearchRelevanceInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PRODUCT_FAVORITES.
+     */
+    cursor?: PRODUCT_FAVORITEWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PRODUCT_FAVORITES from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PRODUCT_FAVORITES.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PRODUCT_FAVORITES.
+     */
+    distinct?: PRODUCT_FAVORITEScalarFieldEnum | PRODUCT_FAVORITEScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_FAVORITE findMany
+   */
+  export type PRODUCT_FAVORITEFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_FAVORITE
+     */
+    select?: PRODUCT_FAVORITESelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCT_FAVORITEInclude<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT_FAVORITES to fetch.
+     */
+    where?: PRODUCT_FAVORITEWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PRODUCT_FAVORITES to fetch.
+     */
+    orderBy?: PRODUCT_FAVORITEOrderByWithRelationAndSearchRelevanceInput | PRODUCT_FAVORITEOrderByWithRelationAndSearchRelevanceInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PRODUCT_FAVORITES.
+     */
+    cursor?: PRODUCT_FAVORITEWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PRODUCT_FAVORITES from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PRODUCT_FAVORITES.
+     */
+    skip?: number
+    distinct?: PRODUCT_FAVORITEScalarFieldEnum | PRODUCT_FAVORITEScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_FAVORITE create
+   */
+  export type PRODUCT_FAVORITECreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_FAVORITE
+     */
+    select?: PRODUCT_FAVORITESelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCT_FAVORITEInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PRODUCT_FAVORITE.
+     */
+    data: XOR<PRODUCT_FAVORITECreateInput, PRODUCT_FAVORITEUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_FAVORITE createMany
+   */
+  export type PRODUCT_FAVORITECreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PRODUCT_FAVORITES.
+     */
+    data: PRODUCT_FAVORITECreateManyInput | PRODUCT_FAVORITECreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * PRODUCT_FAVORITE update
+   */
+  export type PRODUCT_FAVORITEUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_FAVORITE
+     */
+    select?: PRODUCT_FAVORITESelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCT_FAVORITEInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PRODUCT_FAVORITE.
+     */
+    data: XOR<PRODUCT_FAVORITEUpdateInput, PRODUCT_FAVORITEUncheckedUpdateInput>
+    /**
+     * Choose, which PRODUCT_FAVORITE to update.
+     */
+    where: PRODUCT_FAVORITEWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_FAVORITE updateMany
+   */
+  export type PRODUCT_FAVORITEUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PRODUCT_FAVORITES.
+     */
+    data: XOR<PRODUCT_FAVORITEUpdateManyMutationInput, PRODUCT_FAVORITEUncheckedUpdateManyInput>
+    /**
+     * Filter which PRODUCT_FAVORITES to update
+     */
+    where?: PRODUCT_FAVORITEWhereInput
+  }
+
+
+  /**
+   * PRODUCT_FAVORITE upsert
+   */
+  export type PRODUCT_FAVORITEUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_FAVORITE
+     */
+    select?: PRODUCT_FAVORITESelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCT_FAVORITEInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PRODUCT_FAVORITE to update in case it exists.
+     */
+    where: PRODUCT_FAVORITEWhereUniqueInput
+    /**
+     * In case the PRODUCT_FAVORITE found by the `where` argument doesn't exist, create a new PRODUCT_FAVORITE with this data.
+     */
+    create: XOR<PRODUCT_FAVORITECreateInput, PRODUCT_FAVORITEUncheckedCreateInput>
+    /**
+     * In case the PRODUCT_FAVORITE was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PRODUCT_FAVORITEUpdateInput, PRODUCT_FAVORITEUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_FAVORITE delete
+   */
+  export type PRODUCT_FAVORITEDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_FAVORITE
+     */
+    select?: PRODUCT_FAVORITESelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCT_FAVORITEInclude<ExtArgs> | null
+    /**
+     * Filter which PRODUCT_FAVORITE to delete.
+     */
+    where: PRODUCT_FAVORITEWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_FAVORITE deleteMany
+   */
+  export type PRODUCT_FAVORITEDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PRODUCT_FAVORITES to delete
+     */
+    where?: PRODUCT_FAVORITEWhereInput
+  }
+
+
+  /**
+   * PRODUCT_FAVORITE without action
+   */
+  export type PRODUCT_FAVORITEDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_FAVORITE
+     */
+    select?: PRODUCT_FAVORITESelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PRODUCT_FAVORITEInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model PRODUCT_LIKE
+   */
+
+  export type AggregatePRODUCT_LIKE = {
+    _count: PRODUCT_LIKECountAggregateOutputType | null
+    _avg: PRODUCT_LIKEAvgAggregateOutputType | null
+    _sum: PRODUCT_LIKESumAggregateOutputType | null
+    _min: PRODUCT_LIKEMinAggregateOutputType | null
+    _max: PRODUCT_LIKEMaxAggregateOutputType | null
+  }
+
+  export type PRODUCT_LIKEAvgAggregateOutputType = {
+    id: number | null
+    like: number | null
+    user_id: number | null
+    created_by: number | null
+  }
+
+  export type PRODUCT_LIKESumAggregateOutputType = {
+    id: number | null
+    like: number | null
+    user_id: number | null
+    created_by: number | null
+  }
+
+  export type PRODUCT_LIKEMinAggregateOutputType = {
+    id: number | null
+    like: number | null
+    user_id: number | null
+    created_by: number | null
+    created_date: Date | null
+  }
+
+  export type PRODUCT_LIKEMaxAggregateOutputType = {
+    id: number | null
+    like: number | null
+    user_id: number | null
+    created_by: number | null
+    created_date: Date | null
+  }
+
+  export type PRODUCT_LIKECountAggregateOutputType = {
+    id: number
+    like: number
+    user_id: number
+    created_by: number
+    created_date: number
+    _all: number
+  }
+
+
+  export type PRODUCT_LIKEAvgAggregateInputType = {
+    id?: true
+    like?: true
+    user_id?: true
+    created_by?: true
+  }
+
+  export type PRODUCT_LIKESumAggregateInputType = {
+    id?: true
+    like?: true
+    user_id?: true
+    created_by?: true
+  }
+
+  export type PRODUCT_LIKEMinAggregateInputType = {
+    id?: true
+    like?: true
+    user_id?: true
+    created_by?: true
+    created_date?: true
+  }
+
+  export type PRODUCT_LIKEMaxAggregateInputType = {
+    id?: true
+    like?: true
+    user_id?: true
+    created_by?: true
+    created_date?: true
+  }
+
+  export type PRODUCT_LIKECountAggregateInputType = {
+    id?: true
+    like?: true
+    user_id?: true
+    created_by?: true
+    created_date?: true
+    _all?: true
+  }
+
+  export type PRODUCT_LIKEAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PRODUCT_LIKE to aggregate.
+     */
+    where?: PRODUCT_LIKEWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PRODUCT_LIKES to fetch.
+     */
+    orderBy?: PRODUCT_LIKEOrderByWithRelationAndSearchRelevanceInput | PRODUCT_LIKEOrderByWithRelationAndSearchRelevanceInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PRODUCT_LIKEWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PRODUCT_LIKES from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PRODUCT_LIKES.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PRODUCT_LIKES
+    **/
+    _count?: true | PRODUCT_LIKECountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PRODUCT_LIKEAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PRODUCT_LIKESumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PRODUCT_LIKEMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PRODUCT_LIKEMaxAggregateInputType
+  }
+
+  export type GetPRODUCT_LIKEAggregateType<T extends PRODUCT_LIKEAggregateArgs> = {
+        [P in keyof T & keyof AggregatePRODUCT_LIKE]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePRODUCT_LIKE[P]>
+      : GetScalarType<T[P], AggregatePRODUCT_LIKE[P]>
+  }
+
+
+
+
+  export type PRODUCT_LIKEGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PRODUCT_LIKEWhereInput
+    orderBy?: PRODUCT_LIKEOrderByWithAggregationInput | PRODUCT_LIKEOrderByWithAggregationInput[]
+    by: PRODUCT_LIKEScalarFieldEnum[] | PRODUCT_LIKEScalarFieldEnum
+    having?: PRODUCT_LIKEScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PRODUCT_LIKECountAggregateInputType | true
+    _avg?: PRODUCT_LIKEAvgAggregateInputType
+    _sum?: PRODUCT_LIKESumAggregateInputType
+    _min?: PRODUCT_LIKEMinAggregateInputType
+    _max?: PRODUCT_LIKEMaxAggregateInputType
+  }
+
+  export type PRODUCT_LIKEGroupByOutputType = {
+    id: number
+    like: number
+    user_id: number
+    created_by: number | null
+    created_date: Date | null
+    _count: PRODUCT_LIKECountAggregateOutputType | null
+    _avg: PRODUCT_LIKEAvgAggregateOutputType | null
+    _sum: PRODUCT_LIKESumAggregateOutputType | null
+    _min: PRODUCT_LIKEMinAggregateOutputType | null
+    _max: PRODUCT_LIKEMaxAggregateOutputType | null
+  }
+
+  type GetPRODUCT_LIKEGroupByPayload<T extends PRODUCT_LIKEGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PRODUCT_LIKEGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PRODUCT_LIKEGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PRODUCT_LIKEGroupByOutputType[P]>
+            : GetScalarType<T[P], PRODUCT_LIKEGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PRODUCT_LIKESelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    like?: boolean
+    user_id?: boolean
+    created_by?: boolean
+    created_date?: boolean
+  }, ExtArgs["result"]["pRODUCT_LIKE"]>
+
+  export type PRODUCT_LIKESelectScalar = {
+    id?: boolean
+    like?: boolean
+    user_id?: boolean
+    created_by?: boolean
+    created_date?: boolean
+  }
+
+
+  export type $PRODUCT_LIKEPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PRODUCT_LIKE"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      like: number
+      user_id: number
+      created_by: number | null
+      created_date: Date | null
+    }, ExtArgs["result"]["pRODUCT_LIKE"]>
+    composites: {}
+  }
+
+
+  type PRODUCT_LIKEGetPayload<S extends boolean | null | undefined | PRODUCT_LIKEDefaultArgs> = $Result.GetResult<Prisma.$PRODUCT_LIKEPayload, S>
+
+  type PRODUCT_LIKECountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PRODUCT_LIKEFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
+      select?: PRODUCT_LIKECountAggregateInputType | true
+    }
+
+  export interface PRODUCT_LIKEDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PRODUCT_LIKE'], meta: { name: 'PRODUCT_LIKE' } }
+    /**
+     * Find zero or one PRODUCT_LIKE that matches the filter.
+     * @param {PRODUCT_LIKEFindUniqueArgs} args - Arguments to find a PRODUCT_LIKE
+     * @example
+     * // Get one PRODUCT_LIKE
+     * const pRODUCT_LIKE = await prisma.pRODUCT_LIKE.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PRODUCT_LIKEFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCT_LIKEFindUniqueArgs<ExtArgs>>
+    ): Prisma__PRODUCT_LIKEClient<$Result.GetResult<Prisma.$PRODUCT_LIKEPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one PRODUCT_LIKE that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PRODUCT_LIKEFindUniqueOrThrowArgs} args - Arguments to find a PRODUCT_LIKE
+     * @example
+     * // Get one PRODUCT_LIKE
+     * const pRODUCT_LIKE = await prisma.pRODUCT_LIKE.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PRODUCT_LIKEFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCT_LIKEFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PRODUCT_LIKEClient<$Result.GetResult<Prisma.$PRODUCT_LIKEPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first PRODUCT_LIKE that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_LIKEFindFirstArgs} args - Arguments to find a PRODUCT_LIKE
+     * @example
+     * // Get one PRODUCT_LIKE
+     * const pRODUCT_LIKE = await prisma.pRODUCT_LIKE.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PRODUCT_LIKEFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCT_LIKEFindFirstArgs<ExtArgs>>
+    ): Prisma__PRODUCT_LIKEClient<$Result.GetResult<Prisma.$PRODUCT_LIKEPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first PRODUCT_LIKE that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_LIKEFindFirstOrThrowArgs} args - Arguments to find a PRODUCT_LIKE
+     * @example
+     * // Get one PRODUCT_LIKE
+     * const pRODUCT_LIKE = await prisma.pRODUCT_LIKE.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PRODUCT_LIKEFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCT_LIKEFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PRODUCT_LIKEClient<$Result.GetResult<Prisma.$PRODUCT_LIKEPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more PRODUCT_LIKES that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_LIKEFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PRODUCT_LIKES
+     * const pRODUCT_LIKES = await prisma.pRODUCT_LIKE.findMany()
+     * 
+     * // Get first 10 PRODUCT_LIKES
+     * const pRODUCT_LIKES = await prisma.pRODUCT_LIKE.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const pRODUCT_LIKEWithIdOnly = await prisma.pRODUCT_LIKE.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PRODUCT_LIKEFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCT_LIKEFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PRODUCT_LIKEPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a PRODUCT_LIKE.
+     * @param {PRODUCT_LIKECreateArgs} args - Arguments to create a PRODUCT_LIKE.
+     * @example
+     * // Create one PRODUCT_LIKE
+     * const PRODUCT_LIKE = await prisma.pRODUCT_LIKE.create({
+     *   data: {
+     *     // ... data to create a PRODUCT_LIKE
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PRODUCT_LIKECreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCT_LIKECreateArgs<ExtArgs>>
+    ): Prisma__PRODUCT_LIKEClient<$Result.GetResult<Prisma.$PRODUCT_LIKEPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many PRODUCT_LIKES.
+     *     @param {PRODUCT_LIKECreateManyArgs} args - Arguments to create many PRODUCT_LIKES.
+     *     @example
+     *     // Create many PRODUCT_LIKES
+     *     const pRODUCT_LIKE = await prisma.pRODUCT_LIKE.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends PRODUCT_LIKECreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCT_LIKECreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PRODUCT_LIKE.
+     * @param {PRODUCT_LIKEDeleteArgs} args - Arguments to delete one PRODUCT_LIKE.
+     * @example
+     * // Delete one PRODUCT_LIKE
+     * const PRODUCT_LIKE = await prisma.pRODUCT_LIKE.delete({
+     *   where: {
+     *     // ... filter to delete one PRODUCT_LIKE
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PRODUCT_LIKEDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCT_LIKEDeleteArgs<ExtArgs>>
+    ): Prisma__PRODUCT_LIKEClient<$Result.GetResult<Prisma.$PRODUCT_LIKEPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one PRODUCT_LIKE.
+     * @param {PRODUCT_LIKEUpdateArgs} args - Arguments to update one PRODUCT_LIKE.
+     * @example
+     * // Update one PRODUCT_LIKE
+     * const pRODUCT_LIKE = await prisma.pRODUCT_LIKE.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PRODUCT_LIKEUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCT_LIKEUpdateArgs<ExtArgs>>
+    ): Prisma__PRODUCT_LIKEClient<$Result.GetResult<Prisma.$PRODUCT_LIKEPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more PRODUCT_LIKES.
+     * @param {PRODUCT_LIKEDeleteManyArgs} args - Arguments to filter PRODUCT_LIKES to delete.
+     * @example
+     * // Delete a few PRODUCT_LIKES
+     * const { count } = await prisma.pRODUCT_LIKE.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PRODUCT_LIKEDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PRODUCT_LIKEDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PRODUCT_LIKES.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_LIKEUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PRODUCT_LIKES
+     * const pRODUCT_LIKE = await prisma.pRODUCT_LIKE.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PRODUCT_LIKEUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCT_LIKEUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PRODUCT_LIKE.
+     * @param {PRODUCT_LIKEUpsertArgs} args - Arguments to update or create a PRODUCT_LIKE.
+     * @example
+     * // Update or create a PRODUCT_LIKE
+     * const pRODUCT_LIKE = await prisma.pRODUCT_LIKE.upsert({
+     *   create: {
+     *     // ... data to create a PRODUCT_LIKE
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PRODUCT_LIKE we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PRODUCT_LIKEUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PRODUCT_LIKEUpsertArgs<ExtArgs>>
+    ): Prisma__PRODUCT_LIKEClient<$Result.GetResult<Prisma.$PRODUCT_LIKEPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of PRODUCT_LIKES.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_LIKECountArgs} args - Arguments to filter PRODUCT_LIKES to count.
+     * @example
+     * // Count the number of PRODUCT_LIKES
+     * const count = await prisma.pRODUCT_LIKE.count({
+     *   where: {
+     *     // ... the filter for the PRODUCT_LIKES we want to count
+     *   }
+     * })
+    **/
+    count<T extends PRODUCT_LIKECountArgs>(
+      args?: Subset<T, PRODUCT_LIKECountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PRODUCT_LIKECountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PRODUCT_LIKE.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_LIKEAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PRODUCT_LIKEAggregateArgs>(args: Subset<T, PRODUCT_LIKEAggregateArgs>): Prisma.PrismaPromise<GetPRODUCT_LIKEAggregateType<T>>
+
+    /**
+     * Group by PRODUCT_LIKE.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PRODUCT_LIKEGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PRODUCT_LIKEGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PRODUCT_LIKEGroupByArgs['orderBy'] }
+        : { orderBy?: PRODUCT_LIKEGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PRODUCT_LIKEGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPRODUCT_LIKEGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PRODUCT_LIKE model
+   */
+  readonly fields: PRODUCT_LIKEFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PRODUCT_LIKE.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PRODUCT_LIKEClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the PRODUCT_LIKE model
+   */ 
+  interface PRODUCT_LIKEFieldRefs {
+    readonly id: FieldRef<"PRODUCT_LIKE", 'Int'>
+    readonly like: FieldRef<"PRODUCT_LIKE", 'Int'>
+    readonly user_id: FieldRef<"PRODUCT_LIKE", 'Int'>
+    readonly created_by: FieldRef<"PRODUCT_LIKE", 'Int'>
+    readonly created_date: FieldRef<"PRODUCT_LIKE", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * PRODUCT_LIKE findUnique
+   */
+  export type PRODUCT_LIKEFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_LIKE
+     */
+    select?: PRODUCT_LIKESelect<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT_LIKE to fetch.
+     */
+    where: PRODUCT_LIKEWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_LIKE findUniqueOrThrow
+   */
+  export type PRODUCT_LIKEFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_LIKE
+     */
+    select?: PRODUCT_LIKESelect<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT_LIKE to fetch.
+     */
+    where: PRODUCT_LIKEWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_LIKE findFirst
+   */
+  export type PRODUCT_LIKEFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_LIKE
+     */
+    select?: PRODUCT_LIKESelect<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT_LIKE to fetch.
+     */
+    where?: PRODUCT_LIKEWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PRODUCT_LIKES to fetch.
+     */
+    orderBy?: PRODUCT_LIKEOrderByWithRelationAndSearchRelevanceInput | PRODUCT_LIKEOrderByWithRelationAndSearchRelevanceInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PRODUCT_LIKES.
+     */
+    cursor?: PRODUCT_LIKEWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PRODUCT_LIKES from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PRODUCT_LIKES.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PRODUCT_LIKES.
+     */
+    distinct?: PRODUCT_LIKEScalarFieldEnum | PRODUCT_LIKEScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_LIKE findFirstOrThrow
+   */
+  export type PRODUCT_LIKEFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_LIKE
+     */
+    select?: PRODUCT_LIKESelect<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT_LIKE to fetch.
+     */
+    where?: PRODUCT_LIKEWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PRODUCT_LIKES to fetch.
+     */
+    orderBy?: PRODUCT_LIKEOrderByWithRelationAndSearchRelevanceInput | PRODUCT_LIKEOrderByWithRelationAndSearchRelevanceInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PRODUCT_LIKES.
+     */
+    cursor?: PRODUCT_LIKEWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PRODUCT_LIKES from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PRODUCT_LIKES.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PRODUCT_LIKES.
+     */
+    distinct?: PRODUCT_LIKEScalarFieldEnum | PRODUCT_LIKEScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_LIKE findMany
+   */
+  export type PRODUCT_LIKEFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_LIKE
+     */
+    select?: PRODUCT_LIKESelect<ExtArgs> | null
+    /**
+     * Filter, which PRODUCT_LIKES to fetch.
+     */
+    where?: PRODUCT_LIKEWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PRODUCT_LIKES to fetch.
+     */
+    orderBy?: PRODUCT_LIKEOrderByWithRelationAndSearchRelevanceInput | PRODUCT_LIKEOrderByWithRelationAndSearchRelevanceInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PRODUCT_LIKES.
+     */
+    cursor?: PRODUCT_LIKEWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PRODUCT_LIKES from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PRODUCT_LIKES.
+     */
+    skip?: number
+    distinct?: PRODUCT_LIKEScalarFieldEnum | PRODUCT_LIKEScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_LIKE create
+   */
+  export type PRODUCT_LIKECreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_LIKE
+     */
+    select?: PRODUCT_LIKESelect<ExtArgs> | null
+    /**
+     * The data needed to create a PRODUCT_LIKE.
+     */
+    data: XOR<PRODUCT_LIKECreateInput, PRODUCT_LIKEUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_LIKE createMany
+   */
+  export type PRODUCT_LIKECreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PRODUCT_LIKES.
+     */
+    data: PRODUCT_LIKECreateManyInput | PRODUCT_LIKECreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * PRODUCT_LIKE update
+   */
+  export type PRODUCT_LIKEUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_LIKE
+     */
+    select?: PRODUCT_LIKESelect<ExtArgs> | null
+    /**
+     * The data needed to update a PRODUCT_LIKE.
+     */
+    data: XOR<PRODUCT_LIKEUpdateInput, PRODUCT_LIKEUncheckedUpdateInput>
+    /**
+     * Choose, which PRODUCT_LIKE to update.
+     */
+    where: PRODUCT_LIKEWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_LIKE updateMany
+   */
+  export type PRODUCT_LIKEUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PRODUCT_LIKES.
+     */
+    data: XOR<PRODUCT_LIKEUpdateManyMutationInput, PRODUCT_LIKEUncheckedUpdateManyInput>
+    /**
+     * Filter which PRODUCT_LIKES to update
+     */
+    where?: PRODUCT_LIKEWhereInput
+  }
+
+
+  /**
+   * PRODUCT_LIKE upsert
+   */
+  export type PRODUCT_LIKEUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_LIKE
+     */
+    select?: PRODUCT_LIKESelect<ExtArgs> | null
+    /**
+     * The filter to search for the PRODUCT_LIKE to update in case it exists.
+     */
+    where: PRODUCT_LIKEWhereUniqueInput
+    /**
+     * In case the PRODUCT_LIKE found by the `where` argument doesn't exist, create a new PRODUCT_LIKE with this data.
+     */
+    create: XOR<PRODUCT_LIKECreateInput, PRODUCT_LIKEUncheckedCreateInput>
+    /**
+     * In case the PRODUCT_LIKE was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PRODUCT_LIKEUpdateInput, PRODUCT_LIKEUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_LIKE delete
+   */
+  export type PRODUCT_LIKEDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_LIKE
+     */
+    select?: PRODUCT_LIKESelect<ExtArgs> | null
+    /**
+     * Filter which PRODUCT_LIKE to delete.
+     */
+    where: PRODUCT_LIKEWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+
+  /**
+   * PRODUCT_LIKE deleteMany
+   */
+  export type PRODUCT_LIKEDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PRODUCT_LIKES to delete
+     */
+    where?: PRODUCT_LIKEWhereInput
+  }
+
+
+  /**
+   * PRODUCT_LIKE without action
+   */
+  export type PRODUCT_LIKEDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PRODUCT_LIKE
+     */
+    select?: PRODUCT_LIKESelect<ExtArgs> | null
   }
 
 
@@ -1912,6 +5224,44 @@ export namespace Prisma {
   export type RelationLoadStrategy = (typeof RelationLoadStrategy)[keyof typeof RelationLoadStrategy]
 
 
+  export const PRODUCTScalarFieldEnum: {
+    id: 'id',
+    uuid: 'uuid',
+    product_name: 'product_name',
+    description: 'description',
+    amount: 'amount',
+    user_uuid: 'user_uuid',
+    created_by: 'created_by',
+    created_date: 'created_date',
+    updated_by: 'updated_by',
+    updated_date: 'updated_date'
+  };
+
+  export type PRODUCTScalarFieldEnum = (typeof PRODUCTScalarFieldEnum)[keyof typeof PRODUCTScalarFieldEnum]
+
+
+  export const PRODUCT_FAVORITEScalarFieldEnum: {
+    id: 'id',
+    favorite: 'favorite',
+    user_id: 'user_id',
+    created_by: 'created_by',
+    created_date: 'created_date'
+  };
+
+  export type PRODUCT_FAVORITEScalarFieldEnum = (typeof PRODUCT_FAVORITEScalarFieldEnum)[keyof typeof PRODUCT_FAVORITEScalarFieldEnum]
+
+
+  export const PRODUCT_LIKEScalarFieldEnum: {
+    id: 'id',
+    like: 'like',
+    user_id: 'user_id',
+    created_by: 'created_by',
+    created_date: 'created_date'
+  };
+
+  export type PRODUCT_LIKEScalarFieldEnum = (typeof PRODUCT_LIKEScalarFieldEnum)[keyof typeof PRODUCT_LIKEScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -1941,6 +5291,16 @@ export namespace Prisma {
   };
 
   export type USEROrderByRelevanceFieldEnum = (typeof USEROrderByRelevanceFieldEnum)[keyof typeof USEROrderByRelevanceFieldEnum]
+
+
+  export const PRODUCTOrderByRelevanceFieldEnum: {
+    uuid: 'uuid',
+    product_name: 'product_name',
+    description: 'description',
+    user_uuid: 'user_uuid'
+  };
+
+  export type PRODUCTOrderByRelevanceFieldEnum = (typeof PRODUCTOrderByRelevanceFieldEnum)[keyof typeof PRODUCTOrderByRelevanceFieldEnum]
 
 
   /**
@@ -1996,6 +5356,8 @@ export namespace Prisma {
     status?: IntFilter<"USER"> | number
     created_date?: DateTimeNullableFilter<"USER"> | Date | string | null
     updated_date?: DateTimeNullableFilter<"USER"> | Date | string | null
+    PRODUCT?: PRODUCTListRelationFilter
+    PRODUCT_FAVORITE?: PRODUCT_FAVORITEListRelationFilter
   }
 
   export type USEROrderByWithRelationAndSearchRelevanceInput = {
@@ -2012,6 +5374,8 @@ export namespace Prisma {
     status?: SortOrder
     created_date?: SortOrderInput | SortOrder
     updated_date?: SortOrderInput | SortOrder
+    PRODUCT?: PRODUCTOrderByRelationAggregateInput
+    PRODUCT_FAVORITE?: PRODUCT_FAVORITEOrderByRelationAggregateInput
     _relevance?: USEROrderByRelevanceInput
   }
 
@@ -2032,6 +5396,8 @@ export namespace Prisma {
     status?: IntFilter<"USER"> | number
     created_date?: DateTimeNullableFilter<"USER"> | Date | string | null
     updated_date?: DateTimeNullableFilter<"USER"> | Date | string | null
+    PRODUCT?: PRODUCTListRelationFilter
+    PRODUCT_FAVORITE?: PRODUCT_FAVORITEListRelationFilter
   }, "id" | "id" | "uuid" | "email">
 
   export type USEROrderByWithAggregationInput = {
@@ -2074,6 +5440,200 @@ export namespace Prisma {
     updated_date?: DateTimeNullableWithAggregatesFilter<"USER"> | Date | string | null
   }
 
+  export type PRODUCTWhereInput = {
+    AND?: PRODUCTWhereInput | PRODUCTWhereInput[]
+    OR?: PRODUCTWhereInput[]
+    NOT?: PRODUCTWhereInput | PRODUCTWhereInput[]
+    id?: IntFilter<"PRODUCT"> | number
+    uuid?: StringFilter<"PRODUCT"> | string
+    product_name?: StringFilter<"PRODUCT"> | string
+    description?: StringNullableFilter<"PRODUCT"> | string | null
+    amount?: IntFilter<"PRODUCT"> | number
+    user_uuid?: StringFilter<"PRODUCT"> | string
+    created_by?: IntNullableFilter<"PRODUCT"> | number | null
+    created_date?: DateTimeNullableFilter<"PRODUCT"> | Date | string | null
+    updated_by?: IntNullableFilter<"PRODUCT"> | number | null
+    updated_date?: DateTimeNullableFilter<"PRODUCT"> | Date | string | null
+    USER?: XOR<USERRelationFilter, USERWhereInput>
+  }
+
+  export type PRODUCTOrderByWithRelationAndSearchRelevanceInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    product_name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    amount?: SortOrder
+    user_uuid?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_date?: SortOrderInput | SortOrder
+    updated_by?: SortOrderInput | SortOrder
+    updated_date?: SortOrderInput | SortOrder
+    USER?: USEROrderByWithRelationAndSearchRelevanceInput
+    _relevance?: PRODUCTOrderByRelevanceInput
+  }
+
+  export type PRODUCTWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    uuid?: string
+    AND?: PRODUCTWhereInput | PRODUCTWhereInput[]
+    OR?: PRODUCTWhereInput[]
+    NOT?: PRODUCTWhereInput | PRODUCTWhereInput[]
+    product_name?: StringFilter<"PRODUCT"> | string
+    description?: StringNullableFilter<"PRODUCT"> | string | null
+    amount?: IntFilter<"PRODUCT"> | number
+    user_uuid?: StringFilter<"PRODUCT"> | string
+    created_by?: IntNullableFilter<"PRODUCT"> | number | null
+    created_date?: DateTimeNullableFilter<"PRODUCT"> | Date | string | null
+    updated_by?: IntNullableFilter<"PRODUCT"> | number | null
+    updated_date?: DateTimeNullableFilter<"PRODUCT"> | Date | string | null
+    USER?: XOR<USERRelationFilter, USERWhereInput>
+  }, "id" | "id" | "uuid">
+
+  export type PRODUCTOrderByWithAggregationInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    product_name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    amount?: SortOrder
+    user_uuid?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_date?: SortOrderInput | SortOrder
+    updated_by?: SortOrderInput | SortOrder
+    updated_date?: SortOrderInput | SortOrder
+    _count?: PRODUCTCountOrderByAggregateInput
+    _avg?: PRODUCTAvgOrderByAggregateInput
+    _max?: PRODUCTMaxOrderByAggregateInput
+    _min?: PRODUCTMinOrderByAggregateInput
+    _sum?: PRODUCTSumOrderByAggregateInput
+  }
+
+  export type PRODUCTScalarWhereWithAggregatesInput = {
+    AND?: PRODUCTScalarWhereWithAggregatesInput | PRODUCTScalarWhereWithAggregatesInput[]
+    OR?: PRODUCTScalarWhereWithAggregatesInput[]
+    NOT?: PRODUCTScalarWhereWithAggregatesInput | PRODUCTScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PRODUCT"> | number
+    uuid?: StringWithAggregatesFilter<"PRODUCT"> | string
+    product_name?: StringWithAggregatesFilter<"PRODUCT"> | string
+    description?: StringNullableWithAggregatesFilter<"PRODUCT"> | string | null
+    amount?: IntWithAggregatesFilter<"PRODUCT"> | number
+    user_uuid?: StringWithAggregatesFilter<"PRODUCT"> | string
+    created_by?: IntNullableWithAggregatesFilter<"PRODUCT"> | number | null
+    created_date?: DateTimeNullableWithAggregatesFilter<"PRODUCT"> | Date | string | null
+    updated_by?: IntNullableWithAggregatesFilter<"PRODUCT"> | number | null
+    updated_date?: DateTimeNullableWithAggregatesFilter<"PRODUCT"> | Date | string | null
+  }
+
+  export type PRODUCT_FAVORITEWhereInput = {
+    AND?: PRODUCT_FAVORITEWhereInput | PRODUCT_FAVORITEWhereInput[]
+    OR?: PRODUCT_FAVORITEWhereInput[]
+    NOT?: PRODUCT_FAVORITEWhereInput | PRODUCT_FAVORITEWhereInput[]
+    id?: IntFilter<"PRODUCT_FAVORITE"> | number
+    favorite?: IntFilter<"PRODUCT_FAVORITE"> | number
+    user_id?: IntFilter<"PRODUCT_FAVORITE"> | number
+    created_by?: IntFilter<"PRODUCT_FAVORITE"> | number
+    created_date?: DateTimeNullableFilter<"PRODUCT_FAVORITE"> | Date | string | null
+    USER?: XOR<USERRelationFilter, USERWhereInput>
+  }
+
+  export type PRODUCT_FAVORITEOrderByWithRelationAndSearchRelevanceInput = {
+    id?: SortOrder
+    favorite?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrder
+    created_date?: SortOrderInput | SortOrder
+    USER?: USEROrderByWithRelationAndSearchRelevanceInput
+  }
+
+  export type PRODUCT_FAVORITEWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PRODUCT_FAVORITEWhereInput | PRODUCT_FAVORITEWhereInput[]
+    OR?: PRODUCT_FAVORITEWhereInput[]
+    NOT?: PRODUCT_FAVORITEWhereInput | PRODUCT_FAVORITEWhereInput[]
+    favorite?: IntFilter<"PRODUCT_FAVORITE"> | number
+    user_id?: IntFilter<"PRODUCT_FAVORITE"> | number
+    created_by?: IntFilter<"PRODUCT_FAVORITE"> | number
+    created_date?: DateTimeNullableFilter<"PRODUCT_FAVORITE"> | Date | string | null
+    USER?: XOR<USERRelationFilter, USERWhereInput>
+  }, "id" | "id">
+
+  export type PRODUCT_FAVORITEOrderByWithAggregationInput = {
+    id?: SortOrder
+    favorite?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrder
+    created_date?: SortOrderInput | SortOrder
+    _count?: PRODUCT_FAVORITECountOrderByAggregateInput
+    _avg?: PRODUCT_FAVORITEAvgOrderByAggregateInput
+    _max?: PRODUCT_FAVORITEMaxOrderByAggregateInput
+    _min?: PRODUCT_FAVORITEMinOrderByAggregateInput
+    _sum?: PRODUCT_FAVORITESumOrderByAggregateInput
+  }
+
+  export type PRODUCT_FAVORITEScalarWhereWithAggregatesInput = {
+    AND?: PRODUCT_FAVORITEScalarWhereWithAggregatesInput | PRODUCT_FAVORITEScalarWhereWithAggregatesInput[]
+    OR?: PRODUCT_FAVORITEScalarWhereWithAggregatesInput[]
+    NOT?: PRODUCT_FAVORITEScalarWhereWithAggregatesInput | PRODUCT_FAVORITEScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PRODUCT_FAVORITE"> | number
+    favorite?: IntWithAggregatesFilter<"PRODUCT_FAVORITE"> | number
+    user_id?: IntWithAggregatesFilter<"PRODUCT_FAVORITE"> | number
+    created_by?: IntWithAggregatesFilter<"PRODUCT_FAVORITE"> | number
+    created_date?: DateTimeNullableWithAggregatesFilter<"PRODUCT_FAVORITE"> | Date | string | null
+  }
+
+  export type PRODUCT_LIKEWhereInput = {
+    AND?: PRODUCT_LIKEWhereInput | PRODUCT_LIKEWhereInput[]
+    OR?: PRODUCT_LIKEWhereInput[]
+    NOT?: PRODUCT_LIKEWhereInput | PRODUCT_LIKEWhereInput[]
+    id?: IntFilter<"PRODUCT_LIKE"> | number
+    like?: IntFilter<"PRODUCT_LIKE"> | number
+    user_id?: IntFilter<"PRODUCT_LIKE"> | number
+    created_by?: IntNullableFilter<"PRODUCT_LIKE"> | number | null
+    created_date?: DateTimeNullableFilter<"PRODUCT_LIKE"> | Date | string | null
+  }
+
+  export type PRODUCT_LIKEOrderByWithRelationAndSearchRelevanceInput = {
+    id?: SortOrder
+    like?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_date?: SortOrderInput | SortOrder
+  }
+
+  export type PRODUCT_LIKEWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PRODUCT_LIKEWhereInput | PRODUCT_LIKEWhereInput[]
+    OR?: PRODUCT_LIKEWhereInput[]
+    NOT?: PRODUCT_LIKEWhereInput | PRODUCT_LIKEWhereInput[]
+    like?: IntFilter<"PRODUCT_LIKE"> | number
+    user_id?: IntFilter<"PRODUCT_LIKE"> | number
+    created_by?: IntNullableFilter<"PRODUCT_LIKE"> | number | null
+    created_date?: DateTimeNullableFilter<"PRODUCT_LIKE"> | Date | string | null
+  }, "id">
+
+  export type PRODUCT_LIKEOrderByWithAggregationInput = {
+    id?: SortOrder
+    like?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_date?: SortOrderInput | SortOrder
+    _count?: PRODUCT_LIKECountOrderByAggregateInput
+    _avg?: PRODUCT_LIKEAvgOrderByAggregateInput
+    _max?: PRODUCT_LIKEMaxOrderByAggregateInput
+    _min?: PRODUCT_LIKEMinOrderByAggregateInput
+    _sum?: PRODUCT_LIKESumOrderByAggregateInput
+  }
+
+  export type PRODUCT_LIKEScalarWhereWithAggregatesInput = {
+    AND?: PRODUCT_LIKEScalarWhereWithAggregatesInput | PRODUCT_LIKEScalarWhereWithAggregatesInput[]
+    OR?: PRODUCT_LIKEScalarWhereWithAggregatesInput[]
+    NOT?: PRODUCT_LIKEScalarWhereWithAggregatesInput | PRODUCT_LIKEScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PRODUCT_LIKE"> | number
+    like?: IntWithAggregatesFilter<"PRODUCT_LIKE"> | number
+    user_id?: IntWithAggregatesFilter<"PRODUCT_LIKE"> | number
+    created_by?: IntNullableWithAggregatesFilter<"PRODUCT_LIKE"> | number | null
+    created_date?: DateTimeNullableWithAggregatesFilter<"PRODUCT_LIKE"> | Date | string | null
+  }
+
   export type USERCreateInput = {
     uuid: string
     username?: string | null
@@ -2087,6 +5647,8 @@ export namespace Prisma {
     status?: number
     created_date?: Date | string | null
     updated_date?: Date | string | null
+    PRODUCT?: PRODUCTCreateNestedManyWithoutUSERInput
+    PRODUCT_FAVORITE?: PRODUCT_FAVORITECreateNestedManyWithoutUSERInput
   }
 
   export type USERUncheckedCreateInput = {
@@ -2103,6 +5665,8 @@ export namespace Prisma {
     status?: number
     created_date?: Date | string | null
     updated_date?: Date | string | null
+    PRODUCT?: PRODUCTUncheckedCreateNestedManyWithoutUSERInput
+    PRODUCT_FAVORITE?: PRODUCT_FAVORITEUncheckedCreateNestedManyWithoutUSERInput
   }
 
   export type USERUpdateInput = {
@@ -2118,6 +5682,8 @@ export namespace Prisma {
     status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    PRODUCT?: PRODUCTUpdateManyWithoutUSERNestedInput
+    PRODUCT_FAVORITE?: PRODUCT_FAVORITEUpdateManyWithoutUSERNestedInput
   }
 
   export type USERUncheckedUpdateInput = {
@@ -2134,6 +5700,8 @@ export namespace Prisma {
     status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    PRODUCT?: PRODUCTUncheckedUpdateManyWithoutUSERNestedInput
+    PRODUCT_FAVORITE?: PRODUCT_FAVORITEUncheckedUpdateManyWithoutUSERNestedInput
   }
 
   export type USERCreateManyInput = {
@@ -2181,6 +5749,198 @@ export namespace Prisma {
     status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCTCreateInput = {
+    uuid: string
+    product_name: string
+    description?: string | null
+    amount?: number
+    created_by?: number | null
+    created_date?: Date | string | null
+    updated_by?: number | null
+    updated_date?: Date | string | null
+    USER: USERCreateNestedOneWithoutPRODUCTInput
+  }
+
+  export type PRODUCTUncheckedCreateInput = {
+    id?: number
+    uuid: string
+    product_name: string
+    description?: string | null
+    amount?: number
+    user_uuid: string
+    created_by?: number | null
+    created_date?: Date | string | null
+    updated_by?: number | null
+    updated_date?: Date | string | null
+  }
+
+  export type PRODUCTUpdateInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
+    product_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    USER?: USERUpdateOneRequiredWithoutPRODUCTNestedInput
+  }
+
+  export type PRODUCTUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    product_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    user_uuid?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCTCreateManyInput = {
+    id?: number
+    uuid: string
+    product_name: string
+    description?: string | null
+    amount?: number
+    user_uuid: string
+    created_by?: number | null
+    created_date?: Date | string | null
+    updated_by?: number | null
+    updated_date?: Date | string | null
+  }
+
+  export type PRODUCTUpdateManyMutationInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
+    product_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCTUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    product_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    user_uuid?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCT_FAVORITECreateInput = {
+    favorite?: number
+    created_by: number
+    created_date?: Date | string | null
+    USER: USERCreateNestedOneWithoutPRODUCT_FAVORITEInput
+  }
+
+  export type PRODUCT_FAVORITEUncheckedCreateInput = {
+    id?: number
+    favorite?: number
+    user_id: number
+    created_by: number
+    created_date?: Date | string | null
+  }
+
+  export type PRODUCT_FAVORITEUpdateInput = {
+    favorite?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    USER?: USERUpdateOneRequiredWithoutPRODUCT_FAVORITENestedInput
+  }
+
+  export type PRODUCT_FAVORITEUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    favorite?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCT_FAVORITECreateManyInput = {
+    id?: number
+    favorite?: number
+    user_id: number
+    created_by: number
+    created_date?: Date | string | null
+  }
+
+  export type PRODUCT_FAVORITEUpdateManyMutationInput = {
+    favorite?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCT_FAVORITEUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    favorite?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCT_LIKECreateInput = {
+    like?: number
+    user_id: number
+    created_by?: number | null
+    created_date?: Date | string | null
+  }
+
+  export type PRODUCT_LIKEUncheckedCreateInput = {
+    id?: number
+    like?: number
+    user_id: number
+    created_by?: number | null
+    created_date?: Date | string | null
+  }
+
+  export type PRODUCT_LIKEUpdateInput = {
+    like?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCT_LIKEUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    like?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCT_LIKECreateManyInput = {
+    id?: number
+    like?: number
+    user_id: number
+    created_by?: number | null
+    created_date?: Date | string | null
+  }
+
+  export type PRODUCT_LIKEUpdateManyMutationInput = {
+    like?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCT_LIKEUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    like?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2235,9 +5995,29 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type PRODUCTListRelationFilter = {
+    every?: PRODUCTWhereInput
+    some?: PRODUCTWhereInput
+    none?: PRODUCTWhereInput
+  }
+
+  export type PRODUCT_FAVORITEListRelationFilter = {
+    every?: PRODUCT_FAVORITEWhereInput
+    some?: PRODUCT_FAVORITEWhereInput
+    none?: PRODUCT_FAVORITEWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type PRODUCTOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PRODUCT_FAVORITEOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type USEROrderByRelevanceInput = {
@@ -2370,6 +6150,201 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type USERRelationFilter = {
+    is?: USERWhereInput
+    isNot?: USERWhereInput
+  }
+
+  export type PRODUCTOrderByRelevanceInput = {
+    fields: PRODUCTOrderByRelevanceFieldEnum | PRODUCTOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type PRODUCTCountOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    product_name?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    user_uuid?: SortOrder
+    created_by?: SortOrder
+    created_date?: SortOrder
+    updated_by?: SortOrder
+    updated_date?: SortOrder
+  }
+
+  export type PRODUCTAvgOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type PRODUCTMaxOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    product_name?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    user_uuid?: SortOrder
+    created_by?: SortOrder
+    created_date?: SortOrder
+    updated_by?: SortOrder
+    updated_date?: SortOrder
+  }
+
+  export type PRODUCTMinOrderByAggregateInput = {
+    id?: SortOrder
+    uuid?: SortOrder
+    product_name?: SortOrder
+    description?: SortOrder
+    amount?: SortOrder
+    user_uuid?: SortOrder
+    created_by?: SortOrder
+    created_date?: SortOrder
+    updated_by?: SortOrder
+    updated_date?: SortOrder
+  }
+
+  export type PRODUCTSumOrderByAggregateInput = {
+    id?: SortOrder
+    amount?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type PRODUCT_FAVORITECountOrderByAggregateInput = {
+    id?: SortOrder
+    favorite?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrder
+    created_date?: SortOrder
+  }
+
+  export type PRODUCT_FAVORITEAvgOrderByAggregateInput = {
+    id?: SortOrder
+    favorite?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrder
+  }
+
+  export type PRODUCT_FAVORITEMaxOrderByAggregateInput = {
+    id?: SortOrder
+    favorite?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrder
+    created_date?: SortOrder
+  }
+
+  export type PRODUCT_FAVORITEMinOrderByAggregateInput = {
+    id?: SortOrder
+    favorite?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrder
+    created_date?: SortOrder
+  }
+
+  export type PRODUCT_FAVORITESumOrderByAggregateInput = {
+    id?: SortOrder
+    favorite?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrder
+  }
+
+  export type PRODUCT_LIKECountOrderByAggregateInput = {
+    id?: SortOrder
+    like?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrder
+    created_date?: SortOrder
+  }
+
+  export type PRODUCT_LIKEAvgOrderByAggregateInput = {
+    id?: SortOrder
+    like?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrder
+  }
+
+  export type PRODUCT_LIKEMaxOrderByAggregateInput = {
+    id?: SortOrder
+    like?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrder
+    created_date?: SortOrder
+  }
+
+  export type PRODUCT_LIKEMinOrderByAggregateInput = {
+    id?: SortOrder
+    like?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrder
+    created_date?: SortOrder
+  }
+
+  export type PRODUCT_LIKESumOrderByAggregateInput = {
+    id?: SortOrder
+    like?: SortOrder
+    user_id?: SortOrder
+    created_by?: SortOrder
+  }
+
+  export type PRODUCTCreateNestedManyWithoutUSERInput = {
+    create?: XOR<PRODUCTCreateWithoutUSERInput, PRODUCTUncheckedCreateWithoutUSERInput> | PRODUCTCreateWithoutUSERInput[] | PRODUCTUncheckedCreateWithoutUSERInput[]
+    connectOrCreate?: PRODUCTCreateOrConnectWithoutUSERInput | PRODUCTCreateOrConnectWithoutUSERInput[]
+    createMany?: PRODUCTCreateManyUSERInputEnvelope
+    connect?: PRODUCTWhereUniqueInput | PRODUCTWhereUniqueInput[]
+  }
+
+  export type PRODUCT_FAVORITECreateNestedManyWithoutUSERInput = {
+    create?: XOR<PRODUCT_FAVORITECreateWithoutUSERInput, PRODUCT_FAVORITEUncheckedCreateWithoutUSERInput> | PRODUCT_FAVORITECreateWithoutUSERInput[] | PRODUCT_FAVORITEUncheckedCreateWithoutUSERInput[]
+    connectOrCreate?: PRODUCT_FAVORITECreateOrConnectWithoutUSERInput | PRODUCT_FAVORITECreateOrConnectWithoutUSERInput[]
+    createMany?: PRODUCT_FAVORITECreateManyUSERInputEnvelope
+    connect?: PRODUCT_FAVORITEWhereUniqueInput | PRODUCT_FAVORITEWhereUniqueInput[]
+  }
+
+  export type PRODUCTUncheckedCreateNestedManyWithoutUSERInput = {
+    create?: XOR<PRODUCTCreateWithoutUSERInput, PRODUCTUncheckedCreateWithoutUSERInput> | PRODUCTCreateWithoutUSERInput[] | PRODUCTUncheckedCreateWithoutUSERInput[]
+    connectOrCreate?: PRODUCTCreateOrConnectWithoutUSERInput | PRODUCTCreateOrConnectWithoutUSERInput[]
+    createMany?: PRODUCTCreateManyUSERInputEnvelope
+    connect?: PRODUCTWhereUniqueInput | PRODUCTWhereUniqueInput[]
+  }
+
+  export type PRODUCT_FAVORITEUncheckedCreateNestedManyWithoutUSERInput = {
+    create?: XOR<PRODUCT_FAVORITECreateWithoutUSERInput, PRODUCT_FAVORITEUncheckedCreateWithoutUSERInput> | PRODUCT_FAVORITECreateWithoutUSERInput[] | PRODUCT_FAVORITEUncheckedCreateWithoutUSERInput[]
+    connectOrCreate?: PRODUCT_FAVORITECreateOrConnectWithoutUSERInput | PRODUCT_FAVORITECreateOrConnectWithoutUSERInput[]
+    createMany?: PRODUCT_FAVORITECreateManyUSERInputEnvelope
+    connect?: PRODUCT_FAVORITEWhereUniqueInput | PRODUCT_FAVORITEWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2388,6 +6363,98 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type PRODUCTUpdateManyWithoutUSERNestedInput = {
+    create?: XOR<PRODUCTCreateWithoutUSERInput, PRODUCTUncheckedCreateWithoutUSERInput> | PRODUCTCreateWithoutUSERInput[] | PRODUCTUncheckedCreateWithoutUSERInput[]
+    connectOrCreate?: PRODUCTCreateOrConnectWithoutUSERInput | PRODUCTCreateOrConnectWithoutUSERInput[]
+    upsert?: PRODUCTUpsertWithWhereUniqueWithoutUSERInput | PRODUCTUpsertWithWhereUniqueWithoutUSERInput[]
+    createMany?: PRODUCTCreateManyUSERInputEnvelope
+    set?: PRODUCTWhereUniqueInput | PRODUCTWhereUniqueInput[]
+    disconnect?: PRODUCTWhereUniqueInput | PRODUCTWhereUniqueInput[]
+    delete?: PRODUCTWhereUniqueInput | PRODUCTWhereUniqueInput[]
+    connect?: PRODUCTWhereUniqueInput | PRODUCTWhereUniqueInput[]
+    update?: PRODUCTUpdateWithWhereUniqueWithoutUSERInput | PRODUCTUpdateWithWhereUniqueWithoutUSERInput[]
+    updateMany?: PRODUCTUpdateManyWithWhereWithoutUSERInput | PRODUCTUpdateManyWithWhereWithoutUSERInput[]
+    deleteMany?: PRODUCTScalarWhereInput | PRODUCTScalarWhereInput[]
+  }
+
+  export type PRODUCT_FAVORITEUpdateManyWithoutUSERNestedInput = {
+    create?: XOR<PRODUCT_FAVORITECreateWithoutUSERInput, PRODUCT_FAVORITEUncheckedCreateWithoutUSERInput> | PRODUCT_FAVORITECreateWithoutUSERInput[] | PRODUCT_FAVORITEUncheckedCreateWithoutUSERInput[]
+    connectOrCreate?: PRODUCT_FAVORITECreateOrConnectWithoutUSERInput | PRODUCT_FAVORITECreateOrConnectWithoutUSERInput[]
+    upsert?: PRODUCT_FAVORITEUpsertWithWhereUniqueWithoutUSERInput | PRODUCT_FAVORITEUpsertWithWhereUniqueWithoutUSERInput[]
+    createMany?: PRODUCT_FAVORITECreateManyUSERInputEnvelope
+    set?: PRODUCT_FAVORITEWhereUniqueInput | PRODUCT_FAVORITEWhereUniqueInput[]
+    disconnect?: PRODUCT_FAVORITEWhereUniqueInput | PRODUCT_FAVORITEWhereUniqueInput[]
+    delete?: PRODUCT_FAVORITEWhereUniqueInput | PRODUCT_FAVORITEWhereUniqueInput[]
+    connect?: PRODUCT_FAVORITEWhereUniqueInput | PRODUCT_FAVORITEWhereUniqueInput[]
+    update?: PRODUCT_FAVORITEUpdateWithWhereUniqueWithoutUSERInput | PRODUCT_FAVORITEUpdateWithWhereUniqueWithoutUSERInput[]
+    updateMany?: PRODUCT_FAVORITEUpdateManyWithWhereWithoutUSERInput | PRODUCT_FAVORITEUpdateManyWithWhereWithoutUSERInput[]
+    deleteMany?: PRODUCT_FAVORITEScalarWhereInput | PRODUCT_FAVORITEScalarWhereInput[]
+  }
+
+  export type PRODUCTUncheckedUpdateManyWithoutUSERNestedInput = {
+    create?: XOR<PRODUCTCreateWithoutUSERInput, PRODUCTUncheckedCreateWithoutUSERInput> | PRODUCTCreateWithoutUSERInput[] | PRODUCTUncheckedCreateWithoutUSERInput[]
+    connectOrCreate?: PRODUCTCreateOrConnectWithoutUSERInput | PRODUCTCreateOrConnectWithoutUSERInput[]
+    upsert?: PRODUCTUpsertWithWhereUniqueWithoutUSERInput | PRODUCTUpsertWithWhereUniqueWithoutUSERInput[]
+    createMany?: PRODUCTCreateManyUSERInputEnvelope
+    set?: PRODUCTWhereUniqueInput | PRODUCTWhereUniqueInput[]
+    disconnect?: PRODUCTWhereUniqueInput | PRODUCTWhereUniqueInput[]
+    delete?: PRODUCTWhereUniqueInput | PRODUCTWhereUniqueInput[]
+    connect?: PRODUCTWhereUniqueInput | PRODUCTWhereUniqueInput[]
+    update?: PRODUCTUpdateWithWhereUniqueWithoutUSERInput | PRODUCTUpdateWithWhereUniqueWithoutUSERInput[]
+    updateMany?: PRODUCTUpdateManyWithWhereWithoutUSERInput | PRODUCTUpdateManyWithWhereWithoutUSERInput[]
+    deleteMany?: PRODUCTScalarWhereInput | PRODUCTScalarWhereInput[]
+  }
+
+  export type PRODUCT_FAVORITEUncheckedUpdateManyWithoutUSERNestedInput = {
+    create?: XOR<PRODUCT_FAVORITECreateWithoutUSERInput, PRODUCT_FAVORITEUncheckedCreateWithoutUSERInput> | PRODUCT_FAVORITECreateWithoutUSERInput[] | PRODUCT_FAVORITEUncheckedCreateWithoutUSERInput[]
+    connectOrCreate?: PRODUCT_FAVORITECreateOrConnectWithoutUSERInput | PRODUCT_FAVORITECreateOrConnectWithoutUSERInput[]
+    upsert?: PRODUCT_FAVORITEUpsertWithWhereUniqueWithoutUSERInput | PRODUCT_FAVORITEUpsertWithWhereUniqueWithoutUSERInput[]
+    createMany?: PRODUCT_FAVORITECreateManyUSERInputEnvelope
+    set?: PRODUCT_FAVORITEWhereUniqueInput | PRODUCT_FAVORITEWhereUniqueInput[]
+    disconnect?: PRODUCT_FAVORITEWhereUniqueInput | PRODUCT_FAVORITEWhereUniqueInput[]
+    delete?: PRODUCT_FAVORITEWhereUniqueInput | PRODUCT_FAVORITEWhereUniqueInput[]
+    connect?: PRODUCT_FAVORITEWhereUniqueInput | PRODUCT_FAVORITEWhereUniqueInput[]
+    update?: PRODUCT_FAVORITEUpdateWithWhereUniqueWithoutUSERInput | PRODUCT_FAVORITEUpdateWithWhereUniqueWithoutUSERInput[]
+    updateMany?: PRODUCT_FAVORITEUpdateManyWithWhereWithoutUSERInput | PRODUCT_FAVORITEUpdateManyWithWhereWithoutUSERInput[]
+    deleteMany?: PRODUCT_FAVORITEScalarWhereInput | PRODUCT_FAVORITEScalarWhereInput[]
+  }
+
+  export type USERCreateNestedOneWithoutPRODUCTInput = {
+    create?: XOR<USERCreateWithoutPRODUCTInput, USERUncheckedCreateWithoutPRODUCTInput>
+    connectOrCreate?: USERCreateOrConnectWithoutPRODUCTInput
+    connect?: USERWhereUniqueInput
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type USERUpdateOneRequiredWithoutPRODUCTNestedInput = {
+    create?: XOR<USERCreateWithoutPRODUCTInput, USERUncheckedCreateWithoutPRODUCTInput>
+    connectOrCreate?: USERCreateOrConnectWithoutPRODUCTInput
+    upsert?: USERUpsertWithoutPRODUCTInput
+    connect?: USERWhereUniqueInput
+    update?: XOR<XOR<USERUpdateToOneWithWhereWithoutPRODUCTInput, USERUpdateWithoutPRODUCTInput>, USERUncheckedUpdateWithoutPRODUCTInput>
+  }
+
+  export type USERCreateNestedOneWithoutPRODUCT_FAVORITEInput = {
+    create?: XOR<USERCreateWithoutPRODUCT_FAVORITEInput, USERUncheckedCreateWithoutPRODUCT_FAVORITEInput>
+    connectOrCreate?: USERCreateOrConnectWithoutPRODUCT_FAVORITEInput
+    connect?: USERWhereUniqueInput
+  }
+
+  export type USERUpdateOneRequiredWithoutPRODUCT_FAVORITENestedInput = {
+    create?: XOR<USERCreateWithoutPRODUCT_FAVORITEInput, USERUncheckedCreateWithoutPRODUCT_FAVORITEInput>
+    connectOrCreate?: USERCreateOrConnectWithoutPRODUCT_FAVORITEInput
+    upsert?: USERUpsertWithoutPRODUCT_FAVORITEInput
+    connect?: USERWhereUniqueInput
+    update?: XOR<XOR<USERUpdateToOneWithWhereWithoutPRODUCT_FAVORITEInput, USERUpdateWithoutPRODUCT_FAVORITEInput>, USERUncheckedUpdateWithoutPRODUCT_FAVORITEInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2530,15 +6597,411 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type PRODUCTCreateWithoutUSERInput = {
+    uuid: string
+    product_name: string
+    description?: string | null
+    amount?: number
+    created_by?: number | null
+    created_date?: Date | string | null
+    updated_by?: number | null
+    updated_date?: Date | string | null
+  }
+
+  export type PRODUCTUncheckedCreateWithoutUSERInput = {
+    id?: number
+    uuid: string
+    product_name: string
+    description?: string | null
+    amount?: number
+    created_by?: number | null
+    created_date?: Date | string | null
+    updated_by?: number | null
+    updated_date?: Date | string | null
+  }
+
+  export type PRODUCTCreateOrConnectWithoutUSERInput = {
+    where: PRODUCTWhereUniqueInput
+    create: XOR<PRODUCTCreateWithoutUSERInput, PRODUCTUncheckedCreateWithoutUSERInput>
+  }
+
+  export type PRODUCTCreateManyUSERInputEnvelope = {
+    data: PRODUCTCreateManyUSERInput | PRODUCTCreateManyUSERInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PRODUCT_FAVORITECreateWithoutUSERInput = {
+    favorite?: number
+    created_by: number
+    created_date?: Date | string | null
+  }
+
+  export type PRODUCT_FAVORITEUncheckedCreateWithoutUSERInput = {
+    id?: number
+    favorite?: number
+    created_by: number
+    created_date?: Date | string | null
+  }
+
+  export type PRODUCT_FAVORITECreateOrConnectWithoutUSERInput = {
+    where: PRODUCT_FAVORITEWhereUniqueInput
+    create: XOR<PRODUCT_FAVORITECreateWithoutUSERInput, PRODUCT_FAVORITEUncheckedCreateWithoutUSERInput>
+  }
+
+  export type PRODUCT_FAVORITECreateManyUSERInputEnvelope = {
+    data: PRODUCT_FAVORITECreateManyUSERInput | PRODUCT_FAVORITECreateManyUSERInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PRODUCTUpsertWithWhereUniqueWithoutUSERInput = {
+    where: PRODUCTWhereUniqueInput
+    update: XOR<PRODUCTUpdateWithoutUSERInput, PRODUCTUncheckedUpdateWithoutUSERInput>
+    create: XOR<PRODUCTCreateWithoutUSERInput, PRODUCTUncheckedCreateWithoutUSERInput>
+  }
+
+  export type PRODUCTUpdateWithWhereUniqueWithoutUSERInput = {
+    where: PRODUCTWhereUniqueInput
+    data: XOR<PRODUCTUpdateWithoutUSERInput, PRODUCTUncheckedUpdateWithoutUSERInput>
+  }
+
+  export type PRODUCTUpdateManyWithWhereWithoutUSERInput = {
+    where: PRODUCTScalarWhereInput
+    data: XOR<PRODUCTUpdateManyMutationInput, PRODUCTUncheckedUpdateManyWithoutUSERInput>
+  }
+
+  export type PRODUCTScalarWhereInput = {
+    AND?: PRODUCTScalarWhereInput | PRODUCTScalarWhereInput[]
+    OR?: PRODUCTScalarWhereInput[]
+    NOT?: PRODUCTScalarWhereInput | PRODUCTScalarWhereInput[]
+    id?: IntFilter<"PRODUCT"> | number
+    uuid?: StringFilter<"PRODUCT"> | string
+    product_name?: StringFilter<"PRODUCT"> | string
+    description?: StringNullableFilter<"PRODUCT"> | string | null
+    amount?: IntFilter<"PRODUCT"> | number
+    user_uuid?: StringFilter<"PRODUCT"> | string
+    created_by?: IntNullableFilter<"PRODUCT"> | number | null
+    created_date?: DateTimeNullableFilter<"PRODUCT"> | Date | string | null
+    updated_by?: IntNullableFilter<"PRODUCT"> | number | null
+    updated_date?: DateTimeNullableFilter<"PRODUCT"> | Date | string | null
+  }
+
+  export type PRODUCT_FAVORITEUpsertWithWhereUniqueWithoutUSERInput = {
+    where: PRODUCT_FAVORITEWhereUniqueInput
+    update: XOR<PRODUCT_FAVORITEUpdateWithoutUSERInput, PRODUCT_FAVORITEUncheckedUpdateWithoutUSERInput>
+    create: XOR<PRODUCT_FAVORITECreateWithoutUSERInput, PRODUCT_FAVORITEUncheckedCreateWithoutUSERInput>
+  }
+
+  export type PRODUCT_FAVORITEUpdateWithWhereUniqueWithoutUSERInput = {
+    where: PRODUCT_FAVORITEWhereUniqueInput
+    data: XOR<PRODUCT_FAVORITEUpdateWithoutUSERInput, PRODUCT_FAVORITEUncheckedUpdateWithoutUSERInput>
+  }
+
+  export type PRODUCT_FAVORITEUpdateManyWithWhereWithoutUSERInput = {
+    where: PRODUCT_FAVORITEScalarWhereInput
+    data: XOR<PRODUCT_FAVORITEUpdateManyMutationInput, PRODUCT_FAVORITEUncheckedUpdateManyWithoutUSERInput>
+  }
+
+  export type PRODUCT_FAVORITEScalarWhereInput = {
+    AND?: PRODUCT_FAVORITEScalarWhereInput | PRODUCT_FAVORITEScalarWhereInput[]
+    OR?: PRODUCT_FAVORITEScalarWhereInput[]
+    NOT?: PRODUCT_FAVORITEScalarWhereInput | PRODUCT_FAVORITEScalarWhereInput[]
+    id?: IntFilter<"PRODUCT_FAVORITE"> | number
+    favorite?: IntFilter<"PRODUCT_FAVORITE"> | number
+    user_id?: IntFilter<"PRODUCT_FAVORITE"> | number
+    created_by?: IntFilter<"PRODUCT_FAVORITE"> | number
+    created_date?: DateTimeNullableFilter<"PRODUCT_FAVORITE"> | Date | string | null
+  }
+
+  export type USERCreateWithoutPRODUCTInput = {
+    uuid: string
+    username?: string | null
+    password: string
+    first_name?: string | null
+    last_name?: string | null
+    picture?: string | null
+    firebase_uid?: string | null
+    phone?: string | null
+    email: string
+    status?: number
+    created_date?: Date | string | null
+    updated_date?: Date | string | null
+    PRODUCT_FAVORITE?: PRODUCT_FAVORITECreateNestedManyWithoutUSERInput
+  }
+
+  export type USERUncheckedCreateWithoutPRODUCTInput = {
+    id?: number
+    uuid: string
+    username?: string | null
+    password: string
+    first_name?: string | null
+    last_name?: string | null
+    picture?: string | null
+    firebase_uid?: string | null
+    phone?: string | null
+    email: string
+    status?: number
+    created_date?: Date | string | null
+    updated_date?: Date | string | null
+    PRODUCT_FAVORITE?: PRODUCT_FAVORITEUncheckedCreateNestedManyWithoutUSERInput
+  }
+
+  export type USERCreateOrConnectWithoutPRODUCTInput = {
+    where: USERWhereUniqueInput
+    create: XOR<USERCreateWithoutPRODUCTInput, USERUncheckedCreateWithoutPRODUCTInput>
+  }
+
+  export type USERUpsertWithoutPRODUCTInput = {
+    update: XOR<USERUpdateWithoutPRODUCTInput, USERUncheckedUpdateWithoutPRODUCTInput>
+    create: XOR<USERCreateWithoutPRODUCTInput, USERUncheckedCreateWithoutPRODUCTInput>
+    where?: USERWhereInput
+  }
+
+  export type USERUpdateToOneWithWhereWithoutPRODUCTInput = {
+    where?: USERWhereInput
+    data: XOR<USERUpdateWithoutPRODUCTInput, USERUncheckedUpdateWithoutPRODUCTInput>
+  }
+
+  export type USERUpdateWithoutPRODUCTInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    first_name?: NullableStringFieldUpdateOperationsInput | string | null
+    last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    PRODUCT_FAVORITE?: PRODUCT_FAVORITEUpdateManyWithoutUSERNestedInput
+  }
+
+  export type USERUncheckedUpdateWithoutPRODUCTInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    first_name?: NullableStringFieldUpdateOperationsInput | string | null
+    last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    PRODUCT_FAVORITE?: PRODUCT_FAVORITEUncheckedUpdateManyWithoutUSERNestedInput
+  }
+
+  export type USERCreateWithoutPRODUCT_FAVORITEInput = {
+    uuid: string
+    username?: string | null
+    password: string
+    first_name?: string | null
+    last_name?: string | null
+    picture?: string | null
+    firebase_uid?: string | null
+    phone?: string | null
+    email: string
+    status?: number
+    created_date?: Date | string | null
+    updated_date?: Date | string | null
+    PRODUCT?: PRODUCTCreateNestedManyWithoutUSERInput
+  }
+
+  export type USERUncheckedCreateWithoutPRODUCT_FAVORITEInput = {
+    id?: number
+    uuid: string
+    username?: string | null
+    password: string
+    first_name?: string | null
+    last_name?: string | null
+    picture?: string | null
+    firebase_uid?: string | null
+    phone?: string | null
+    email: string
+    status?: number
+    created_date?: Date | string | null
+    updated_date?: Date | string | null
+    PRODUCT?: PRODUCTUncheckedCreateNestedManyWithoutUSERInput
+  }
+
+  export type USERCreateOrConnectWithoutPRODUCT_FAVORITEInput = {
+    where: USERWhereUniqueInput
+    create: XOR<USERCreateWithoutPRODUCT_FAVORITEInput, USERUncheckedCreateWithoutPRODUCT_FAVORITEInput>
+  }
+
+  export type USERUpsertWithoutPRODUCT_FAVORITEInput = {
+    update: XOR<USERUpdateWithoutPRODUCT_FAVORITEInput, USERUncheckedUpdateWithoutPRODUCT_FAVORITEInput>
+    create: XOR<USERCreateWithoutPRODUCT_FAVORITEInput, USERUncheckedCreateWithoutPRODUCT_FAVORITEInput>
+    where?: USERWhereInput
+  }
+
+  export type USERUpdateToOneWithWhereWithoutPRODUCT_FAVORITEInput = {
+    where?: USERWhereInput
+    data: XOR<USERUpdateWithoutPRODUCT_FAVORITEInput, USERUncheckedUpdateWithoutPRODUCT_FAVORITEInput>
+  }
+
+  export type USERUpdateWithoutPRODUCT_FAVORITEInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    first_name?: NullableStringFieldUpdateOperationsInput | string | null
+    last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    PRODUCT?: PRODUCTUpdateManyWithoutUSERNestedInput
+  }
+
+  export type USERUncheckedUpdateWithoutPRODUCT_FAVORITEInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    first_name?: NullableStringFieldUpdateOperationsInput | string | null
+    last_name?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    PRODUCT?: PRODUCTUncheckedUpdateManyWithoutUSERNestedInput
+  }
+
+  export type PRODUCTCreateManyUSERInput = {
+    id?: number
+    uuid: string
+    product_name: string
+    description?: string | null
+    amount?: number
+    created_by?: number | null
+    created_date?: Date | string | null
+    updated_by?: number | null
+    updated_date?: Date | string | null
+  }
+
+  export type PRODUCT_FAVORITECreateManyUSERInput = {
+    id?: number
+    favorite?: number
+    created_by: number
+    created_date?: Date | string | null
+  }
+
+  export type PRODUCTUpdateWithoutUSERInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
+    product_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCTUncheckedUpdateWithoutUSERInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    product_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCTUncheckedUpdateManyWithoutUSERInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    product_name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCT_FAVORITEUpdateWithoutUSERInput = {
+    favorite?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCT_FAVORITEUncheckedUpdateWithoutUSERInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    favorite?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PRODUCT_FAVORITEUncheckedUpdateManyWithoutUSERInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    favorite?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
 
 
   /**
    * Aliases for legacy arg types
    */
     /**
+     * @deprecated Use USERCountOutputTypeDefaultArgs instead
+     */
+    export type USERCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = USERCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use USERDefaultArgs instead
      */
     export type USERArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = USERDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PRODUCTDefaultArgs instead
+     */
+    export type PRODUCTArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PRODUCTDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PRODUCT_FAVORITEDefaultArgs instead
+     */
+    export type PRODUCT_FAVORITEArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PRODUCT_FAVORITEDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PRODUCT_LIKEDefaultArgs instead
+     */
+    export type PRODUCT_LIKEArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PRODUCT_LIKEDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
