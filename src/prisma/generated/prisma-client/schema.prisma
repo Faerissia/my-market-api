@@ -29,19 +29,23 @@ model USER {
 }
 
 model PRODUCT {
-  id           Int       @id @unique(map: "UNQ_ID_PRODUCT") @default(autoincrement())
-  uuid         String    @unique(map: "UNQ_UUID_PRODUCT") @db.VarChar(50)
-  product_name String    @db.VarChar(255)
-  description  String?   @db.LongText
-  amount       Int       @default(0)
-  user_uuid    String    @db.VarChar(50)
-  created_by   Int?
-  created_date DateTime? @db.DateTime(0)
-  updated_by   Int?
-  updated_date DateTime? @db.DateTime(0)
-  USER         USER      @relation(fields: [user_uuid], references: [uuid], onDelete: Cascade, map: "FK_USER_UUID")
+  id               Int               @id @unique(map: "UNQ_ID_PRODUCT") @default(autoincrement())
+  uuid             String            @unique(map: "UNQ_UUID_PRODUCT") @db.VarChar(50)
+  product_name     String            @db.VarChar(255)
+  description      String?           @db.LongText
+  amount           Int               @default(0)
+  category_id      Int?
+  status           Int               @default(0)
+  user_uuid        String            @db.VarChar(50)
+  created_by       Int?
+  created_date     DateTime?         @db.DateTime(0)
+  updated_by       Int?
+  updated_date     DateTime?         @db.DateTime(0)
+  PRODUCT_CATEGORY PRODUCT_CATEGORY? @relation(fields: [category_id], references: [id], onDelete: Cascade, map: "FK_PRODUCT_CATEGORY_ID")
+  USER             USER              @relation(fields: [user_uuid], references: [uuid], onDelete: Cascade, map: "FK_USER_UUID")
 
   @@index([user_uuid], map: "FK_USER_UUID")
+  @@index([category_id], map: "FK_PRODUCT_CATEGORY_ID")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -63,4 +67,12 @@ model PRODUCT_LIKE {
   user_id      Int
   created_by   Int?
   created_date DateTime? @db.DateTime(0)
+}
+
+model PRODUCT_CATEGORY {
+  id           Int       @id @default(autoincrement())
+  name         String?   @db.VarChar(255)
+  created_by   Int?
+  created_date DateTime? @db.DateTime(0)
+  PRODUCT      PRODUCT[]
 }

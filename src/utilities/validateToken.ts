@@ -1,5 +1,5 @@
-import jwtDecode from "jwt-decode";
 import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
 
 export const validateToken = async (
   req: Request,
@@ -11,12 +11,12 @@ export const validateToken = async (
     if (!token) {
       return res.status(401).json({ error: "Unauthorized" });
     }
-    const decodedToken = await jwtDecode(token);
+    const decodedToken = jwt.verify(token, `${process.env.JSON_SECRET_KEY}`);
     (req as any).user = decodedToken;
     // Proceed to the next middleware or route handler
     next();
   } catch (error) {
-    console.error("Error validating Firebase token:", error);
+    console.log("Error validating Firebase token:", error);
     return res.status(401).json({ error: "Unauthorized" });
   }
 };

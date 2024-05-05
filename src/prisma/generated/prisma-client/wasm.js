@@ -134,6 +134,8 @@ exports.Prisma.PRODUCTScalarFieldEnum = {
   product_name: 'product_name',
   description: 'description',
   amount: 'amount',
+  category_id: 'category_id',
+  status: 'status',
   user_uuid: 'user_uuid',
   created_by: 'created_by',
   created_date: 'created_date',
@@ -153,6 +155,13 @@ exports.Prisma.PRODUCT_LIKEScalarFieldEnum = {
   id: 'id',
   like: 'like',
   user_id: 'user_id',
+  created_by: 'created_by',
+  created_date: 'created_date'
+};
+
+exports.Prisma.PRODUCT_CATEGORYScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
   created_by: 'created_by',
   created_date: 'created_date'
 };
@@ -186,12 +195,17 @@ exports.Prisma.PRODUCTOrderByRelevanceFieldEnum = {
   user_uuid: 'user_uuid'
 };
 
+exports.Prisma.PRODUCT_CATEGORYOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
 
 exports.Prisma.ModelName = {
   USER: 'USER',
   PRODUCT: 'PRODUCT',
   PRODUCT_FAVORITE: 'PRODUCT_FAVORITE',
-  PRODUCT_LIKE: 'PRODUCT_LIKE'
+  PRODUCT_LIKE: 'PRODUCT_LIKE',
+  PRODUCT_CATEGORY: 'PRODUCT_CATEGORY'
 };
 
 /**

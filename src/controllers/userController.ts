@@ -1,6 +1,5 @@
 import { Request, Response, response } from "express";
 import { ErrorModel } from "../services/error";
-import { decodeJwtToEmail } from "../services/tools";
 import { prismaClient } from "../config/prisma";
 import userService from "../services/user.service";
 
