@@ -118,6 +118,7 @@ exports.Prisma.USERScalarFieldEnum = {
   firebase_uid: 'firebase_uid',
   phone: 'phone',
   email: 'email',
+  user_level: 'user_level',
   status: 'status',
   created_date: 'created_date',
   updated_date: 'updated_date'

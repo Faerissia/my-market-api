@@ -21,6 +21,7 @@ model USER {
   firebase_uid     String?            @db.VarChar(50)
   phone            String?            @db.VarChar(10)
   email            String             @unique(map: "user_email_unique") @db.VarChar(255)
+  user_level       Int?               @default(1)
   status           Int                @default(1) @db.TinyInt
   created_date     DateTime?          @db.DateTime(0)
   updated_date     DateTime?          @db.DateTime(0)

@@ -76,7 +76,10 @@ const methods = {
           first_name: body.first_name,
           last_name: body.last_name,
           email: body.email,
+          user_level: body.user_level,
+          user_id: body.firebase_uid,
         };
+        console.log(data);
         const token = jsonwebtoken.sign(
           data,
           process.env.JSON_SECRET_KEY as string,

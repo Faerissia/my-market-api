@@ -1285,11 +1285,13 @@ export namespace Prisma {
 
   export type USERAvgAggregateOutputType = {
     id: number | null
+    user_level: number | null
     status: number | null
   }
 
   export type USERSumAggregateOutputType = {
     id: number | null
+    user_level: number | null
     status: number | null
   }
 
@@ -1304,6 +1306,7 @@ export namespace Prisma {
     firebase_uid: string | null
     phone: string | null
     email: string | null
+    user_level: number | null
     status: number | null
     created_date: Date | null
     updated_date: Date | null
@@ -1320,6 +1323,7 @@ export namespace Prisma {
     firebase_uid: string | null
     phone: string | null
     email: string | null
+    user_level: number | null
     status: number | null
     created_date: Date | null
     updated_date: Date | null
@@ -1336,6 +1340,7 @@ export namespace Prisma {
     firebase_uid: number
     phone: number
     email: number
+    user_level: number
     status: number
     created_date: number
     updated_date: number
@@ -1345,11 +1350,13 @@ export namespace Prisma {
 
   export type USERAvgAggregateInputType = {
     id?: true
+    user_level?: true
     status?: true
   }
 
   export type USERSumAggregateInputType = {
     id?: true
+    user_level?: true
     status?: true
   }
 
@@ -1364,6 +1371,7 @@ export namespace Prisma {
     firebase_uid?: true
     phone?: true
     email?: true
+    user_level?: true
     status?: true
     created_date?: true
     updated_date?: true
@@ -1380,6 +1388,7 @@ export namespace Prisma {
     firebase_uid?: true
     phone?: true
     email?: true
+    user_level?: true
     status?: true
     created_date?: true
     updated_date?: true
@@ -1396,6 +1405,7 @@ export namespace Prisma {
     firebase_uid?: true
     phone?: true
     email?: true
+    user_level?: true
     status?: true
     created_date?: true
     updated_date?: true
@@ -1499,6 +1509,7 @@ export namespace Prisma {
     firebase_uid: string | null
     phone: string | null
     email: string
+    user_level: number | null
     status: number
     created_date: Date | null
     updated_date: Date | null
@@ -1534,6 +1545,7 @@ export namespace Prisma {
     firebase_uid?: boolean
     phone?: boolean
     email?: boolean
+    user_level?: boolean
     status?: boolean
     created_date?: boolean
     updated_date?: boolean
@@ -1553,6 +1565,7 @@ export namespace Prisma {
     firebase_uid?: boolean
     phone?: boolean
     email?: boolean
+    user_level?: boolean
     status?: boolean
     created_date?: boolean
     updated_date?: boolean
@@ -1582,6 +1595,7 @@ export namespace Prisma {
       firebase_uid: string | null
       phone: string | null
       email: string
+      user_level: number | null
       status: number
       created_date: Date | null
       updated_date: Date | null
@@ -1992,6 +2006,7 @@ export namespace Prisma {
     readonly firebase_uid: FieldRef<"USER", 'String'>
     readonly phone: FieldRef<"USER", 'String'>
     readonly email: FieldRef<"USER", 'String'>
+    readonly user_level: FieldRef<"USER", 'Int'>
     readonly status: FieldRef<"USER", 'Int'>
     readonly created_date: FieldRef<"USER", 'DateTime'>
     readonly updated_date: FieldRef<"USER", 'DateTime'>
@@ -6352,6 +6367,7 @@ export namespace Prisma {
     firebase_uid: 'firebase_uid',
     phone: 'phone',
     email: 'email',
+    user_level: 'user_level',
     status: 'status',
     created_date: 'created_date',
     updated_date: 'updated_date'
@@ -6516,6 +6532,7 @@ export namespace Prisma {
     firebase_uid?: StringNullableFilter<"USER"> | string | null
     phone?: StringNullableFilter<"USER"> | string | null
     email?: StringFilter<"USER"> | string
+    user_level?: IntNullableFilter<"USER"> | number | null
     status?: IntFilter<"USER"> | number
     created_date?: DateTimeNullableFilter<"USER"> | Date | string | null
     updated_date?: DateTimeNullableFilter<"USER"> | Date | string | null
@@ -6534,6 +6551,7 @@ export namespace Prisma {
     firebase_uid?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrder
+    user_level?: SortOrderInput | SortOrder
     status?: SortOrder
     created_date?: SortOrderInput | SortOrder
     updated_date?: SortOrderInput | SortOrder
@@ -6556,6 +6574,7 @@ export namespace Prisma {
     picture?: StringNullableFilter<"USER"> | string | null
     firebase_uid?: StringNullableFilter<"USER"> | string | null
     phone?: StringNullableFilter<"USER"> | string | null
+    user_level?: IntNullableFilter<"USER"> | number | null
     status?: IntFilter<"USER"> | number
     created_date?: DateTimeNullableFilter<"USER"> | Date | string | null
     updated_date?: DateTimeNullableFilter<"USER"> | Date | string | null
@@ -6574,6 +6593,7 @@ export namespace Prisma {
     firebase_uid?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrder
+    user_level?: SortOrderInput | SortOrder
     status?: SortOrder
     created_date?: SortOrderInput | SortOrder
     updated_date?: SortOrderInput | SortOrder
@@ -6598,6 +6618,7 @@ export namespace Prisma {
     firebase_uid?: StringNullableWithAggregatesFilter<"USER"> | string | null
     phone?: StringNullableWithAggregatesFilter<"USER"> | string | null
     email?: StringWithAggregatesFilter<"USER"> | string
+    user_level?: IntNullableWithAggregatesFilter<"USER"> | number | null
     status?: IntWithAggregatesFilter<"USER"> | number
     created_date?: DateTimeNullableWithAggregatesFilter<"USER"> | Date | string | null
     updated_date?: DateTimeNullableWithAggregatesFilter<"USER"> | Date | string | null
@@ -6873,6 +6894,7 @@ export namespace Prisma {
     firebase_uid?: string | null
     phone?: string | null
     email: string
+    user_level?: number | null
     status?: number
     created_date?: Date | string | null
     updated_date?: Date | string | null
@@ -6891,6 +6913,7 @@ export namespace Prisma {
     firebase_uid?: string | null
     phone?: string | null
     email: string
+    user_level?: number | null
     status?: number
     created_date?: Date | string | null
     updated_date?: Date | string | null
@@ -6908,6 +6931,7 @@ export namespace Prisma {
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
+    user_level?: NullableIntFieldUpdateOperationsInput | number | null
     status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6926,6 +6950,7 @@ export namespace Prisma {
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
+    user_level?: NullableIntFieldUpdateOperationsInput | number | null
     status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6944,6 +6969,7 @@ export namespace Prisma {
     firebase_uid?: string | null
     phone?: string | null
     email: string
+    user_level?: number | null
     status?: number
     created_date?: Date | string | null
     updated_date?: Date | string | null
@@ -6959,6 +6985,7 @@ export namespace Prisma {
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
+    user_level?: NullableIntFieldUpdateOperationsInput | number | null
     status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6975,6 +7002,7 @@ export namespace Prisma {
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
+    user_level?: NullableIntFieldUpdateOperationsInput | number | null
     status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -7276,6 +7304,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -7329,6 +7368,7 @@ export namespace Prisma {
     firebase_uid?: SortOrder
     phone?: SortOrder
     email?: SortOrder
+    user_level?: SortOrder
     status?: SortOrder
     created_date?: SortOrder
     updated_date?: SortOrder
@@ -7336,6 +7376,7 @@ export namespace Prisma {
 
   export type USERAvgOrderByAggregateInput = {
     id?: SortOrder
+    user_level?: SortOrder
     status?: SortOrder
   }
 
@@ -7350,6 +7391,7 @@ export namespace Prisma {
     firebase_uid?: SortOrder
     phone?: SortOrder
     email?: SortOrder
+    user_level?: SortOrder
     status?: SortOrder
     created_date?: SortOrder
     updated_date?: SortOrder
@@ -7366,6 +7408,7 @@ export namespace Prisma {
     firebase_uid?: SortOrder
     phone?: SortOrder
     email?: SortOrder
+    user_level?: SortOrder
     status?: SortOrder
     created_date?: SortOrder
     updated_date?: SortOrder
@@ -7373,6 +7416,7 @@ export namespace Prisma {
 
   export type USERSumOrderByAggregateInput = {
     id?: SortOrder
+    user_level?: SortOrder
     status?: SortOrder
   }
 
@@ -7428,6 +7472,22 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -7440,17 +7500,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type PRODUCT_CATEGORYNullableRelationFilter = {
@@ -7530,22 +7579,6 @@ export namespace Prisma {
     status?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type PRODUCT_FAVORITECountOrderByAggregateInput = {
@@ -7697,6 +7730,14 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -7775,14 +7816,6 @@ export namespace Prisma {
     create?: XOR<USERCreateWithoutPRODUCTInput, USERUncheckedCreateWithoutPRODUCTInput>
     connectOrCreate?: USERCreateOrConnectWithoutPRODUCTInput
     connect?: USERWhereUniqueInput
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type PRODUCT_CATEGORYUpdateOneWithoutPRODUCTNestedInput = {
@@ -7900,6 +7933,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -7974,31 +8018,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -8024,6 +8043,20 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type PRODUCTCreateWithoutUSERInput = {
@@ -8175,6 +8208,7 @@ export namespace Prisma {
     firebase_uid?: string | null
     phone?: string | null
     email: string
+    user_level?: number | null
     status?: number
     created_date?: Date | string | null
     updated_date?: Date | string | null
@@ -8192,6 +8226,7 @@ export namespace Prisma {
     firebase_uid?: string | null
     phone?: string | null
     email: string
+    user_level?: number | null
     status?: number
     created_date?: Date | string | null
     updated_date?: Date | string | null
@@ -8248,6 +8283,7 @@ export namespace Prisma {
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
+    user_level?: NullableIntFieldUpdateOperationsInput | number | null
     status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8265,6 +8301,7 @@ export namespace Prisma {
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
+    user_level?: NullableIntFieldUpdateOperationsInput | number | null
     status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8281,6 +8318,7 @@ export namespace Prisma {
     firebase_uid?: string | null
     phone?: string | null
     email: string
+    user_level?: number | null
     status?: number
     created_date?: Date | string | null
     updated_date?: Date | string | null
@@ -8298,6 +8336,7 @@ export namespace Prisma {
     firebase_uid?: string | null
     phone?: string | null
     email: string
+    user_level?: number | null
     status?: number
     created_date?: Date | string | null
     updated_date?: Date | string | null
@@ -8330,6 +8369,7 @@ export namespace Prisma {
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
+    user_level?: NullableIntFieldUpdateOperationsInput | number | null
     status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8347,6 +8387,7 @@ export namespace Prisma {
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
+    user_level?: NullableIntFieldUpdateOperationsInput | number | null
     status?: IntFieldUpdateOperationsInput | number
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
